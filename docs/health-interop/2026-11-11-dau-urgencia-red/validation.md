@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Informe final de la prueba del pack
+
+- Artefact: `final-test-report.md` (140 líneas: veredicto, recorrido por pasos, 20 hallazgos F1–F20 con su corrección y versión del pack, historial v0.2.0–v0.16.0, pendientes y bloqueos)
+- Tool / profile: revisión de `validation.md` y `decisions.md` completos contra el informe
+- Result: el informe recoge los 6 pasos validados y publicados y los 20 hallazgos de la prueba, todos corregidos en el pack salvo los pendientes anotados: prueba de aceptación en Codex bloqueada (sin credenciales), explorador en v0.15.0, hueco de plugin.json (13 de 15 skills), hueco de contabilidad en los registros de sync. Pendiente: subir el informe a cl-urgencia con aprobación del usuario.
+- Evidence: `final-test-report.md` en la carpeta del caso; las cifras (140 tests, 0 diagonales, 0 errores SUSHI, commits be2ef3f/ac6a3fd, runs 24/43162491258/43160619603) coinciden con las entradas de `validation.md`.
+
 ## 2026-11-12 — Paso 6 subido a cl-urgencia (commit be2ef3f), verificado en remoto
 
 - Artefact: `06-component/` (61 archivos: plan.md, README.md, run_tests.sh, 17 en src/dau, 15 en tests, 14 goldens, 12 ejemplos) + `README.md`, `state.md`, `validation.md` del caso (64 archivos en total)
