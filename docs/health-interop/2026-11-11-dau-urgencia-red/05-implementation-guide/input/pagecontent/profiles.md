@@ -4,6 +4,16 @@ Los perfiles de esta guía son perfiles propios, diseñados a partir de la espec
 
 Cada perfil tiene su página con la definición formal (tabla de elementos, diferencial, snapshot, bindings de terminología, restricciones y los formatos XML/JSON/TTL). La lista completa de artefactos, con sus páginas, está en el [resumen de artefactos](artifacts.html).
 
+## Diagrama de recursos
+
+El diagrama (estilo ClinFHIR GraphBuilder) muestra los recursos de la guía y cómo se referencian entre sí, con el `Encounter` como centro y el `Bundle` como marco de la transacción. [Abrir el diagrama a tamaño completo](images/04-fhir-proposal-graph.svg).
+
+<div style="overflow-x:auto; border:1px solid #ddd; padding:8px;">
+<a href="images/04-fhir-proposal-graph.svg"><img src="images/04-fhir-proposal-graph.svg" alt="Diagrama de recursos estilo ClinFHIR GraphBuilder: Encounter como centro, referenciado por Condition, MedicationRequest y DocumentReference, con Patient, Organization y Practitioner" style="width:100%; max-width:1220px; height:auto;"/></a>
+</div>
+
+El `Encounter` es el centro: el paciente (`Patient`), el establecimiento (`Organization`) y el profesional (`Practitioner`) lo referencian; el diagnóstico (`Condition`) y los medicamentos (`MedicationRequest`) cuelgan del episodio; el documento (`DocumentReference`) referencia el episodio y apunta al PDF del DAU; el `Bundle` (transaction) enmarca los recursos de cada aviso. El PDF no es un recurso FHIR (borde punteado en el diagrama). El detalle de cada recurso y su mapeo campo a campo están en la [tabla de mapeo](mapping.html) y en la [propuesta FHIR](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-fhir-proposal.md).
+
 | Perfil | Recurso base | Qué restringe |
 |---|---|---|
 | [`DAUEncuentroUrgencia`](StructureDefinition-dau-encuentro-urgencia.html) | [Encounter](https://hl7.org/fhir/R4/encounter.html) | identifier ID DAU 1..1, status 1..1, class = EMER, subject/serviceProvider 1..1, participant ATND/DIS, period.start 1..1, reasonCode.text ≤ 200, period.end ≥ period.start, extensiones (previsión, ley previsional, clasificación, pronóstico, pertinencia, medio de llegada) |

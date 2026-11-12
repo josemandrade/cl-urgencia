@@ -18,6 +18,8 @@ dependencies:
 pages:
   index.md:
     title: Aviso mínimo DAU
+  process.md:
+    title: Proceso (BPMN)
   profiles.md:
     title: Perfiles
   terminology.md:

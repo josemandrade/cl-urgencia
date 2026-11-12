@@ -1,10 +1,24 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — La guía incluye el BPMN y el diagrama de recursos; el header es una barra horizontal
+
+- Artefact: `05-implementation-guide/` (página nueva `process.md`, `profiles.md` con el diagrama de recursos, `index.md`, `menu.xml`, `sushi-config.yaml`, `input/images/` con los dos SVG) y las skills `implementation-guide-sushi` y `fhir-modeling` del pack
+- Tool / profile: revisión en vivo del header y del CSS, y SUSHI v3.21.0 de los cambios
+- Result: diagnóstico del header: el `menu.xml` era un `<ul>` sin clase dentro de un `<div class="nav-collapse collapse navbar-inverse-collapse">`; el CSS `bootstrap-fhir.css` sí define `.navbar-nav` (45 ocurrencias), pero sin la clase el `<ul>` se ve como lista vertical. Corregido a `<ul class="nav navbar-nav">` y añadida la pestaña "Proceso (BPMN)". Los dos SVG (BPMN 4080×810 y grafo de recursos 1220×900) se copiaron a `input/images/` y se muestran en la guía (BPMN en `process.html` con scroll horizontal y enlace a tamaño completo; grafo en `profiles.html`). SUSHI compila con 0 errores y 0 warnings; los enlaces internos y las imágenes de `process.md`, `profiles.md` e `index.md` se verifican contra los artefactos generados y `input/images/` (ninguno roto). Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo.
+- Evidence: `bootstrap-fhir.css` con 45 ocurrencias de `navbar-nav`, lectura en vivo del `<nav>` en index.html, SUSHI v3.21.0 0 errores, comprobación de enlaces en local.
+
+## 2026-11-12 — Run 10: operaciones enlazadas a sus perfiles IHE, publicadas y verificadas en vivo
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/ (operations.html)
+- Tool / profile: GitHub Actions, workflow "IG build", run 10 (commit `87831b1`)
+- Result: success (build y deploy en verde). Verificado en vivo: operations.html muestra "Buscar paciente" con su enlace a PDQm, y cada operación con su perfil IHE (PIXm en PI-0 y en las transacciones push, MHD en alta/abandono/PI-3, QEDm en buscar episodios y diagnósticos, Subscription FHIR en la suscripción con DSUB refutado). La página tiene 18 enlaces a profiles.ihe.net.
+- Evidence: run de Actions 43155426381 (success), lectura en vivo de operations.html con curl.
+
 ## 2026-11-12 — Operaciones enlazadas a sus perfiles IHE (buscar paciente → PDQm)
 
 - Artefact: `05-implementation-guide/input/pagecontent/operations.md` y `04-fhir-proposal.md` (revisión 3), con las skills `implementation-guide-sushi` y `fhir-modeling` del pack
 - Tool / profile: revisión en vivo de las URLs de los perfiles IHE y SUSHI v3.21.0 de los cambios
-- Result: reescrita `operations.md`: cada operación enlaza a su perfil IHE (PIXm en PI-0 y en las tres transacciones push; MHD en alta, abandono y PI-3; PDQm en buscar paciente; QEDm en buscar episodios y diagnósticos; MHD ITI-67 en buscar documento; Subscription FHIR en la suscripción, con DSUB refutado), y PI-2 se reestructura en operaciones nombradas (buscar paciente, buscar episodios, buscar diagnósticos, buscar documento, suscripción). Añadida la operación `GET /Patient?identifier=<sistema RUN>|<RUN>`. La propuesta pasa a revisión 3 (sección 6 con el perfil IHE por operación). SUSHI compila con 0 errores y 0 warnings; los 27 enlaces internos de `operations.md` se verifican contra los artefactos generados (ninguno roto) y las 7 URLs externas (PIXm, PDQm, MHD, QEDm, ATNA, CT, Subscription FHIR) devuelven 200. Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo.
+- Result: reescrita `operations.md`: cada operación enlaza a su perfil IHE (PIXm en PI-0 y en las tres transacciones push; MHD en alta, abandono y PI-3; PDQm en buscar paciente; QEDm en buscar episodios y diagnósticos; MHD ITI-67 en buscar documento; Subscription FHIR en la suscripción, con DSUB refutado), y PI-2 se reestructura en operaciones nombradas (buscar paciente, buscar episodios, buscar diagnósticos, buscar documento, suscripción). Añadida la operación `GET /Patient?identifier=<sistema RUN>|<RUN>`. La propuesta pasa a revisión 3 (sección 6 con el perfil IHE por operación). SUSHI compila con 0 errores y 0 warnings; los 27 enlaces internos de `operations.md` se verifican contra los artefactos generados (ninguno roto) y las 7 URLs externas (PIXm, PDQm, MHD, QEDm, ATNA, CT, Subscription FHIR) devuelven 200. Subido a cl-urgencia, commit `87831b1`.
 - Evidence: curl 200 de las 7 URLs, SUSHI v3.21.0 0 errores, comprobación de enlaces en local.
 
 ## 2026-11-12 — Run 9: perfiles propios y página de IHE publicados y verificados en vivo

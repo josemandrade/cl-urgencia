@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — La guía incluye el BPMN y el diagrama de recursos, y el header es una barra horizontal
+
+- Context: la guía publicada no mostraba el BPMN ni el diagrama de recursos (estaban en la carpeta del caso, fuera de la guía), y el header se veía como una lista vertical de pestañas. El `menu.xml` era un `<ul>` sin clase, y el `index.md` enlazaba el diagrama de recursos a la propuesta en GitHub (fuera de la guía).
+- Decision: la guía incluye el BPMN (página nueva `process.md`, con el diagrama SVG, el flujo paso a paso y la tabla de PI) y el diagrama de recursos (sección "Diagrama de recursos" en `profiles.md`, con el `Encounter` como centro). Ambos SVG se copiaron a `05-implementation-guide/input/images/` (el publisher los publica como `images/<archivo>`) y se referencian como `images/<archivo>`; el BPMN (4080×810) va en un contenedor con scroll horizontal y enlaza al SVG a tamaño completo. El header se repara: `menu.xml` pasa a ser `<ul class="nav navbar-nav">` (las clases Bootstrap que ponen las pestañas en horizontal; sin ellas el `<ul>` se ve como lista vertical). Las skills `implementation-guide-sushi` (la guía debe incluir el BPMN y el diagrama, con las imágenes dentro de la carpeta de la guía; el menú debe ser `<ul class="nav navbar-nav">` y el header se verifica en vivo) y `fhir-modeling` (el BPMN y el grafo de la propuesta se llevan a la guía) llevan ambas reglas.
+- Consequences: el lector ve el proceso y los recursos dentro de la guía, sin salir a GitHub; el header es una barra de navegación horizontal.
+
 ## 2026-11-12 — Cada operación de la guía enlaza a su perfil IHE (buscar paciente → PDQm)
 
 - Context: la guía tenía la revisión IHE por punto en su propia página (`ihe.md`), pero las operaciones en `operations.md` no enlazaban a ningún perfil IHE, y la búsqueda del paciente (PDQm) ni siquiera estaba como operación: PI-2 listaba solo las búsquedas de `Encounter`, `Condition` y `DocumentReference`.

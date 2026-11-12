@@ -1,5 +1,6 @@
-<ul>
+<ul class="nav navbar-nav">
   <li><a href="index.html">Aviso mínimo DAU</a></li>
+  <li><a href="process.html">Proceso (BPMN)</a></li>
   <li><a href="profiles.html">Perfiles</a></li>
   <li><a href="terminology.html">Terminología</a></li>
   <li><a href="operations.html">Operaciones</a></li>
