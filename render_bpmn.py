@@ -20,13 +20,19 @@ worse than no diagram):
   and sit on the longest segment, not on the centroid of all
   waypoints (a centroid lands in the middle of the diagram, where
   several labels pile up).
-- NO label may overlap another label. All names drawn outside their
-  shape (gateway/event/data-object names, flow labels) are collected,
-  de-collided as one set — a label that would land on another is
-  nudged until it clears — and flow labels get a white background so
-  they stay readable where they cross a line. A flow label that lands
-  on an event name is just as unreadable as two flow labels on each
-  other, so they are de-collided together, not separately.
+- NO label may overlap another label OR a shape. All names drawn
+  outside their shape (gateway/event/data-object names, flow labels)
+  are collected, de-collided as one set — a label that would land on
+  another is nudged until it clears — and flow labels get a white
+  background so they stay readable where they cross a line. A flow
+  label that lands on an event name is just as unreadable as two flow
+  labels on each other, so they are de-collided together, not
+  separately. **Labels must also clear the shapes: an event name that
+  lands on a neighbouring event's circle, or a flow label that lands
+  on a task box, is unreadable even if it clears every other label.
+  The de-collision treats every task, gateway, event and data-object
+  box as an obstacle (with a small margin), so a label is nudged
+  until it clears the shapes too.**
 - Render the PNG at 2x the SVG size so the text stays crisp when the
   reader zooms in.
 - After rendering, LOOK at the PNG before shipping the diagram. If
@@ -184,7 +190,17 @@ def main():
     # nodes (shapes only). Task names sit inside their boxes. Gateway,
     # event and data-object names sit outside their shape, so they are
     # collected with the flow labels and de-collided as one set.
-    ext_labels = []  # (lines, cx, cy, width_px, is_flow)
+    # The shape boxes are obstacles too: a label must clear the shapes,
+    # not only the other labels (an event name on a neighbour's circle
+    # is unreadable). Pool/lane backgrounds are not obstacles — a label
+    # sits inside its pool by design.
+    shape_boxes = []  # (x0, y0, x1, y1, eid), expanded by a small margin
+    for eid, x, y, w, h in shapes:
+        if tag_of(eid) in ('task', 'exclusiveGateway', 'startEvent',
+                           'endEvent', 'boundaryEvent',
+                           'dataObjectReference'):
+            shape_boxes.append((x - 4, y - 4, x + w + 4, y + h + 4, eid))
+    ext_labels = []  # (lines, cx, cy, width_px, is_flow, fontsize, own_eid)
     for eid, x, y, w, h in shapes:
         t = tag_of(eid)
         nm = name_of(eid)
@@ -203,9 +219,14 @@ def main():
                        f'font-size="16" font-weight="bold">×</text>')
             if nm:
                 lines = wrap(nm, 16)
-                ext_labels.append((lines, cx, y + h + 14,
+                # the label's top must sit just below the shape: its
+                # height grows with the number of lines, so the centre
+                # moves down with it (a fixed offset lets a 2-3 line
+                # label climb back into its own shape).
+                cy = y + h + len(lines) * 13
+                ext_labels.append((lines, cx, cy,
                                    max(len(ln) for ln in lines) * 6, False,
-                                   NODE_FONT))
+                                   NODE_FONT, eid))
         elif t in ('startEvent', 'endEvent'):
             r = w / 2
             sw = 3 if t == 'endEvent' else 1.5
@@ -217,9 +238,10 @@ def main():
                            f'font-size="12">✉</text>')
             if nm:
                 lines = wrap(nm, 18)
-                ext_labels.append((lines, cx, y + h + 14,
+                cy = y + h + len(lines) * 13
+                ext_labels.append((lines, cx, cy,
                                    max(len(ln) for ln in lines) * 6, False,
-                                   NODE_FONT))
+                                   NODE_FONT, eid))
         elif t == 'boundaryEvent':
             r = w / 2
             out.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="white" '
@@ -233,7 +255,7 @@ def main():
                 lines = wrap(nm, 28)[:1]
                 ext_labels.append((lines, cx, y + h + 12,
                                    max(len(ln) for ln in lines) * 5.5, False,
-                                   10))
+                                   10, eid))
         elif t == 'dataObjectReference':
             out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
                        f'fill="white" stroke="#333" stroke-width="1.5"/>')
@@ -241,12 +263,13 @@ def main():
                        f'L{x + w - 10},{y + 10} Z" fill="#ddd" stroke="#333"/>')
             if nm:
                 lines = wrap(nm, 18)
-                ext_labels.append((lines, cx, y + h + 14,
+                cy = y + h + len(lines) * 13
+                ext_labels.append((lines, cx, cy,
                                    max(len(ln) for ln in lines) * 6, False,
-                                   NODE_FONT))
+                                   NODE_FONT, eid))
 
     for lines, cx, cy, width in flow_labels:
-        ext_labels.append((lines, cx, cy, width, True, FLOW_FONT))
+        ext_labels.append((lines, cx, cy, width, True, FLOW_FONT, None))
 
     # ---- draw all outside labels, de-collided as one set ----
     def boxes_overlap(a, b):
@@ -255,16 +278,22 @@ def main():
         return ax0 < bx1 and ax1 > bx0 and ay0 < by1 and ay1 > by0
 
     placed = []
-    for lines, cx, cy, width, is_flow, fontsize in ext_labels:
+    for lines, cx, cy, width, is_flow, fontsize, own_eid in ext_labels:
         height = len(lines) * 13
+        # obstacles: the labels already placed, plus every shape box
+        # except this label's own shape (a label sits next to its own
+        # shape, so it may touch its own box; it must clear the rest).
+        obstacles = list(placed) + [b[:4] for b in shape_boxes
+                                     if b[4] != own_eid]
         ox, oy = 0, 0
         for dx, dy in [(0, 0), (0, 14), (0, 28), (0, -14), (0, -28),
                        (30, 0), (-30, 0), (0, 42), (0, -42), (60, 0),
-                       (-60, 0)]:
+                       (-60, 0), (0, 56), (0, -56), (90, 0), (-90, 0),
+                       (0, 70), (0, -70)]:
             x0 = cx + dx - width / 2
             y0 = cy + dy - height + 4
             box = (x0, y0, x0 + width, y0 + height)
-            if not any(boxes_overlap(box, p) for p in placed):
+            if not any(boxes_overlap(box, p) for p in obstacles):
                 ox, oy = dx, dy
                 break
         else:

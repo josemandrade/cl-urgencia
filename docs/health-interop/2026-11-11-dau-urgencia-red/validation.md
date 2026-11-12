@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — El BPMN seguía solapado: reorden del modelo (v5) y del render
+
+- Artefact: `02-bpmn-model.bpmn` (v5), `02-bpmn-model.md` (v5), `render_bpmn.py` y las skills `bpmn-modeling` e `implementation-guide-sushi` del pack
+- Tool / profile: revisión visual del PNG a tamaño de visualización (4320 px, visto 1:1 por zonas: izquierda — admisión/categorización — y derecha — atención/publicación/red)
+- Result: el pantallazo del usuario mostraba "Episodio cerrado / aviso publicado" solapado con "Solicitud de DAU recibida" y con su círculo, y el nudo PI-2/PI-3. Tras la v5, verificado mirando las dos zonas: "Episodio cerrado / aviso publicado" está a la derecha de su círculo y "Solicitud de DAU recibida" debajo del suyo, en filas distintas, sin tocarse; "Transacción recibida", "Episodio disponible en el repositorio" y "Consulta FHIR recibida" ya no se solapan con sus círculos; PI-2 y PI-3 tienen sus etiquetas separadas y legibles. SUSHI compila con 0 errores y 0 warnings. La v5 queda presentada para validación (la v4 fue la validada por el usuario). Pendiente: subir el PNG nuevo (por la web, es binario), el .bpmn/.svg/.md y los registros (por snapshot), verificar el run y la guía en vivo, y subir el pack con la skill reparada (v0.13.0).
+- Evidence: PNG a 4320 px mirado 1:1 por zonas (izquierda y derecha); SUSHI v3.21.0 0 errores; 0 refs sin resolver en el .bpmn.
+
 ## 2026-11-12 — El BPMN seguía ilegible: ancho de visualización
 
 - Artefact: `05-implementation-guide/input/pagecontent/process.md` (ancho de la imagen 2400 → 4320 px, nota de desplazamiento) y las skills `bpmn-modeling` e `implementation-guide-sushi` del pack

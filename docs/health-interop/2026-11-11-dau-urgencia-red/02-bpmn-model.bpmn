@@ -1,11 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_dau" targetNamespace="http://health-interop-superpowers/dau-urgencia-red" exporter="health-interop-superpowers" exporterVersion="0.5.0">
   <bpmn:collaboration id="Collaboration_dau">
     <bpmn:participant id="p_est" name="Establecimiento informante — Unidad de Urgencia" processRef="proc_est" />
     <bpmn:participant id="p_plat" name="Bus de Interoperabilidad MINSAL y Repositorio FHIR" processRef="proc_plat" />
     <bpmn:participant id="p_receptor" name="Punto de la red receptor (APS / Especialidad / Otro hospital / SAMU)" processRef="proc_receptor" />
     <bpmn:messageFlow id="mf_pi1" name="PI-1 · Bundle de alta o abandono (datos 1–8)" sourceRef="t_publicar" targetRef="msgstart_b" />
-    <bpmn:messageFlow id="mf_pi3a" name="PI-3 · Solicitud del DAU" sourceRef="t_consultar" targetRef="msgstart_dau" />
+    <bpmn:messageFlow id="mf_pi3a" name="PI-3 · Solicitud del DAU" sourceRef="t_recuperar" targetRef="msgstart_dau" />
     <bpmn:messageFlow id="mf_pi3b" name="PI-3 · DAU en PDF" sourceRef="t_enviar" targetRef="t_recuperar" />
   <bpmn:messageFlow id="mf_pi0" name="PI-0 · Bundle de admisión (Encounter arrived)" sourceRef="t_publicar_admision" targetRef="msgstart_b" /><bpmn:messageFlow id="mf_pi2a" name="PI-2 · Consultar episodios (búsqueda FHIR o suscripción)" sourceRef="t_consultar" targetRef="msgstart_c" /><bpmn:messageFlow id="mf_pi2b" name="PI-2 · Episodios entregados" sourceRef="endmsg_c" targetRef="t_consultar" /></bpmn:collaboration>
   <bpmn:process id="proc_est" name="Establecimiento informante" isExecutable="false">
@@ -356,13 +356,13 @@
         <dc:Bounds x="3340" y="357" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_msgstart_dau" bpmnElement="msgstart_dau">
-        <dc:Bounds x="3400" y="350" width="36" height="36" />
+        <dc:Bounds x="3400" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_t_enviar" bpmnElement="t_enviar">
-        <dc:Bounds x="3460" y="350" width="170" height="55" />
+        <dc:Bounds x="3460" y="415" width="170" height="55" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_endmsg_dau" bpmnElement="endmsg_dau">
-        <dc:Bounds x="3660" y="357" width="36" height="36" />
+        <dc:Bounds x="3660" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape_p_plat" bpmnElement="p_plat" isHorizontal="true">
         <dc:Bounds x="40" y="500" width="4000" height="80" />
@@ -490,13 +490,9 @@
         <di:waypoint x="3340" y="375" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_f24" bpmnElement="f24">
-        <di:waypoint x="3436" y="368" />
-        <di:waypoint x="3460" y="377" />
-      </bpmndi:BPMNEdge>
+        <di:waypoint x="3436" y="440" /><di:waypoint x="3460" y="442" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_f25" bpmnElement="f25">
-        <di:waypoint x="3630" y="377" />
-        <di:waypoint x="3660" y="375" />
-      </bpmndi:BPMNEdge>
+        <di:waypoint x="3630" y="442" /><di:waypoint x="3660" y="440" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_f26" bpmnElement="f26">
         <di:waypoint x="3156" y="535" />
         <di:waypoint x="3200" y="537" />
@@ -530,13 +526,9 @@
         <di:waypoint x="3138" y="517" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_mf_pi3a" bpmnElement="mf_pi3a">
-        <di:waypoint x="3210" y="630" />
-        <di:waypoint x="3418" y="386" />
-      </bpmndi:BPMNEdge>
+        <di:waypoint x="3525" y="690" /><di:waypoint x="3525" y="590" /><di:waypoint x="3470" y="590" /><di:waypoint x="3470" y="458" /><di:waypoint x="3418" y="458" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge_mf_pi3b" bpmnElement="mf_pi3b">
-        <di:waypoint x="3545" y="405" />
-        <di:waypoint x="3525" y="690" />
-      </bpmndi:BPMNEdge>
+        <di:waypoint x="3545" y="470" /><di:waypoint x="3525" y="690" /></bpmndi:BPMNEdge>
     <bpmndi:BPMNShape id="shape_gw_vital" bpmnElement="gw_vital"><dc:Bounds x="140" y="55" width="50" height="50" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_publicar_admision" bpmnElement="t_publicar_admision"><dc:Bounds x="1470" y="350" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_be_nea2" bpmnElement="be_nea2"><dc:Bounds x="1560" y="165" width="30" height="30" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_informar_paciente" bpmnElement="t_informar_paciente"><dc:Bounds x="2420" y="200" width="130" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_msgstart_c" bpmnElement="msgstart_c"><dc:Bounds x="3600" y="517" width="36" height="36" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_responder" bpmnElement="t_responder"><dc:Bounds x="3680" y="510" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_endmsg_c" bpmnElement="endmsg_c"><dc:Bounds x="3900" y="517" width="36" height="36" /></bpmndi:BPMNShape><bpmndi:BPMNEdge id="edge_f33" bpmnElement="f33"><di:waypoint x="1240" y="377" /><di:waypoint x="1470" y="377" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f34" bpmnElement="f34"><di:waypoint x="1560" y="350" /><di:waypoint x="1380" y="95" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f35" bpmnElement="f35"><di:waypoint x="190" y="80" /><di:waypoint x="210" y="67" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f36" bpmnElement="f36"><di:waypoint x="165" y="105" /><di:waypoint x="165" y="227" /><di:waypoint x="2250" y="227" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f37" bpmnElement="f37"><di:waypoint x="2550" y="227" /><di:waypoint x="2560" y="230" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f38" bpmnElement="f38"><di:waypoint x="1575" y="165" /><di:waypoint x="2125" y="95" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f39" bpmnElement="f39"><di:waypoint x="3636" y="535" /><di:waypoint x="3680" y="537" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f40" bpmnElement="f40"><di:waypoint x="3860" y="537" /><di:waypoint x="3900" y="535" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi0" bpmnElement="mf_pi0"><di:waypoint x="1560" y="405" /><di:waypoint x="1560" y="485" /><di:waypoint x="3138" y="485" /><di:waypoint x="3138" y="517" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi2a" bpmnElement="mf_pi2a"><di:waypoint x="3210" y="630" /><di:waypoint x="3618" y="553" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi2b" bpmnElement="mf_pi2b"><di:waypoint x="3918" y="553" /><di:waypoint x="3210" y="630" /></bpmndi:BPMNEdge><bpmndi:BPMNShape id="shape_t_cerrar_fallecido" bpmnElement="t_cerrar_fallecido"><dc:Bounds x="2890" y="415" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNEdge id="edge_f41" bpmnElement="f41"><di:waypoint x="2585" y="255" /><di:waypoint x="2585" y="442" /><di:waypoint x="2890" y="442" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f42" bpmnElement="f42"><di:waypoint x="3070" y="442" /><di:waypoint x="3120" y="377" /></bpmndi:BPMNEdge></bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
