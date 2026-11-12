@@ -1,10 +1,10 @@
 # State — dau-urgencia-red
 
-- Last updated: 2026-11-11 23:50 America/Santiago
+- Last updated: 2026-11-12 09:57 America/Santiago
 - Current step: 6 (component-building)
-- Current task: componente que implementa la guía (06-component/) — por empezar; la URL de la guía desplegada está pendiente del workflow
-- Last completed: guía publicada y visible en https://josemandrade.github.io/cl-urgencia/. El BPMN v6 está en vivo (run 43162491258 success): el PNG nuevo a 2× (8640×1620, 437579 bytes) con 200, la página de proceso a 4320 px con el zoom, y el grafo de recursos en 200. La v6 queda presentada para validación. El pack se subió como v0.14.0 con la skill reparada. Después, paso 6 (componente).
-- Next action: paso 6 (componente que implementa la guía, en 06-component/).
+- Current task: componente que implementa la guía (06-component/) — por empezar; primero publicar la v7 en la guía y verificarla en vivo
+- Last completed: BPMN v7 validado por el usuario (2026-11-12 09:56, "Sí, valido la v7 tal cual"). La v7 es la versión validada (paso 2 cerrado para v7).
+- Next action: subir la v7 a cl-urgencia (archivos de texto por snapshot, PNG por la web), verificar el run y la guía en vivo; subir el pack v0.15.0; después, paso 6 (componente).
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
 - Files changed in this task: `05-implementation-guide/` (plan.md, sushi-config.yaml, ig.ini, 11 FSH, 4 páginas, menu.xml), `.github/workflows/ig-build.yml`, `.gitignore`, `README.md`, `state.md`, `validation.md`, `decisions.md`
@@ -21,4 +21,6 @@ Tasks:
 - Task 8: complete — IHE en dos momentos: nueva skill `ihe-landscape-scan` + bootstrap actualizado; regla nueva en `brainstorming-health` (diálogo aunque el usuario describa el caso completo)
 - Task 9: pending — actualizar el espacio explorador a v0.6.0 (pendiente de aprobación del usuario); la subida del pack a GitHub ya está hecha (main bc1bcca)
 - Task 10: complete — repaso IHE temprano verificado en vivo y escrito en `02-bpmn-model.md`; entidades y datos escritos en `03-entities-data.md` y validados por el usuario (paso 3 cerrado)
-- Task 11: in progress — paso 4: propuesta FHIR + tabla de mapeo + revisión experta IHE por punto, presentadas para validación
+- Task 11: complete — paso 4: propuesta FHIR + tabla de mapeo + revisión experta IHE por punto, validadas por el usuario; paso 5: guía con SUSHI validada y publicada
+- Task 12: complete — BPMN v7 modelado y verificado (0 diagonales en los 51 flujos; ningún segmento cruza una figura; mirado a 4320 px por zonas; SUSHI 0 errores) y validado por el usuario (2026-11-12 09:56); paso 2 cerrado para v7
+- Task 13: pending — subir la v7 a cl-urgencia (texto por snapshot, PNG por la web), verificar el run y la guía en vivo; subir el pack v0.15.0; después, paso 6 (componente en 06-component/)

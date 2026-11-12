@@ -196,7 +196,8 @@ def main():
     # sits inside its pool by design.
     shape_boxes = []  # (x0, y0, x1, y1, eid), expanded by a small margin
     for eid, x, y, w, h in shapes:
-        if tag_of(eid) in ('task', 'exclusiveGateway', 'startEvent',
+        if tag_of(eid) in ('task', 'exclusiveGateway', 'parallelGateway',
+                           'subProcess', 'startEvent',
                            'endEvent', 'boundaryEvent',
                            'dataObjectReference'):
             shape_boxes.append((x - 4, y - 4, x + w + 4, y + h + 4, eid))
@@ -227,6 +228,35 @@ def main():
                 ext_labels.append((lines, cx, cy,
                                    max(len(ln) for ln in lines) * 6, False,
                                    NODE_FONT, eid))
+        elif t == 'parallelGateway':
+            # parallel (AND) gateway: same diamond as exclusive, but a
+            # "+" instead of an "×". Usually unnamed: a name below the
+            # diamond would sit on the flow that leaves from the
+            # bottom edge, so leave parallel gateways unnamed.
+            pts = f'{cx},{y} {x + w},{cy} {cx},{y + h} {x},{cy}'
+            out.append(f'<polygon points="{pts}" fill="white" stroke="#333" '
+                       f'stroke-width="1.5"/>')
+            out.append(f'<text x="{cx}" y="{cy + 5}" text-anchor="middle" '
+                       f'font-size="16" font-weight="bold">+</text>')
+            if nm:
+                lines = wrap(nm, 16)
+                cy = y + h + len(lines) * 13
+                ext_labels.append((lines, cx, cy,
+                                   max(len(ln) for ln in lines) * 6, False,
+                                   NODE_FONT, eid))
+        elif t == 'subProcess':
+            # collapsed sub-process: a task box with the [+] marker at
+            # the bottom centre, signalling it expands to more steps.
+            out.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
+                       f'rx="6" fill="white" stroke="#333" stroke-width="1.5"/>')
+            lines = wrap(nm, 22)
+            ty = cy - (len(lines) - 1) * 13 / 2 - 2
+            out.append(text_block(cx, ty, lines))
+            mx, my = cx, y + h - 12
+            out.append(f'<rect x="{mx - 7}" y="{my - 7}" width="14" height="14" '
+                       f'fill="white" stroke="#333" stroke-width="1"/>')
+            out.append(f'<text x="{mx}" y="{my + 4}" text-anchor="middle" '
+                       f'font-size="11" font-weight="bold">+</text>')
         elif t in ('startEvent', 'endEvent'):
             r = w / 2
             sw = 3 if t == 'endEvent' else 1.5

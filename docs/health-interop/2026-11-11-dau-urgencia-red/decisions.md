@@ -1,5 +1,17 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — BPMN v7 validado; el paso 6 puede empezar
+
+- Context: el usuario validó la v7 tal cual (2026-11-12 09:56: "Sí, valido la v7 tal cual"). La v7 modela la rama paralela de la admisión del C1 (puerta paralela AND + subproceso "Completar admisión administrativa", unidas antes de la puerta de desenlace), con 0 diagonales en los 51 flujos y ningún segmento que cruce una figura.
+- Decision: la v7 es la versión validada (paso 2 cerrado para v7). El paso 6 (componente que implementa la guía, en `06-component/`) empieza una vez publicada la v7 en la guía. La subida a cl-urgencia (texto por snapshot, PNG por la web) y la subida del pack v0.15.0 siguen pendientes de la aprobación del usuario en la tarjeta del conector.
+- Consequences: el modelo del paso 2 queda cerrado; el componente se construye contra la guía tal como está publicada (con el BPMN v7 una vez verificado en vivo).
+
+## 2026-11-12 — BPMN v6 validado; la rama paralela C1 se modela como v7
+
+- Context: el usuario validó la v6 (2026-11-12 08:15: "modelala ahora y valido la v6") y pidió modelar ahora la rama paralela de la admisión del C1, que estaba pendiente y anotada en `02-bpmn-model.md`: en la vía rápida C1 la atención empieza antes de que exista el episodio DAU, y la guía exige que la admisión (con el ID DAU) exista antes del cierre y prohíbe enviar una admisión de un episodio ya cerrado. Falta modelar la rama paralela en la que la admisión se completa durante la atención.
+- Decision: la v6 queda validada (paso 2 cerrado para v6). La rama paralela se modela como v7 con una puerta paralela (AND): la vía rápida C1 se bifurca en atención clínica y admisión administrativa en paralelo (subproceso "Completar admisión administrativa", que expande la misma secuencia de admisión: recepcionar → identificar → datos → motivo → aperturar DAU → crear episodio → publicar PI-0), y ambas ramas se unen en una puerta paralela (AND) antes de la puerta de desenlace, de modo que el desenlace no se decide hasta que la admisión esté completa. La v7 se presentará para validación por ser un cambio de semántica, no solo de dibujo. El resto del modelo (tareas y flujos) no cambia; el enrutado sigue ortogonal (0 diagonales).
+- Consequences: el paso 2 queda cerrado para v6; la v7 con la rama paralela es la versión presentada. El paso 6 (componente) empieza cuando la v7 se valide.
+
 ## 2026-11-12 — Las líneas que unen deben ser perpendiculares: BPMN v6 con buenas prácticas
 
 - Context: el usuario pidió que las líneas que unen sean perpendiculares, no diagonales, y que se lean buenas prácticas de BPMN para construir bien el diagrama. Se leyeron en vivo la guía de Camunda "Creating readable process models" (docs.camunda.io), Visual Paradigm, el estándar BPMN de Schematex (que cita OMG BPMN 2.0 y Bruce Silver, *BPMN Method and Style*) y el checklist de JointJS. Todas coinciden: el enrutado de los flujos es Manhattan/ortogonal (tramos horizontales y verticales, codos en ángulo recto), se evitan las diagonales salvo que sean imprescindibles, se minimizan los cruces y se reordenan los carriles para que los flujos sean legibles.
