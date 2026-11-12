@@ -1,0 +1,48 @@
+{
+  "patient": {
+    "run": "12345678-5",
+    "family": "Pérez",
+    "given": "Juan",
+    "gender": "male",
+    "birth_date": "1980-05-15"
+  },
+  "organization": {
+    "deis_code": "12345",
+    "name": "Hospital de Prueba"
+  },
+  "practitioner": {
+    "run": "98765432-5",
+    "family": "González",
+    "given": "María"
+  },
+  "encounter": {
+    "dau_id": "SYN-URG-002",
+    "deis_code": "12345",
+    "period_start": "2026-11-11T10:05:00-03:00",
+    "attender_start": "2026-11-11T10:15:00-03:00",
+    "reason": "Dolor torácico",
+    "period_end": "2026-11-11T11:30:00-03:00",
+    "tipo": "2"
+  },
+  "condition": {
+    "clinical_status": "active",
+    "verification_status": "provisional",
+    "code": "R07.4",
+    "code_system": "http://hl7.org/fhir/sid/icd-10",
+    "code_display": "Dolor en el pecho, no especificado",
+    "recorded_date": "2026-11-11T11:00:00-03:00",
+    "local_id": "SYN-URG-002-1"
+  },
+  "document": {
+    "type_code": "34111-5",
+    "url": "https://his.ejemplo.cl/dau/SYN-URG-002.pdf",
+    "date": "2026-11-11T11:35:00-03:00",
+    "local_id": "SYN-URG-002-1"
+  },
+  "timestamp": "2026-11-11T11:35:00-03:00",
+  "uuids": {
+    "encounter": "88888888-8888-8888-8888-888888888888",
+    "condition": "99999999-9999-9999-9999-999999999999",
+    "document": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+  }
+}

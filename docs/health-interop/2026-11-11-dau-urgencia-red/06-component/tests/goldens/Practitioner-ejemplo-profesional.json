@@ -1,0 +1,22 @@
+{
+  "resourceType": "Practitioner",
+  "id": "ejemplo-profesional",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-prestador-profesional"
+    ]
+  },
+  "identifier": [
+    {
+      "value": "98765432-1"
+    }
+  ],
+  "name": [
+    {
+      "family": "González",
+      "given": [
+        "María"
+      ]
+    }
+  ]
+}

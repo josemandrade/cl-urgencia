@@ -1,0 +1,100 @@
+{
+  "resourceType": "Encounter",
+  "id": "ejemplo-encuentro-alta",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-encuentro-urgencia-alta"
+    ]
+  },
+  "status": "finished",
+  "class": {
+    "code": "EMER",
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "display": "Emergencia"
+  },
+  "diagnosis": [
+    {
+      "use": {
+        "coding": [
+          {
+            "code": "DD",
+            "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+            "display": "Diagnóstico de egreso"
+          }
+        ]
+      },
+      "condition": {
+        "reference": "Condition/ejemplo-diagnostico-egreso"
+      }
+    }
+  ],
+  "participant": [
+    {
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "ATND",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "display": "atendiente"
+            }
+          ]
+        }
+      ],
+      "individual": {
+        "reference": "Practitioner/ejemplo-profesional"
+      },
+      "period": {
+        "start": "2026-11-11T10:15:00-03:00"
+      }
+    },
+    {
+      "type": [
+        {
+          "coding": [
+            {
+              "code": "DIS",
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+              "display": "quien da el alta"
+            }
+          ]
+        }
+      ],
+      "individual": {
+        "reference": "Practitioner/ejemplo-profesional"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "system": "https://interoperabilidad.minsal.cl/fhir/sid/dau/12345",
+      "value": "SYN-URG-001"
+    }
+  ],
+  "subject": {
+    "reference": "Patient/ejemplo-paciente"
+  },
+  "serviceProvider": {
+    "reference": "Organization/ejemplo-establecimiento"
+  },
+  "period": {
+    "start": "2026-11-11T10:05:00-03:00",
+    "end": "2026-11-11T14:20:00-03:00"
+  },
+  "reasonCode": [
+    {
+      "text": "Dolor torácico"
+    }
+  ],
+  "hospitalization": {
+    "dischargeDisposition": {
+      "coding": [
+        {
+          "code": "03",
+          "system": "https://josemandrade.github.io/cl-urgencia/CodeSystem/dau-destino-alta",
+          "display": "Fallecido"
+        }
+      ]
+    }
+  }
+}

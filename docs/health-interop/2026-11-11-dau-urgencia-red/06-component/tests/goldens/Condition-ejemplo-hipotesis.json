@@ -1,0 +1,43 @@
+{
+  "resourceType": "Condition",
+  "id": "ejemplo-hipotesis",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-diagnostico-urgencia"
+    ]
+  },
+  "clinicalStatus": {
+    "coding": [
+      {
+        "code": "active",
+        "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+        "display": "Activo"
+      }
+    ]
+  },
+  "verificationStatus": {
+    "coding": [
+      {
+        "code": "provisional",
+        "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+        "display": "Provisional"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "code": "R07.4",
+        "system": "http://hl7.org/fhir/sid/icd-10",
+        "display": "Dolor en el pecho, no especificado"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/ejemplo-paciente"
+  },
+  "encounter": {
+    "reference": "Encounter/ejemplo-encuentro-abandono"
+  },
+  "recordedDate": "2026-11-11T11:00:00-03:00"
+}

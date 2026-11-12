@@ -1,0 +1,25 @@
+{
+  "resourceType": "MedicationRequest",
+  "id": "ejemplo-medicamento-alta",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-indicacion-medicamento"
+    ]
+  },
+  "status": "active",
+  "intent": "order",
+  "medicationCodeableConcept": {
+    "text": "Paracetamol 500 mg"
+  },
+  "subject": {
+    "reference": "Patient/ejemplo-paciente"
+  },
+  "encounter": {
+    "reference": "Encounter/ejemplo-encuentro-alta"
+  },
+  "dosageInstruction": [
+    {
+      "text": "1 comprimido cada 8 horas por 5 días"
+    }
+  ]
+}

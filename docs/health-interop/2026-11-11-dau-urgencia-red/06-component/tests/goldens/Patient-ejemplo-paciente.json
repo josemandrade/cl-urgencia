@@ -1,0 +1,25 @@
+{
+  "resourceType": "Patient",
+  "id": "ejemplo-paciente",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-paciente"
+    ]
+  },
+  "identifier": [
+    {
+      "system": "urn:oid:2.16.840.1.113883.2.22.1.152.787300",
+      "value": "12345678-9"
+    }
+  ],
+  "name": [
+    {
+      "family": "Pérez",
+      "given": [
+        "Juan"
+      ]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1980-05-15"
+}

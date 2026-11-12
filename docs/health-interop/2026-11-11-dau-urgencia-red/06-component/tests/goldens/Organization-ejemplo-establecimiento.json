@@ -1,0 +1,15 @@
+{
+  "resourceType": "Organization",
+  "id": "ejemplo-establecimiento",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-prestador-organizacional"
+    ]
+  },
+  "identifier": [
+    {
+      "value": "12345"
+    }
+  ],
+  "name": "Hospital de Prueba"
+}

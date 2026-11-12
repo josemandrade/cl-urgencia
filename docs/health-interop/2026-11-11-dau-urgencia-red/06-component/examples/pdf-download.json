@@ -1,0 +1,13 @@
+{
+  "document_reference": {
+    "content": [
+      {
+        "attachment": {
+          "contentType": "application/pdf",
+          "url": "https://his.ejemplo.cl/dau/SYN-URG-001.pdf"
+        }
+      }
+    ]
+  },
+  "token": "token-sintetico"
+}

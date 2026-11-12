@@ -1,0 +1,37 @@
+{
+  "resourceType": "DocumentReference",
+  "id": "ejemplo-documento-alta",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-documento-urgencia"
+    ]
+  },
+  "status": "current",
+  "type": {
+    "coding": [
+      {
+        "code": "59258-4",
+        "system": "http://loinc.org",
+        "display": "Resumen de alta de urgencia"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/ejemplo-paciente"
+  },
+  "context": {
+    "encounter": [
+      {
+        "reference": "Encounter/ejemplo-encuentro-alta"
+      }
+    ]
+  },
+  "content": [
+    {
+      "attachment": {
+        "url": "https://his.ejemplo.cl/dau/SYN-URG-001.pdf"
+      }
+    }
+  ],
+  "date": "2026-11-11T14:25:00-03:00"
+}

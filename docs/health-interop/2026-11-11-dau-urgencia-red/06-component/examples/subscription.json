@@ -1,0 +1,4 @@
+{
+  "channel_type": "rest-hook",
+  "endpoint": "https://his.ejemplo.cl/fhir/notificaciones"
+}

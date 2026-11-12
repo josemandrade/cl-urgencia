@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Paso 6: componente construido (21 Component Tasks, 140 tests en verde; presentado para revisión del usuario)
+
+- Artefact: `06-component/` — `plan.md` (21 tareas), `src/dau/` (16 módulos), `tests/` (12 módulos + 14 goldens), `examples/` (12 entradas sintéticas), `README.md` (prerrequisitos, comandos, configuración, ejemplos por operación, tabla de trazabilidad)
+- Tool / profile: Python 3.12 stdlib `unittest` (`PYTHONPATH=src python3 -m unittest discover -s tests -v`); comparación contra los JSON compilados por SUSHI (goldens, nunca editados); validadores contra los perfiles DAU; cliente contra mock local (`http.server`); CLI con los 12 ejemplos
+- Result: las 21 tareas del plan están completas, cada una en RED-GREEN (el RED se vio fallar antes del código: `ModuleNotFoundError`/`ImportError`/`AttributeError` según la tarea). **140 tests, OK** (8 identificadores + 78 builders/validadores + 23 PI-0/PI-2/PI-3 + 13 Bundles + 9 respuestas del Bus + 9 cliente/CLI). Los 3 Bundles coinciden con sus goldens salvo lo normalizado por las Rulings de `state.md`; cada recurso de cada Bundle valida contra su perfil DAU (lista de errores vacía); las 5 consultas PI-2 dan las URLs exactas de `operations.md`; la CLI genera los 3 Bundles y las 12 operaciones desde `examples/`. 5 Rulings registradas en `state.md` (Task 2: RUN de la guía con DV inválido; Task 3: identifier solo con `value` en los prestadores; Tasks 7/8/9: identifier local para los PUT condicionales; Task 9: `contentType application/pdf`; Tasks 10/11/12: referencias `urn:uuid:` y recursos sin `id`). La carpeta del caso NO es un checkout git: no se subió nada; el push a cl-urgencia necesita la aprobación del usuario. Pendiente: revisión del usuario del componente, su README y sus ejemplos; después, el push con tarjeta.
+- Evidence: corrida propia de la suite completa (`Ran 140 tests in 1.050s — OK`, 2026-11-12); salidas reales de la CLI (`patient-search` → `Patient?identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|12345678-5`; `resolve-identity` → `"resolved"`; `subscription` → Subscription `requested`, criteria `Encounter?class=EMER`; `admission-bundle` → 4 entradas con los POST/PUT y `ifNoneExist` de la guía).
+
 ## 2026-11-12 — Run 24: BPMN v7 en vivo (PNG nuevo con 200, process.html a 4320 px con zoom)
 
 - Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/ (process.html, 02-bpmn-model.png)

@@ -1,0 +1,54 @@
+{
+  "patient": {
+    "run": "12345678-5",
+    "family": "Pérez",
+    "given": "Juan",
+    "gender": "male",
+    "birth_date": "1980-05-15"
+  },
+  "organization": {
+    "deis_code": "12345",
+    "name": "Hospital de Prueba"
+  },
+  "practitioner": {
+    "run": "98765432-5",
+    "family": "González",
+    "given": "María"
+  },
+  "encounter": {
+    "dau_id": "SYN-URG-001",
+    "deis_code": "12345",
+    "period_start": "2026-11-11T10:05:00-03:00",
+    "attender_start": "2026-11-11T10:15:00-03:00",
+    "reason": "Dolor torácico",
+    "period_end": "2026-11-11T14:20:00-03:00",
+    "destino": "03"
+  },
+  "condition": {
+    "clinical_status": "active",
+    "verification_status": "confirmed",
+    "code": "I46.9",
+    "code_system": "http://hl7.org/fhir/sid/icd-10",
+    "code_display": "Paro cardíaco, no especificado",
+    "recorded_date": "2026-11-11T14:20:00-03:00",
+    "local_id": "SYN-URG-001-1"
+  },
+  "medication": {
+    "medication_text": "Paracetamol 500 mg",
+    "dosage_text": "1 comprimido cada 8 horas por 5 días",
+    "local_id": "SYN-URG-001-1"
+  },
+  "document": {
+    "type_code": "59258-4",
+    "url": "https://his.ejemplo.cl/dau/SYN-URG-001.pdf",
+    "date": "2026-11-11T14:25:00-03:00",
+    "local_id": "SYN-URG-001-1"
+  },
+  "timestamp": "2026-11-11T14:25:00-03:00",
+  "uuids": {
+    "encounter": "44444444-4444-4444-4444-444444444444",
+    "condition": "55555555-5555-5555-5555-555555555555",
+    "medication": "66666666-6666-6666-6666-666666666666",
+    "document": "77777777-7777-7777-7777-777777777777"
+  }
+}

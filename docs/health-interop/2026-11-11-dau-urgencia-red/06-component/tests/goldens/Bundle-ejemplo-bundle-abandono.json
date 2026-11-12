@@ -1,0 +1,192 @@
+{
+  "resourceType": "Bundle",
+  "id": "ejemplo-bundle-abandono",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-bundle-aviso"
+    ]
+  },
+  "type": "transaction",
+  "timestamp": "2026-11-11T11:35:00-03:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:88888888-8888-8888-8888-888888888888",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "ejemplo-encuentro-abandono",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-encuentro-urgencia-abandono"
+          ]
+        },
+        "status": "finished",
+        "class": {
+          "code": "EMER",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "display": "Emergencia"
+        },
+        "extension": [
+          {
+            "url": "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-tipo-abandono",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "2",
+                  "system": "https://josemandrade.github.io/cl-urgencia/CodeSystem/dau-tipo-abandono",
+                  "display": "Fuga"
+                }
+              ]
+            }
+          }
+        ],
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "ATND",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "atendiente"
+                  }
+                ]
+              }
+            ],
+            "individual": {
+              "reference": "Practitioner/ejemplo-profesional"
+            },
+            "period": {
+              "start": "2026-11-11T10:15:00-03:00"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://interoperabilidad.minsal.cl/fhir/sid/dau/12345",
+            "value": "SYN-URG-002"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/ejemplo-paciente"
+        },
+        "serviceProvider": {
+          "reference": "Organization/ejemplo-establecimiento"
+        },
+        "period": {
+          "start": "2026-11-11T10:05:00-03:00",
+          "end": "2026-11-11T11:30:00-03:00"
+        },
+        "reasonCode": [
+          {
+            "text": "Dolor torácico"
+          }
+        ],
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "Condition/ejemplo-hipotesis"
+            }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter?identifier=https://interoperabilidad.minsal.cl/fhir/sid/dau/12345|SYN-URG-002"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:99999999-9999-9999-9999-999999999999",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "ejemplo-hipotesis",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-diagnostico-urgencia"
+          ]
+        },
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "display": "Activo"
+            }
+          ]
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "provisional",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "display": "Provisional"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "R07.4",
+              "system": "http://hl7.org/fhir/sid/icd-10",
+              "display": "Dolor en el pecho, no especificado"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/ejemplo-paciente"
+        },
+        "encounter": {
+          "reference": "Encounter/ejemplo-encuentro-abandono"
+        },
+        "recordedDate": "2026-11-11T11:00:00-03:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition?identifier=https://his.ejemplo.cl/fhir/sid/diagnostico|SYN-URG-002-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "ejemplo-documento-abandono",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-documento-urgencia"
+          ]
+        },
+        "status": "current",
+        "type": {
+          "coding": [
+            {
+              "code": "34111-5",
+              "system": "http://loinc.org",
+              "display": "Nota de urgencia"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/ejemplo-paciente"
+        },
+        "context": {
+          "encounter": [
+            {
+              "reference": "Encounter/ejemplo-encuentro-abandono"
+            }
+          ]
+        },
+        "content": [
+          {
+            "attachment": {
+              "url": "https://his.ejemplo.cl/dau/SYN-URG-002.pdf"
+            }
+          }
+        ],
+        "date": "2026-11-11T11:35:00-03:00"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "DocumentReference?identifier=https://his.ejemplo.cl/fhir/sid/documento|SYN-URG-002-1"
+      }
+    }
+  ]
+}

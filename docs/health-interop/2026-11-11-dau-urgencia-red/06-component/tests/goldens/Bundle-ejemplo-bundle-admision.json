@@ -1,0 +1,162 @@
+{
+  "resourceType": "Bundle",
+  "id": "ejemplo-bundle-admision",
+  "meta": {
+    "profile": [
+      "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-bundle-aviso"
+    ]
+  },
+  "type": "transaction",
+  "timestamp": "2026-11-11T10:05:00-03:00",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:11111111-1111-1111-1111-111111111111",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "ejemplo-paciente",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-paciente"
+          ]
+        },
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.22.1.152.787300",
+            "value": "12345678-9"
+          }
+        ],
+        "name": [
+          {
+            "family": "Pérez",
+            "given": [
+              "Juan"
+            ]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1980-05-15"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Patient",
+        "ifNoneExist": "identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|12345678-9"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:22222222-2222-2222-2222-222222222222",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "ejemplo-establecimiento",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-prestador-organizacional"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "12345"
+          }
+        ],
+        "name": "Hospital de Prueba"
+      },
+      "request": {
+        "method": "POST",
+        "url": "Organization",
+        "ifNoneExist": "identifier=https://interoperabilidad.minsal.cl/fhir/ig/tei/CodeSystem/CSEstablecimientoDestino|12345"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:33333333-3333-3333-3333-333333333333",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "ejemplo-profesional",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-prestador-profesional"
+          ]
+        },
+        "identifier": [
+          {
+            "value": "98765432-1"
+          }
+        ],
+        "name": [
+          {
+            "family": "González",
+            "given": [
+              "María"
+            ]
+          }
+        ]
+      },
+      "request": {
+        "method": "POST",
+        "url": "Practitioner",
+        "ifNoneExist": "identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|98765432-1"
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:44444444-4444-4444-4444-444444444444",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "ejemplo-encuentro-admision",
+        "meta": {
+          "profile": [
+            "https://josemandrade.github.io/cl-urgencia/StructureDefinition/dau-encuentro-urgencia"
+          ]
+        },
+        "class": {
+          "code": "EMER",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "display": "Emergencia"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "code": "ATND",
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "display": "atendiente"
+                  }
+                ]
+              }
+            ],
+            "individual": {
+              "reference": "Practitioner/ejemplo-profesional"
+            },
+            "period": {
+              "start": "2026-11-11T10:15:00-03:00"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "https://interoperabilidad.minsal.cl/fhir/sid/dau/12345",
+            "value": "SYN-URG-001"
+          }
+        ],
+        "status": "arrived",
+        "subject": {
+          "reference": "Patient/ejemplo-paciente"
+        },
+        "serviceProvider": {
+          "reference": "Organization/ejemplo-establecimiento"
+        },
+        "period": {
+          "start": "2026-11-11T10:05:00-03:00"
+        },
+        "reasonCode": [
+          {
+            "text": "Dolor torácico"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter?identifier=https://interoperabilidad.minsal.cl/fhir/sid/dau/12345|SYN-URG-001"
+      }
+    }
+  ]
+}
