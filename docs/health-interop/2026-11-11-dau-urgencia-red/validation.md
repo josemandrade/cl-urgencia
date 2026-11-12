@@ -1,5 +1,47 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Operaciones enlazadas a sus perfiles IHE (buscar paciente → PDQm)
+
+- Artefact: `05-implementation-guide/input/pagecontent/operations.md` y `04-fhir-proposal.md` (revisión 3), con las skills `implementation-guide-sushi` y `fhir-modeling` del pack
+- Tool / profile: revisión en vivo de las URLs de los perfiles IHE y SUSHI v3.21.0 de los cambios
+- Result: reescrita `operations.md`: cada operación enlaza a su perfil IHE (PIXm en PI-0 y en las tres transacciones push; MHD en alta, abandono y PI-3; PDQm en buscar paciente; QEDm en buscar episodios y diagnósticos; MHD ITI-67 en buscar documento; Subscription FHIR en la suscripción, con DSUB refutado), y PI-2 se reestructura en operaciones nombradas (buscar paciente, buscar episodios, buscar diagnósticos, buscar documento, suscripción). Añadida la operación `GET /Patient?identifier=<sistema RUN>|<RUN>`. La propuesta pasa a revisión 3 (sección 6 con el perfil IHE por operación). SUSHI compila con 0 errores y 0 warnings; los 27 enlaces internos de `operations.md` se verifican contra los artefactos generados (ninguno roto) y las 7 URLs externas (PIXm, PDQm, MHD, QEDm, ATNA, CT, Subscription FHIR) devuelven 200. Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo.
+- Evidence: curl 200 de las 7 URLs, SUSHI v3.21.0 0 errores, comprobación de enlaces en local.
+
+## 2026-11-12 — Run 9: perfiles propios y página de IHE publicados y verificados en vivo
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/
+- Tool / profile: GitHub Actions, workflow "IG build", run 9 (commit `05d2122`)
+- Result: success (build y deploy en verde). Verificado en vivo: la página `ihe.html` existe y muestra la revisión por punto (PI-0 a PI-3, encaje, actores, brechas); `profiles.html` dice "perfiles propios" y ya no dice "transcripciones locales"; el menú incluye "Relación con IHE".
+- Evidence: run de Actions 43153872690 (success), lectura en vivo de ihe.html y comprobación con curl de profiles.html.
+
+## 2026-11-12 — Run 8: corrección de navegación publicada y verificada en vivo
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/
+- Tool / profile: GitHub Actions, workflow "IG build", run 8 (commit `a564056`)
+- Result: success (build y deploy en verde). Verificado en vivo en el sitio: la página de Terminología existe y lista los CodeSystems y ValueSets locales (con enlaces a sus páginas) y las terminologías externas; `profiles.html` enlaza a las páginas de los 17 StructureDefinitions; `operations.html` enlaza a los tres Bundles de ejemplo; el menú incluye Terminología y Artefactos.
+- Evidence: run de Actions 43152679723 (success), lectura en vivo de terminology.html y comprobación con curl de profiles.html y operations.html.
+
+## 2026-11-12 — La guía publicada: los artefactos FHIR estaban generados, pero las páginas no enlazaban a ellos
+
+- Artefact: `05-implementation-guide/` (profiles.md, terminology.md, operations.md, index.md, menu.xml, sushi-config.yaml) y la skill `implementation-guide-sushi` del pack
+- Tool / profile: guía publicada en https://josemandrade.github.io/cl-urgencia/ y revisión en vivo de sus páginas
+- Result: el publisher SÍ generó las páginas de los artefactos (StructureDefinition con diferencial/snapshot/bindings/XML/JSON, CodeSystem/ValueSet con expansión, 14 ejemplos); el problema era de navegación. `profiles.md` era una tabla estática con los nombres en código y sin enlaces; `operations.md` nombraba los ejemplos solo por su id; no había página de Terminología; el menú no incluía Artefactos. Corregido: cada perfil/extensión/ValueSet/CodeSystem enlaza a su página generada; cada operación enlaza a su Bundle de ejemplo y a los recursos que lleva; página nueva `terminology.md` (CodeSystems y ValueSets locales con sus códigos, y terminologías externas: CIE-10, SNOMED CT, LOINC, NID, sistemas de identificación RUN/DAU/DEIS); menú con Terminología y Artefactos. Detalle clave: la página generada se llama `<ResourceType>-<id>.html` con el id en minúsculas (`StructureDefinition-dau-encuentro-urgencia.html`), no con el nombre computable (`StructureDefinition-DAUEncuentroUrgencia.html` da 404). SUSHI compila con 0 errores y 0 warnings; los 86 enlaces internos de las páginas se verificaron contra los 37 artefactos generados (ninguno roto ni fuera del sitio). También se corrigió la skill `implementation-guide-sushi` (sección "Make the guide navigable") para que las guías futuras salgan navegables por defecto. Subido a main, commit `a564056`; el workflow corre para publicar el cambio.
+- Evidence: páginas verificadas en vivo (perfiles, artefactos, operaciones, una StructureDefinition, un ValueSet, un Bundle de ejemplo), SUSHI v3.21.0 0 errores, comprobación de enlaces en local.
+
+## 2026-11-12 — Run 7: el build está en verde; el deploy falla porque GitHub Pages no está activado
+
+- Artefact: `.github/workflows/ig-build.yml`, `05-implementation-guide/` (enlaces del paso 4 a URLs de GitHub)
+- Tool / profile: GitHub Actions, workflow "IG build", run 7 (commit `c2a10af`, `1074d62` con el paso Install Jekyll)
+- Result: build job success (11 pasos: SUSHI, publisher con Jekyll, revisión de enlaces y subida del artefacto para Pages). El job deploy falló en `actions/deploy-pages@v4`. La API de Pages del repo devuelve 404 ("Not Found"): GitHub Pages no está activado para cl-urgencia. Pendiente: activar Pages (Settings → Pages → Source: GitHub Actions) y re-ejecutar el job de deploy ("Re-run failed jobs") o un nuevo push.
+- Evidence: run de Actions 43151447780 (build: success; deploy: failure en el paso 2), API `GET /repos/josemandrade/cl-urgencia/pages` → 404.
+
+## 2026-11-12 — Run 4: la plantilla HL7 exige un contacto de grupo de trabajo de HL7
+
+- Artefact: `.github/workflows/ig-build.yml`, `05-implementation-guide/` (con `ig.ini` en `hl7.base.template#current`, id `hl7.fhir.uv.test.dau-urgencia-red`)
+- Tool / profile: GitHub Actions, workflow "IG build", run 4 (commit `4f50e2a`)
+- Result: failed — el chequeo de reino pasó (`uv`), pero la plantilla falló en `onGenerate.jira.xslt` línea 28: el primer contacto de la guía debe tener una URL a una página de grupo de trabajo de HL7 (`http://www.hl7.org/Special/committees/...`). Leído el código de la plantilla (`hl7.base.template` 1.0.0): el XSLT además busca el grupo en la lista de grupos de HL7 (líneas 50–55), así que debe ser un grupo real. Decisión del usuario: volver a `fhir.base.template` e instalar Jekyll en el workflow. El id se queda en `uv`.
+- Evidence: run de Actions 43148434540 (job build: paso 8 failure), log `logs_116845353006.zip` (paso 8), plantilla `hl7.base.template` 1.0.0 leída en local (`scripts/onGenerate.jira.xslt`, líneas 19–31 y 50–55).
+
 ## 2026-11-12 — Run 3 del workflow: la plantilla genérica necesita Jekyll (no instalado)
 
 - Artefact: `.github/workflows/ig-build.yml`, `05-implementation-guide/` (con `ig.ini` en `fhir.base.template#1.0.0`)

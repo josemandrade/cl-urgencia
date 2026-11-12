@@ -1,6 +1,7 @@
 # Propuesta FHIR — Aviso mínimo de atención de urgencia a la red (DAU)
 
 - **Estado:** propuesta para validación (paso 4, `fhir-modeling` + `mapping-to-fhir` + `ihe-profile-review`)
+- **Revisión 3 (2026-11-12):** cada operación enlaza al perfil IHE que la apoya (con su página en profiles.ihe.net); se añade la operación de buscar paciente ([PDQm](https://profiles.ihe.net/ITI/PDQm/)) a la consulta (PI-2). Ningún perfil IHE lleva la transacción en sí; los perfiles cubren funciones de apoyo. La sustancia (recursos, campos, mapeo, revisión IHE) no cambia.
 - **Revisión 2 (2026-11-12):** los perfiles pasan a ser propios de esta guía (diseñados sobre los recursos base de FHIR R4), con su URL canónica de base y la invitación a elegir otro recurso base. La sustancia (recursos, campos, mapeo, revisión IHE) no cambia; cambia la procedencia de los perfiles.
 - **Fecha:** 2026-11-11
 - **Spec de origen:** `01-use-case-spec.md` revisión 3 (validada)
@@ -204,18 +205,21 @@ El fallecimiento **se informa como evento de alta** (Bundle de alta, perfil `Enc
 - Respuesta: `200 OK` → `Bundle` de tipo `transaction-response` con el resultado de cada entrada (`201 Created` o `200 OK`). Error de estructura, perfil o terminología → `400`/`422` con `OperationOutcome` y **no se aplica ninguna entrada**. Identificador condicional ambiguo → `412`. Identidad no resuelta en MPI → `422` y el HIS/RCE corrige y reenvía. Sin respuesta, el HIS/RCE puede **reenviar la misma transacción**: las operaciones condicionales evitan duplicados.
 - Procesamiento en el Bus: 1) validar el `Bundle` contra el perfil del evento; 2) validar los códigos contra el Servidor Terminológico; 3) resolver el `Patient` contra el MPI y agregar el identificador MPI; 4) aplicar la transacción en el repositorio (maestros solo si no existen, episodio con `PUT` condicional); 5) registrar la trazabilidad (emisor, fecha de recepción, resultado de validación, respuesta).
 - Identidad (MPI): única encontrada → asociar el episodio al paciente MPI. No encontrado → ejecutar la transacción MPI de creación. Duplicada o contradictoria → rechazar y enviar a conciliación. RUN con dígito verificador inválido → rechazar. MPI no disponible → error transitorio y el HIS/RCE reintenta.
+- Perfiles IHE: [PIXm](https://profiles.ihe.net/ITI/PIXm/) (parcial — la identidad se resuelve dentro del Bus; ITI-83, ITI-104) y [MHD](https://profiles.ihe.net/ITI/MHD/) (parcial — el cierre incluye un `DocumentReference`; ITI-65, ITI-67, ITI-68). [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) y [CT](https://profiles.ihe.net/ITI/TF/Volume1/ch-7.html) son transversales. La transacción en sí es nacional; la revisión completa está en la sección 7.
 
 ### Consulta y suscripción (PI-2)
 
 - Búsquedas FHIR estándar sobre el Repositorio:
-  - Atenciones de urgencia de un paciente: `GET [base]/Encounter?patient.identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|<RUN>&class=EMER`
-  - Pacientes actualmente en urgencia en un establecimiento: `GET [base]/Encounter?service-provider.identifier=https://interoperabilidad.minsal.cl/fhir/ig/tei/CodeSystem/CSEstablecimientoDestino|<código DEIS>&class=EMER&status=arrived`
-  - Diagnósticos y documento de una atención: `GET [base]/Condition?encounter=Encounter/[id]`, `GET [base]/DocumentReference?encounter=Encounter/[id]`
-- Para enterarse de un evento apenas ocurre, el consumidor crea una `Subscription` sobre `Encounter` con `class=EMER`.
+  - Buscar paciente por RUN: `GET [base]/Patient?identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|<RUN>` — [PDQm](https://profiles.ihe.net/ITI/PDQm/) (Patient Demographics Query for Mobile, parcial; ITI-78, ITI-119).
+  - Atenciones de urgencia de un paciente: `GET [base]/Encounter?patient.identifier=urn:oid:2.16.840.1.113883.2.22.1.152.787300|<RUN>&class=EMER` — [QEDm](https://profiles.ihe.net/PCC/QEDm/) (Mobile Query Existing Data, parcial; PCC-44).
+  - Pacientes actualmente en urgencia en un establecimiento: `GET [base]/Encounter?service-provider.identifier=https://interoperabilidad.minsal.cl/fhir/ig/tei/CodeSystem/CSEstablecimientoDestino|<código DEIS>&class=EMER&status=arrived` — [QEDm](https://profiles.ihe.net/PCC/QEDm/) (parcial; PCC-44).
+  - Diagnósticos y documento de una atención: `GET [base]/Condition?encounter=Encounter/[id]` — [QEDm](https://profiles.ihe.net/PCC/QEDm/) (parcial; PCC-44); `GET [base]/DocumentReference?encounter=Encounter/[id]` — [MHD](https://profiles.ihe.net/ITI/MHD/) (parcial; ITI-67).
+- Para enterarse de un evento apenas ocurre, el consumidor crea una `Subscription` sobre `Encounter` con `class=EMER` ([Subscription FHIR](https://www.hl7.org/fhir/subscription.html); DSUB no encaja, es una suscripción a metadatos de documentos de un registro XDS).
 
 ### Recuperación del PDF (PI-3)
 
 - El PDF se descarga desde `DocumentReference.content.attachment.url`, publicado por el establecimiento emisor (o replicado en el repositorio, según el acuerdo institucional). La URL exige autenticación; no es pública.
+- Perfil IHE: [MHD](https://profiles.ihe.net/ITI/MHD/) (parcial — recuperar un documento es ITI-68, Retrieve Document; el patrón coincide, el mecanismo no: la guía descarga el PDF con un GET autenticado directo a la URL, no con una transacción ITI-68).
 
 ### Seguridad
 

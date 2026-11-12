@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — Cada operación de la guía enlaza a su perfil IHE (buscar paciente → PDQm)
+
+- Context: la guía tenía la revisión IHE por punto en su propia página (`ihe.md`), pero las operaciones en `operations.md` no enlazaban a ningún perfil IHE, y la búsqueda del paciente (PDQm) ni siquiera estaba como operación: PI-2 listaba solo las búsquedas de `Encounter`, `Condition` y `DocumentReference`.
+- Decision: cada operación de la guía enlaza al perfil IHE que la apoya (página en profiles.ihe.net, con el encaje y las transacciones cuando aplican): las tres transacciones push enlazan a PIXm (identidad) y MHD (documento); PI-0 enlaza a PIXm; PI-2 se reestructura en operaciones nombradas — buscar paciente → PDQm (ITI-78, ITI-119), buscar episodios → QEDm (PCC-44), buscar diagnósticos → QEDm, buscar documento → MHD (ITI-67), suscripción → Subscription FHIR (DSUB refutado); PI-3 enlaza a MHD (ITI-68). Se añade la operación `GET /Patient?identifier=<sistema RUN>|<RUN>` (buscar paciente por RUN). Cada operación dice cuando ningún perfil IHE lleva la transacción (la transacción es nacional; el perfil cubre una función de apoyo). La propuesta pasó a revisión 3 (sección 6 con el perfil IHE por operación). Las skills `implementation-guide-sushi` (enlazar cada operación a su perfil IHE, incluidas las búsquedas) y `fhir-modeling` (la propuesta lista el perfil IHE por operación) llevan la regla.
+- Consequences: la página de operaciones es ahora el mapa entre cada operación y su estándar IHE; el lector llega al perfil desde la operación, no solo desde la página de IHE.
+
 ## 2026-11-12 — `DAUPaciente` se mantiene sobre el `Patient` base de FHIR R4 (no sobre `PatientCL`)
 
 - Context: en la revisión 2 de la propuesta se ofreció elegir otro recurso base; el ejemplo era que `Patient` se basara en `PatientCL` / `CorePacienteCl` de la guía core de Chile. Se verificó que es técnicamente posible (paquete FHIR `hl7.fhir.cl.clcore` 1.9.4 resoluble por SUSHI, `baseDefinition: https://hl7chile.cl/fhir/ig/clcore/StructureDefinition/CorePacienteCl`, 0 errores).
