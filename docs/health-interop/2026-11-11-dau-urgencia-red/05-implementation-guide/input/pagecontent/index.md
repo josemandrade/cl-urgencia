@@ -42,4 +42,4 @@ El aviso se publica en tres momentos, una transacción `Bundle` por evento, siem
 - `DAUDiagnosticoUrgencia` (Condition), `DAUIndicacionMedicamento` (MedicationRequest), `DAUDocumentoUrgencia` (DocumentReference)
 - `DAUBundleAviso` (Bundle)
 
-El diagrama de recursos (estilo ClinFHIR GraphBuilder) y el mapeo campo a campo están en la [propuesta FHIR](../04-fhir-proposal.md) y en la [tabla de mapeo](../04-mapping-table.md) validadas en el paso 4.
+El diagrama de recursos (estilo ClinFHIR GraphBuilder) y el mapeo campo a campo están en la [propuesta FHIR](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-fhir-proposal.md) y en la [tabla de mapeo](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-mapping-table.md) validadas en el paso 4.

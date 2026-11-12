@@ -1,6 +1,6 @@
 # Mapeo de datos a recursos
 
-Mapeo campo a campo del CMBD y de los datos del episodio a FHIR. La fuente completa es la [tabla de mapeo](../04-mapping-table.md) validada en el paso 4. Las fechas CMBD (`DDMMAAAA` + `HH:MM`) se convierten a un solo dateTime ISO 8601 con zona horaria. Los códigos NID van sin cero a la izquierda (`01 FONASA` → `1`).
+Mapeo campo a campo del CMBD y de los datos del episodio a FHIR. La fuente completa es la [tabla de mapeo](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-mapping-table.md) validada en el paso 4. Las fechas CMBD (`DDMMAAAA` + `HH:MM`) se convierten a un solo dateTime ISO 8601 con zona horaria. Los códigos NID van sin cero a la izquierda (`01 FONASA` → `1`).
 
 | Campo origen | Recurso y ruta FHIR | Regla | Si falta o es ambiguo |
 |---|---|---|---|
