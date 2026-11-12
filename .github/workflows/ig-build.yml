@@ -1,0 +1,74 @@
+# .github/workflows/ig-build.yml
+# Build, validate and deploy the FHIR Implementation Guide.
+# Validates with SUSHI + the FHIR IG Publisher; deploys to GitHub Pages.
+# The IG is in a subfolder, so the FHIR Auto-IG Builder service cannot build
+# it (it needs the IG at the root of a public repo); this workflow is the
+# deployment path. Enable GitHub Pages (Settings -> Pages -> Source: GitHub Actions).
+name: IG build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/health-interop/2026-11-11-dau-urgencia-red/05-implementation-guide/**'
+      - '.github/workflows/ig-build.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/health-interop/2026-11-11-dau-urgencia-red/05-implementation-guide/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ig-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs/health-interop/2026-11-11-dau-urgencia-red/05-implementation-guide
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install SUSHI
+        run: npm install -g fsh-sushi
+      - name: Run SUSHI
+        run: sushi .
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download the IG Publisher
+        run: wget https://fhir.github.io/latest-ig-publisher/org.hl7.fhir.publisher.jar -O publisher.jar
+      - name: Build and validate the IG
+        run: java -Xms3550m -Xmx3550m -jar publisher.jar -ig .
+      - name: Upload the QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa
+          path: docs/health-interop/2026-11-11-dau-urgencia-red/05-implementation-guide/output/qa.tgz
+          if-no-files-found: warn
+      - name: Upload the site for Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/health-interop/2026-11-11-dau-urgencia-red/05-implementation-guide/output
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
