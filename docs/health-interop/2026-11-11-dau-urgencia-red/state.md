@@ -3,7 +3,7 @@
 - Last updated: 2026-11-11 23:50 America/Santiago
 - Current step: 6 (component-building)
 - Current task: componente que implementa la guía (06-component/) — por empezar; la URL de la guía desplegada está pendiente del workflow
-- Last completed: el BPMN se reordenó (v5) y se verificó mirándolo a tamaño de visualización: ya no hay etiquetas solapadas (el evento de fin del aviso y el de inicio de la solicitud van en filas distintas, PI-3 sale de la tarea que lo envía, las etiquetas de evento ya no entran en su círculo). SUSHI 0 errores. La v5 queda presentada para validación. Falta subir el PNG nuevo (por la web), el .bpmn/.svg/.md y los registros, verificar el run y la guía en vivo, y subir el pack v0.13.0 con la skill reparada. Después, paso 6 (componente).
+- Last completed: guía publicada y visible en https://josemandrade.github.io/cl-urgencia/. El BPMN v5 está en vivo (run 43160619603 success): el PNG nuevo a 2× (8640×1620, 528411 bytes) con 200, la página de proceso a 4320 px con el zoom, y el grafo de recursos en 200. La v5 queda presentada para validación. El pack se subió como v0.13.0 con la skill reparada. Después, paso 6 (componente).
 - Next action: paso 6 (componente que implementa la guía, en 06-component/).
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
