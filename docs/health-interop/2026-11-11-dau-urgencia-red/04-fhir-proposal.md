@@ -1,15 +1,16 @@
 # Propuesta FHIR — Aviso mínimo de atención de urgencia a la red (DAU)
 
 - **Estado:** propuesta para validación (paso 4, `fhir-modeling` + `mapping-to-fhir` + `ihe-profile-review`)
+- **Revisión 2 (2026-11-12):** los perfiles pasan a ser propios de esta guía (diseñados sobre los recursos base de FHIR R4), con su URL canónica de base y la invitación a elegir otro recurso base. La sustancia (recursos, campos, mapeo, revisión IHE) no cambia; cambia la procedencia de los perfiles.
 - **Fecha:** 2026-11-11
 - **Spec de origen:** `01-use-case-spec.md` revisión 3 (validada)
 - **Modelo de origen:** `02-bpmn-model.md` revisión 4 (validado)
 - **Entidades de origen:** `03-entities-data.md` (validado)
 - **Tabla de mapeo:** `04-mapping-table.md`
-- **Guía de referencia:** Guía de Implementación FHIR — Urgencia (Admisión, Alta y Abandono) v0.2.0 del MINSAL, publicada en https://interoperabilidad.minsal.cl/fhir/ig/cl-urgencia/0.2.0/ (URL oficial: https://interoperabilidad.minsal.cl/fhir/ig/urgencia-eventos/ImplementationGuide/hl7.fhir.cl.minsal.urgencia.eventos). Estado: Draft al 2026-10-08. Verificada en vivo el 2026-11-11 (index, modelo, arquitectura, mapeo CMBD, perfil EncuentroUrgencia, perfil EncuentroUrgenciaAlta, ValueSet vs-destino-alta).
-- **Dependencias de la guía:** FHIR R4 4.0.1, CL-Core 1.9.2, NID 0.4.6, CIE-10 (preferente), SNOMED CT (alternativo), LOINC, MPI MINSAL.
+- **Guía de referencia:** Guía de Implementación FHIR — Urgencia (Admisión, Alta y Abandono) v0.2.0 del MINSAL, publicada en https://interoperabilidad.minsal.cl/fhir/ig/cl-urgencia/0.2.0/ (URL oficial: https://interoperabilidad.minsal.cl/fhir/ig/urgencia-eventos/ImplementationGuide/hl7.fhir.cl.minsal.urgencia.eventos). Estado: Draft al 2026-10-08. Verificada en vivo el 2026-11-11 (index, modelo, arquitectura, mapeo CMBD, perfil EncuentroUrgencia, perfil EncuentroUrgenciaAlta, ValueSet vs-destino-alta). Es la referencia de los requisitos de datos que el caso exige informar a la red, no la fuente de los perfiles de esta propuesta.
+- **Dependencias de la guía:** FHIR R4 4.0.1 (única dependencia). Referencias de datos: NID 0.4.6, CIE-10 (preferente), SNOMED CT (alternativo), LOINC, MPI MINSAL. CL-Core es la referencia de los requisitos de datos nacionales; solo sería dependencia si se elige un perfil CL-Core como base de algún recurso (ver sección 2).
 
-Esta propuesta **adopta la guía nacional** donde existe y solo añade lo que el caso exige y la guía no define. No se inventa un recurso, un perfil ni un código nuevo donde la guía ya tiene uno.
+Esta propuesta diseña **perfiles propios** para el caso de uso, sobre los recursos base de FHIR R4. No adopta ni transcribe los perfiles de otra guía: la guía nacional (MINSAL cl-urgencia v0.2.0) es la referencia de los requisitos de datos, no la fuente de los perfiles. No se inventa un recurso, un perfil ni un código nuevo donde el caso de uso ya tiene uno definido.
 
 ## 1. Principio del modelo
 
@@ -26,16 +27,18 @@ Esta propuesta **adopta la guía nacional** donde existe y solo añade lo que el
 
 ## 2. Recursos elegidos
 
-| Recurso | Perfil de la guía (canónica cuando está verificada) | Uso | Alternativas rechazadas y por qué |
-|---|---|---|---|
-| `Bundle` (transaction) | Bundle de admisión / Bundle de alta / Bundle de abandono (guía cl-urgencia v0.2.0) | Las tres transacciones, una por hito | Recursos sueltos sin transacción: se perdería la atomicidad (la transacción se aplica completa o no se aplica) |
-| `Patient` | MINSAL Paciente (NID 0.4.6), usado directamente | Quién fue atendido | `Patient` base: pierde el sistema nacional de RUN y las demográficas chilenas del NID |
-| `Organization` | MINSAL Prestador Organizacional (NID 0.4.6), usado directamente | Establecimiento que atiende (y de destino) | `Organization` base: pierde el sistema DEIS |
-| `Practitioner` | MINSAL Prestador Profesional (NID 0.4.6), usado directamente; opcional | Profesional que atiende (ATND) y que da el alta (DIS) | Omitirlo: se pierde quién atendió; la guía lo deja opcional, así que se envía cuando el HIS lo tiene |
-| `Encounter` | Encuentro de urgencia (`EncuentroUrgencia`, basado en `EncounterCL` de CL-Core). Canónica verificada: https://interoperabilidad.minsal.cl/fhir/ig/urgencia-eventos/StructureDefinition/encuentro-urgencia. Variantes por evento: admisión, alta, abandono. Canónica de la variante de alta verificada: https://interoperabilidad.minsal.cl/fhir/ig/urgencia-eventos/StructureDefinition/encuentro-urgencia-alta | El episodio de urgencia | `Encounter` base: pierde las reglas del ID DAU, las extensiones CMBD y los invariantes del evento |
-| `Condition` | Diagnóstico de urgencia (basado en CL-Core `CoreDiagnosticoCl`) | Hipótesis o diagnóstico de egreso | `Condition` base: pierde el CIE-10 obligatorio en el alta y la regla provisional/confirmado |
-| `MedicationRequest` | Indicación de medicamento | Medicamentos indicados al alta | `MedicationStatement`: significado distinto (es lo que el paciente toma, no lo indicado al alta). `MedicationAdministration`: no se administró en urgencia, se indicó al alta |
-| `DocumentReference` | Documento de urgencia | Enlace al PDF del DAU | `Binary`: pierde los metadatos (tipo, paciente, encuentro, seguridad). `DiagnosticReport`: es una referencia a un documento, no un informe |
+Cada recurso se propone con el **recurso base** sobre el que se construye su perfil propio, con su URL canónica. El base por defecto es el recurso base de FHIR R4. **Si quieres que alguno use otro recurso base, dilo aquí**: se registra la elección y la guía la toma como `Parent:` (añadiendo el paquete FHIR de esa guía como dependencia, si es resoluble como paquete). Por ejemplo, para `Patient` puedes querer que el base sea `PatientCL` / `CorePacienteCl` de la guía core de Chile (`https://hl7chile.cl/fhir/ig/clcore/StructureDefinition/CorePacienteCl`, paquete FHIR `hl7.fhir.cl.clcore`).
+
+| Recurso | Perfil propio | Base propuesta (URL canónica) | Uso | Alternativas rechazadas y por qué |
+|---|---|---|---|---|
+| `Bundle` (transaction) | `DAUBundleAviso` | FHIR R4 `Bundle` — http://hl7.org/fhir/StructureDefinition/Bundle | Las tres transacciones, una por hito | Recursos sueltos sin transacción: se perdería la atomicidad (la transacción se aplica completa o no se aplica) |
+| `Patient` | `DAUPaciente` | FHIR R4 `Patient` — http://hl7.org/fhir/StructureDefinition/Patient | Quién fue atendido | `Patient` sin RUN nacional: se pierde el sistema de identificación que la red exige (RUN, ficha local para NN) |
+| `Organization` | `DAUPrestadorOrganizacional` | FHIR R4 `Organization` — http://hl7.org/fhir/StructureDefinition/Organization | Establecimiento que atiende (y de destino) | `Organization` sin código DEIS: se pierde el identificador del establecimiento |
+| `Practitioner` | `DAUPrestadorProfesional` | FHIR R4 `Practitioner` — http://hl7.org/fhir/StructureDefinition/Practitioner | Profesional que atiende (ATND) y que da el alta (DIS); opcional | Omitirlo: se pierde quién atendió; se envía cuando el HIS lo tiene |
+| `Encounter` | `DAUEncuentroUrgencia` (variantes `DAUEncuentroUrgenciaAlta` y `DAUEncuentroUrgenciaAbandono`) | FHIR R4 `Encounter` — http://hl7.org/fhir/StructureDefinition/Encounter | El episodio de urgencia | `Encounter` sin las reglas del caso: se pierden el ID DAU, las extensiones y los invariantes del evento |
+| `Condition` | `DAUDiagnosticoUrgencia` | FHIR R4 `Condition` — http://hl7.org/fhir/StructureDefinition/Condition | Hipótesis o diagnóstico de egreso | `Condition` sin CIE-10 en el alta ni la regla provisional/confirmado |
+| `MedicationRequest` | `DAUIndicacionMedicamento` | FHIR R4 `MedicationRequest` — http://hl7.org/fhir/StructureDefinition/MedicationRequest | Medicamentos indicados al alta | `MedicationStatement`: significado distinto (es lo que el paciente toma, no lo indicado al alta). `MedicationAdministration`: no se administró en urgencia, se indicó al alta |
+| `DocumentReference` | `DAUDocumentoUrgencia` | FHIR R4 `DocumentReference` — http://hl7.org/fhir/StructureDefinition/DocumentReference | Enlace al PDF del DAU | `Binary`: pierde los metadatos (tipo, paciente, encuentro, seguridad). `DiagnosticReport`: es una referencia a un documento, no un informe |
 
 **No se usan:** `Observation` (los signos vitales quedan en el PDF, no estructurados), `DiagnosticReport`, `ServiceRequest` (las solicitudes y resultados de exámenes tienen sus propias guías de laboratorio e imagenología). La `Subscription` la crea el consumidor en el Repositorio para enterarse de los eventos; no es un recurso que el HIS envíe.
 
@@ -49,7 +52,7 @@ El `Encounter` es el centro del grafo: es el único recurso que el episodio actu
 
 ## 3. Campos por recurso
 
-### Encounter — Encuentro de urgencia
+### Encounter — DAUEncuentroUrgencia
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
@@ -81,7 +84,7 @@ El `Encounter` es el centro del grafo: es el único recurso que el episodio actu
 
 Invariantes del perfil: `urg-enc-1` (un `finished` debe tener `period.end`), `urg-enc-2` (un `finished` debe tener destino o tipo de abandono), `urg-enc-3` (`period.end` no anterior a `period.start`), `urg-enc-4` (solo se informa `use = DD`, y solo en el alta), `urg-enc-5` (las fechas incluyen hora y zona horaria, ISO 8601), `urg-enc-6` (exactamente un ID DAU con el sistema nacional), `urg-enc-7` (episodios restringidos), `urg-enc-8` (con 01/02/04 se informa el establecimiento de destino).
 
-### Patient — MINSAL Paciente (NID)
+### Patient — DAUPaciente
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
@@ -93,14 +96,14 @@ Invariantes del perfil: `urg-enc-1` (un `finished` debe tener `period.end`), `ur
 | Campos que exige `MINSALPaciente` aunque el CMBD no los incluye | — | Identidad de género, nacionalidad, país de origen, país emisor del documento, teléfono, fecha de nacimiento, sexo y si está fallecido |
 | Reglas NN | — | Identificador tipo `12` con `use = temp`; `gender = unknown`; identidad de género `7` No revelado; `deceased[x] = false`; nacionalidad y país de origen con valor provisorio `152` Chile y `text = "Valor provisorio NN: nacionalidad desconocida"` (los receptores no deben interpretarlo como nacionalidad real). Cuando se conoce la identidad, la vinculación con el MPI queda pendiente de definir con el NID |
 
-### Organization — MINSAL Prestador Organizacional (NID)
+### Organization — DAUPrestadorOrganizacional
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
 | `Organization.identifier` (código DEIS) | 1..* | Admisión. `system = https://interoperabilidad.minsal.cl/fhir/ig/tei/CodeSystem/CSEstablecimientoDestino` |
 | `Organization.partOf` | 0..1 | Servicio de Salud (COD SS del CMBD) |
 
-### Practitioner — MINSAL Prestador Profesional (NID)
+### Practitioner — DAUPrestadorProfesional
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
@@ -108,7 +111,7 @@ Invariantes del perfil: `urg-enc-1` (un `finished` debe tener `period.end`), `ur
 | `Practitioner.qualification[TituloProfesional].code` | — | Alta (NID `CSTituloProfesional`) |
 | `Practitioner.qualification[EspecialidadMedica].code` | — | Alta (NID `CSEspecialidadMed`) |
 
-### Condition — Diagnóstico de urgencia
+### Condition — DAUDiagnosticoUrgencia
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
@@ -120,7 +123,7 @@ Invariantes del perfil: `urg-enc-1` (un `finished` debe tener `period.end`), `ur
 | `Condition.subject` / `Condition.encounter` | — | Referencias al `Patient` y al `Encounter` del Bundle |
 | `Condition.extension[ges]` | — | GES (en el alta) |
 
-### MedicationRequest — Indicación de medicamento
+### MedicationRequest — DAUIndicacionMedicamento
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
@@ -130,7 +133,7 @@ Invariantes del perfil: `urg-enc-1` (un `finished` debe tener `period.end`), `ur
 | `MedicationRequest.authoredOn` | — | Fecha de indicación del medicamento |
 | `MedicationRequest.subject` / `MedicationRequest.encounter` | — | Referencias al `Patient` y al `Encounter` del Bundle |
 
-### DocumentReference — Documento de urgencia
+### DocumentReference — DAUDocumentoUrgencia
 
 | Ruta FHIR | Cardinalidad | Fuente |
 |---|---|---|
