@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Run 11: BPMN y diagrama de recursos en la guía y header horizontal (pero las imágenes daban 404)
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/
+- Tool / profile: GitHub Actions, workflow "IG build", run 11 (commit `d507886`)
+- Result: success (build y deploy en verde). Verificado en vivo: el header ya es `<ul class="nav navbar-nav">` (barra horizontal) y la pestaña "Proceso (BPMN)" está en el menú; `process.html` existe (200) y `profiles.html` muestra la sección "Diagrama de recursos". **Pero las imágenes daban 404**: `images/02-bpmn-model.svg` y `images/04-fhir-proposal-graph.svg` no existen en el sitio. Hallazgo: el IG Publisher copia el contenido de `input/images/` a la **raíz del sitio publicado**, no a una carpeta `images/` — los SVG están en la raíz (`/02-bpmn-model.svg` y `/04-fhir-proposal-graph.svg` devuelven 200). Corregido: las páginas referencian los SVG solo por su nombre de archivo (sin `images/`), y la regla de la skill quedó corregida (antes decía `images/<archivo>`, que era lo que causaba el 404). El link checker del publisher no falló por las imágenes rotas (no las verifica como enlaces), así que el run pasó en verde con las imágenes rotas.
+- Evidence: run de Actions 43156632027 (success), curl 404 en `images/*.svg` y 200 en la raíz, ficheros presentes en main.
+
 ## 2026-11-12 — La guía incluye el BPMN y el diagrama de recursos; el header es una barra horizontal
 
 - Artefact: `05-implementation-guide/` (página nueva `process.md`, `profiles.md` con el diagrama de recursos, `index.md`, `menu.xml`, `sushi-config.yaml`, `input/images/` con los dos SVG) y las skills `implementation-guide-sushi` y `fhir-modeling` del pack
