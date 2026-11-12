@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Diagramas como PNG directo, con zoom in / zoom out
+
+- Artefact: `05-implementation-guide/` (PNG nuevos en `input/images/`, `process.md`, `resources.md`, `profiles.md`) y la skill `implementation-guide-sushi` del pack
+- Tool / profile: conversión con cairosvg y SUSHI v3.21.0 de los cambios
+- Result: los dos SVG se convirtieron a PNG (grafo 2440×1800, 227 KB; BPMN 4080×810, 230 KB) y las tres páginas muestran el PNG directo, con botones Zoom in (+), Zoom out (−) y 100% y el script `zoomDiagram`/`resetDiagram` en cada página. SUSHI compila con 0 errores y 0 warnings; los enlaces internos y las imágenes de las tres páginas se verifican (ninguno roto). Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo, incluido que el `<script>` y los botones sobreviven al publisher y que el zoom funciona.
+- Evidence: conversión con cairosvg, SUSHI v3.21.0 0 errores, comprobación de enlaces y de script/botones en local.
+
 ## 2026-11-12 — El diagrama de recursos tiene su propia página (corrección de la skill)
 
 - Artefact: `05-implementation-guide/` (página nueva `resources.md`, `menu.xml`, `sushi-config.yaml`, `index.md`) y las skills `implementation-guide-sushi` y `fhir-modeling` del pack

@@ -6,11 +6,34 @@ Cada perfil tiene su página con la definición formal (tabla de elementos, dife
 
 ## Diagrama de recursos
 
-El diagrama (estilo ClinFHIR GraphBuilder) muestra los recursos de la guía y cómo se referencian entre sí, con el `Encounter` como centro y el `Bundle` como marco de la transacción. [Abrir el diagrama a tamaño completo](04-fhir-proposal-graph.svg).
+El diagrama (estilo ClinFHIR GraphBuilder) muestra los recursos de la guía y cómo se referencian entre sí, con el `Encounter` como centro y el `Bundle` como marco de la transacción. [Abrir el diagrama a tamaño completo](04-fhir-proposal-graph.png).
 
-<div style="overflow-x:auto; border:1px solid #ddd; padding:8px;">
-<a href="04-fhir-proposal-graph.svg"><img src="04-fhir-proposal-graph.svg" alt="Diagrama de recursos estilo ClinFHIR GraphBuilder: Encounter como centro, referenciado por Condition, MedicationRequest y DocumentReference, con Patient, Organization y Practitioner" style="width:100%; max-width:1220px; height:auto;"/></a>
+<div style="margin:8px 0;">
+<button type="button" onclick="zoomDiagram('graph-img', 1.25)" style="padding:4px 10px; cursor:pointer;">Zoom in (+)</button>
+<button type="button" onclick="zoomDiagram('graph-img', 0.8)" style="padding:4px 10px; cursor:pointer;">Zoom out (−)</button>
+<button type="button" onclick="resetDiagram('graph-img')" style="padding:4px 10px; cursor:pointer;">100%</button>
 </div>
+<div style="overflow:auto; border:1px solid #ddd; padding:8px;">
+<a href="04-fhir-proposal-graph.png"><img id="graph-img" src="04-fhir-proposal-graph.png" alt="Diagrama de recursos estilo ClinFHIR GraphBuilder: Encounter como centro, referenciado por Condition, MedicationRequest y DocumentReference, con Patient, Organization y Practitioner" style="width:100%; max-width:1220px; height:auto;"/></a>
+</div>
+
+<script>
+function zoomDiagram(id, f) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (el.dataset.orig === undefined) { el.dataset.orig = el.style.width || ''; el.dataset.origMax = el.style.maxWidth || ''; }
+  var w = Math.round(el.clientWidth * f);
+  w = Math.max(400, Math.min(8000, w));
+  el.style.width = w + 'px';
+  el.style.maxWidth = 'none';
+}
+function resetDiagram(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.style.width = (el.dataset.orig !== undefined) ? el.dataset.orig : '';
+  el.style.maxWidth = (el.dataset.origMax !== undefined) ? el.dataset.origMax : '';
+}
+</script>
 
 El `Encounter` es el centro: el paciente (`Patient`), el establecimiento (`Organization`) y el profesional (`Practitioner`) lo referencian; el diagnóstico (`Condition`) y los medicamentos (`MedicationRequest`) cuelgan del episodio; el documento (`DocumentReference`) referencia el episodio y apunta al PDF del DAU; el `Bundle` (transaction) enmarca los recursos de cada aviso. El PDF no es un recurso FHIR (borde punteado en el diagrama). El detalle de cada recurso y su mapeo campo a campo están en la [tabla de mapeo](mapping.html) y en la [propuesta FHIR](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-fhir-proposal.md).
 

@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — Los diagramas van como PNG directo, con zoom in / zoom out
+
+- Context: el usuario pidió que los diagramas se agreguen directo como JPG o PNG (o un mejor formato), y para el BPMN lo mismo; y, si hace falta, configurar zoom in / zoom out. El SVG en un `<img>` no se veía de forma fiable para el usuario, aunque el archivo cargaba y renderizaba.
+- Decision: los diagramas se incrustan como PNG directo en las páginas: el grafo de recursos a 2× (2440×1800) y el BPMN a su ancho nativo (4080×810), ambos generados desde los SVG (que quedan como fuente en la carpeta del caso) y copiados a `input/images/`. Las páginas (`process.md`, `resources.md`, `profiles.md`) muestran el PNG con botones Zoom in (+), Zoom out (−) y 100%, y un pequeño script inline que escala el ancho de la imagen (×1.25 / ×0.8 por clic, entre 400 y 8000 px; 100% restaura el ancho original). El script va en la misma página que la imagen (cada página lo define), porque las páginas son independientes. El contenedor tiene scroll horizontal para el BPMN. La skill `implementation-guide-sushi` lleva la regla (PNG directo, no SVG en `<img>`; zoom con botones y script; verificar en la página publicada que el script sobrevive al publisher).
+- Consequences: los diagramas se ven directo en la página, sin depender del render del SVG, y el lector puede acercar y alejar.
+
 ## 2026-11-12 — El diagrama de recursos tiene su propia página (no solo va en Perfiles)
 
 - Context: el usuario miró la guía y no vio el diagrama de recursos, lo que le hizo dudar de la skill. El diagrama SÍ estaba publicado (en `profiles.html`, sección "Diagrama de recursos", con el SVG en 200 y renderizando bien — verificado en vivo y renderizado a PNG), pero estaba enterrado en la mitad de la página de Perfiles: hay que abrir "Perfiles" y bajar para encontrarlo, y el índice solo lo enlazaba. La regla de la skill ("mostrar el diagrama en la página de Perfiles") era demasiado débil: un diagrama que solo vive dentro de otra página es fácil de no encontrar, y el lector concluye que no se subió.

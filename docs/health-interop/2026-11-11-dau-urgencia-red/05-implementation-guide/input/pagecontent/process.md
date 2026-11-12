@@ -2,11 +2,34 @@
 
 El proceso que publica el aviso mínimo, modelado en BPMN 2.0 (versión 4, validada en el paso 2). Tres participantes (pools), de arriba a abajo: el establecimiento informante — Unidad de Urgencia (con los carriles Admisión / Registro, Categorización / Selector de Demanda, Equipo clínico de Urgencia y HIS / RCE), el Bus de Interoperabilidad MINSAL y Repositorio FHIR, y el punto de la red receptor (APS, especialidad, otro hospital, SAMU).
 
-<div style="overflow-x:auto; border:1px solid #ddd; padding:8px;">
-<a href="02-bpmn-model.svg"><img src="02-bpmn-model.svg" alt="Modelo BPMN del proceso de aviso mínimo de atención de urgencia a la red" style="width:2400px; max-width:none; height:auto;"/></a>
+<div style="margin:8px 0;">
+<button type="button" onclick="zoomDiagram('bpmn-img', 1.25)" style="padding:4px 10px; cursor:pointer;">Zoom in (+)</button>
+<button type="button" onclick="zoomDiagram('bpmn-img', 0.8)" style="padding:4px 10px; cursor:pointer;">Zoom out (−)</button>
+<button type="button" onclick="resetDiagram('bpmn-img')" style="padding:4px 10px; cursor:pointer;">100%</button>
+</div>
+<div style="overflow:auto; border:1px solid #ddd; padding:8px;">
+<a href="02-bpmn-model.png"><img id="bpmn-img" src="02-bpmn-model.png" alt="Modelo BPMN del proceso de aviso mínimo de atención de urgencia a la red" style="width:2400px; max-width:none; height:auto;"/></a>
 </div>
 
-El diagrama es un SVG: [abrirlo a tamaño completo](02-bpmn-model.svg) para leerlo con zoom. El modelo BPMN completo (XML, BPMN 2.0) está en [02-bpmn-model.bpmn](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.bpmn), y su descripción paso a paso en [02-bpmn-model.md](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.md).
+<script>
+function zoomDiagram(id, f) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (el.dataset.orig === undefined) { el.dataset.orig = el.style.width || ''; el.dataset.origMax = el.style.maxWidth || ''; }
+  var w = Math.round(el.clientWidth * f);
+  w = Math.max(400, Math.min(8000, w));
+  el.style.width = w + 'px';
+  el.style.maxWidth = 'none';
+}
+function resetDiagram(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.style.width = (el.dataset.orig !== undefined) ? el.dataset.orig : '';
+  el.style.maxWidth = (el.dataset.origMax !== undefined) ? el.dataset.origMax : '';
+}
+</script>
+
+El diagrama es una imagen (PNG): [abrirlo a tamaño completo](02-bpmn-model.png) para leerlo con zoom. El modelo BPMN completo (XML, BPMN 2.0) está en [02-bpmn-model.bpmn](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.bpmn), y su descripción paso a paso en [02-bpmn-model.md](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.md).
 
 ## Flujo, paso a paso
 
