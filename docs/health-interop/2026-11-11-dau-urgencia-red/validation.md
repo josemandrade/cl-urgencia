@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Informe final subido a cl-urgencia (commit 734e8d7), verificado en remoto
+
+- Artefact: `final-test-report.md` + `README.md`, `state.md`, `validation.md` del caso (4 archivos)
+- Tool / profile: conector GitHub (snapshot push) + verificación remota (`get_file_contents`, `list_commits`)
+- Result: push aplicado al tercer intento: el usuario aprobó la tarjeta y el commit es **734e8d7** ("Add the final test report of the pack trial (20 findings F1–F20, pack v0.2.0–v0.16.0)", 4 archivos). Verificado en remoto: `final-test-report.md` en main (19500 bytes, con F20 y el veredicto) y HEAD 734e8d7. El registro de sync quedó actualizado (13 entradas). Los dos intentos anteriores fallaron sin aplicar nada: el primero se cortó por un reinicio del servicio; el segundo esperó la aprobación ~30 min y la tarjeta caducó (`approval_expired`); en ambos se verificó que el HEAD seguía en ac6a3fd y el informe seguía ausente antes de reintentar. Pendiente: subir los registros de este push (validation.md, state.md); después, opcional: explorador a v0.16.0 y hueco de plugin.json.
+- Evidence: push aprobado (`userConfirmationStatus: approved`, ref `refs/heads/main` → 734e8d7babbf89855fe7fae2bba070f54bf59b95); `get_file_contents` de `final-test-report.md` en main; `list_commits` HEAD 734e8d7.
+
 ## 2026-11-12 — Informe final de la prueba del pack
 
 - Artefact: `final-test-report.md` (140 líneas: veredicto, recorrido por pasos, 20 hallazgos F1–F20 con su corrección y versión del pack, historial v0.2.0–v0.16.0, pendientes y bloqueos)
