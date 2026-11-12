@@ -37,9 +37,11 @@ El aviso se publica en tres momentos, una transacción `Bundle` por evento, siem
 
 ## Perfiles de esta guía
 
-- `DAUEncuentroUrgencia`, `DAUEncuentroUrgenciaAlta`, `DAUEncuentroUrgenciaAbandono` (Encounter)
-- `DAUPaciente` (Patient), `DAUPrestadorOrganizacional` (Organization), `DAUPrestadorProfesional` (Practitioner)
-- `DAUDiagnosticoUrgencia` (Condition), `DAUIndicacionMedicamento` (MedicationRequest), `DAUDocumentoUrgencia` (DocumentReference)
-- `DAUBundleAviso` (Bundle)
+El detalle de cada perfil (tabla de elementos, diferencial, snapshot, bindings y formatos) está en su página; la lista completa de artefactos está en el [resumen de artefactos](artifacts.html).
+
+- [`DAUEncuentroUrgencia`](StructureDefinition-dau-encuentro-urgencia.html), [`DAUEncuentroUrgenciaAlta`](StructureDefinition-dau-encuentro-urgencia-alta.html), [`DAUEncuentroUrgenciaAbandono`](StructureDefinition-dau-encuentro-urgencia-abandono.html) (Encounter)
+- [`DAUPaciente`](StructureDefinition-dau-paciente.html) (Patient), [`DAUPrestadorOrganizacional`](StructureDefinition-dau-prestador-organizacional.html) (Organization), [`DAUPrestadorProfesional`](StructureDefinition-dau-prestador-profesional.html) (Practitioner)
+- [`DAUDiagnosticoUrgencia`](StructureDefinition-dau-diagnostico-urgencia.html) (Condition), [`DAUIndicacionMedicamento`](StructureDefinition-dau-indicacion-medicamento.html) (MedicationRequest), [`DAUDocumentoUrgencia`](StructureDefinition-dau-documento-urgencia.html) (DocumentReference)
+- [`DAUBundleAviso`](StructureDefinition-dau-bundle-aviso.html) (Bundle)
 
 El diagrama de recursos (estilo ClinFHIR GraphBuilder) y el mapeo campo a campo están en la [propuesta FHIR](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-fhir-proposal.md) y en la [tabla de mapeo](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/04-mapping-table.md) validadas en el paso 4.

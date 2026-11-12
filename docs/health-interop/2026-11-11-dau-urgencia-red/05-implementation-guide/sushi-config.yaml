@@ -20,6 +20,8 @@ pages:
     title: Aviso mínimo DAU
   profiles.md:
     title: Perfiles
+  terminology.md:
+    title: Terminología
   operations.md:
     title: Operaciones
   mapping.md:
