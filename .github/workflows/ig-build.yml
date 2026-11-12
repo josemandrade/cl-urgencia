@@ -47,7 +47,7 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Download the IG Publisher
-        run: wget https://fhir.github.io/latest-ig-publisher/org.hl7.fhir.publisher.jar -O publisher.jar
+        run: wget https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -O publisher.jar
       - name: Build and validate the IG
         run: java -Xms3550m -Xmx3550m -jar publisher.jar -ig .
       - name: Upload the QA report
