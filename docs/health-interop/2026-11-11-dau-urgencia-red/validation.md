@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Paso 6 subido a cl-urgencia (commit be2ef3f), verificado en remoto
+
+- Artefact: `06-component/` (61 archivos: plan.md, README.md, run_tests.sh, 17 en src/dau, 15 en tests, 14 goldens, 12 ejemplos) + `README.md`, `state.md`, `validation.md` del caso (64 archivos en total)
+- Tool / profile: conector GitHub (snapshot push) + verificación remota (`get_file_contents`, `list_commits`)
+- Result: push aplicado al primer intento: el usuario aprobó la tarjeta y el commit es **be2ef3f** ("Step 6: add the DAU component (06-component/) — 21 tasks, 140 tests green; record step 6 as presented for review", 64 archivos). Verificado en remoto: `06-component/README.md` en main (12640 bytes, con la tabla de trazabilidad) y HEAD be2ef3f. El registro de sync quedó actualizado (11 entradas). Pendiente: subir los registros de este push (validation.md, state.md, README.md); después, el informe final de la prueba del pack.
+- Evidence: push aprobado (`userConfirmationStatus: approved`, ref `refs/heads/main` → be2ef3fb1b1a77f101d617f45b8a5294bcef9d12); `get_file_contents` de `06-component/README.md` en main; `list_commits` HEAD be2ef3f.
+
 ## 2026-11-12 — Paso 6: componente construido (21 Component Tasks, 140 tests en verde; presentado para revisión del usuario)
 
 - Artefact: `06-component/` — `plan.md` (21 tareas), `src/dau/` (16 módulos), `tests/` (12 módulos + 14 goldens), `examples/` (12 entradas sintéticas), `README.md` (prerrequisitos, comandos, configuración, ejemplos por operación, tabla de trazabilidad)

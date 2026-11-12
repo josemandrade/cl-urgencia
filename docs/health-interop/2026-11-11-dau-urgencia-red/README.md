@@ -17,7 +17,7 @@ Carpeta de trabajo: `docs/health-interop/2026-11-11-dau-urgencia-red/`.
 
 ## Qué sigue
 
-Paso 6 construido y presentado para revisión del usuario: el componente en `06-component/` implementa la guía (3 Bundles, PI-0, PI-2, PI-3, respuestas del Bus, cliente + CLI + ejemplos + README con la tabla de trazabilidad). Pendiente: revisión del usuario y, con su aprobación en tarjeta, subir el componente a cl-urgencia. El espacio explorador sigue en v0.5.0; actualizarlo a v0.6.0 cuando el usuario lo apruebe.
+Paso 6 construido y subido a cl-urgencia (commit be2ef3f, 64 archivos, verificado en remoto: 06-component/README.md en main con la tabla de trazabilidad): el componente en `06-component/` implementa la guía (3 Bundles, PI-0, PI-2, PI-3, respuestas del Bus, cliente + CLI + ejemplos + README con la tabla de trazabilidad). El espacio explorador sigue en v0.5.0; actualizarlo a v0.6.0 cuando el usuario lo apruebe.
 
 ## Bloqueos
 

@@ -1,10 +1,10 @@
 # State — dau-urgencia-red
 
-- Last updated: 2026-11-12 14:10 America/Santiago
+- Last updated: 2026-11-12 14:06 America/Santiago
 - Current step: 6 (component-building)
-- Current task: componente presentado para revisión del usuario; pendiente el push a cl-urgencia con aprobación del usuario
-- Last completed: paso 6 construido: 21 Component Tasks completas, 140 tests en verde, README del componente con trazabilidad, registros actualizados (validation.md, README.md del caso)
-- Next action: presentar el componente, el README y los ejemplos al usuario para revisión; con su aprobación, subir 06-component/ a cl-urgencia (tarjeta) y verificar en remoto
+- Current task: subir los registros del push del componente (validation.md, state.md, README.md) a cl-urgencia; después, informe final de la prueba del pack
+- Last completed: paso 6 construido y subido: 21 Component Tasks completas, 140 tests en verde; push a cl-urgencia be2ef3f (64 archivos) verificado en remoto (06-component/README.md en main, HEAD be2ef3f)
+- Next action: subir los registros del push (validation.md, state.md, README.md) a cl-urgencia con tarjeta; después, informe final de la prueba del pack
 - Files changed in this task: `06-component/plan.md`, `06-component/tests/goldens/` (14 JSON), `06-component/src/dau/*.py` (16 módulos), `06-component/tests/*.py` (12 módulos), `06-component/examples/` (12 JSON), `06-component/README.md`, `state.md`, `validation.md`, `README.md` del caso.
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
@@ -34,7 +34,7 @@ Tasks:
 - Task 13: complete — v7 subida (17d9b59), PNG subido por la web (7e9befd), run 24 success y guía verificada en vivo (PNG 200/448885, process.html a 4320 px con zoom); pack v0.15.0 publicado (3ca29e5); explorador actualizado a v0.15.0
 - Task 14: complete — registros de la v7 subidos (fdca400); skill de git `git-workflow-health` creada en el pack (v0.16.0 local, verificada: 0× 0.15.0, 14× 0.16.0, JSON/JS/hook ok), investigando superpowers (using-git-worktrees, finishing-a-development-branch)
 - Task 15: complete — pack v0.16.0 publicado (6ee9db9, 16 archivos; verificado en remoto: skill.yaml 0.16.0 y git-workflow-health en main)
-- Task 16: in progress — paso 6: componente que implementa la guía (06-component/), con git-workflow-health (una rama por caso, commit por paso validado, preguntar dónde mergear)
+- Task 16: complete — paso 6: componente que implementa la guía (06-component/) construido (21 Component Tasks, 140 tests en verde) y subido a cl-urgencia (be2ef3f, 64 archivos, verificado en remoto); vía remota con las puertas de git-workflow-health (la carpeta no es un checkout git)
 
 Component Tasks:
 - Component Task 1: complete — andamiaje + identificadores (constants, identifiers, run_tests.sh, 8 tests en verde: RUN 12345678-5 válido, 12345678-9 inválido, 98765432-5 válido, 98765432-1 inválido)
