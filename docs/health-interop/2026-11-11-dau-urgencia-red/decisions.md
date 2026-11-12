@@ -1,5 +1,33 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-11 — La guía es una guía de prueba, no la guía del MINSAL
+
+- Context: la guía del paso 5 se construye sobre los perfiles de la guía cl-urgencia v0.2.0 del MINSAL, pero no es esa guía y no puede depender de su paquete (no está publicado como paquete FHIR que SUSHI pueda resolver), igual que CL-Core.
+- Decision: la guía tiene id `hl7.fhir.cl.test.dau-urgencia-red`, versión `0.1.0`, canonical `https://josemandrade.github.io/cl-urgencia/` (el sitio de GitHub Pages del repo cl-urgencia), y solo depende de `hl7.fhir.r4.core 4.0.1`. Los perfiles se definen en local con nombres propios (`DAUEncuentroUrgencia`, no `EncuentroUrgencia`) para no reclamar ser los perfiles del MINSAL, y se citan como fuente la guía v0.2.0.
+- Alternatives considered: depender del paquete de la guía del MINSAL o de CL-Core (rechazado: no están en packages.fhir.org y SUSHI no los resolvería; la guía no compilaría).
+- Consequences: las restricciones de la guía v0.2.0 se transcriben en los perfiles locales; si la guía del MINSAL cambia, la transcripción se actualiza a mano.
+
+## 2026-11-11 — En FHIR R4, el destino al alta es `hospitalization.dischargeDisposition`
+
+- Context: el FSH inicial usó `dischargeDisposition` como elemento directo de Encounter; SUSHI devolvió 3 errores ("No element found at path dischargeDisposition").
+- Decision: la ruta correcta en FHIR R4 es `Encounter.hospitalization.dischargeDisposition`. Se corrigieron el perfil de alta, el de abandono y el invariante `dau-alta-destino`.
+- Alternatives considered: ninguna (es la estructura de FHIR R4).
+- Consequences: la propuesta y la guía usan `dischargeDisposition` como nombre corto en la prosa, pero el FSH y el JSON usan la ruta completa.
+
+## 2026-11-11 — El diagrama de recursos sigue el estilo de ClinFHIR GraphBuilder
+
+- Context: el usuario corrigió la propuesta porque le faltaba un diagrama como los de GraphBuilder (https://clinfhir.com/): cada recurso es un rectángulo con título y tipo, y las referencias son flechas direccionales etiquetadas con el elemento que las lleva.
+- Decision: el diagrama (`04-fhir-proposal-graph.svg`) se genera con un script durable (`render_fhir_graph.py`, en la raíz de la carpeta de trabajo) y se enlaza en la propuesta. El `Bundle` es el marco punteado que envuelve el grafo. `Organization` aparece dos veces (emisor y destino) porque son dos instancias distintas —evita dibujar dos flechas al mismo nodo—. El PDF DAU se dibuja con borde punteado porque no es un recurso FHIR.
+- Alternatives considered: usar GraphBuilder en el navegador (rechazado: herramienta interactiva, lenta y poco reproducible; el SVG generado localmente tiene el mismo estilo y se puede regenerar).
+- Consequences: el script es la fuente del diagrama; si cambian los recursos o las referencias, se edita el script y se regenera el SVG.
+
+## 2026-11-11 — El fallecimiento se informa como alta con destino 03 Fallecido
+
+- Context: la spec v3 y el BPMN v4 decían que la guía no contemplaba el fallecimiento y que el valor del desenlace se definiría en el paso 4. Al revisar la guía en vivo para la propuesta, apareció el código `03 Fallecido` en el ValueSet del alta.
+- Decision: el fallecimiento es un **evento de alta** (Bundle de alta, perfil EncuentroUrgenciaAlta) con `dischargeDisposition = 03 Fallecido`, `period.end` = hora del fallecimiento, diagnóstico de egreso = causa de muerte (CIE-10, `use = DD`) y documento de resumen de alta (LOINC 59258-4). No se crea un Bundle nuevo ni un perfil nuevo.
+- Alternatives considered: un Bundle nuevo de fallecimiento con un código nuevo (rechazado: el código ya existe y el perfil de alta lo acepta); una extensión en el `Encounter` (rechazado: rompería el reconocimiento de eventos de la guía); registrar la muerte en `Patient.deceased` (rechazado: los maestros son solo creación, nunca se modifican).
+- Consequences: la rama "Fallecimiento" del BPMN v4 se mantiene como rama clínica, pero mapea a la transacción de alta. La nota "la guía no lo contempla" queda corregida en `validation.md`.
+
 ## 2026-11-11 — El repaso IHE temprano se hizo al inicio del paso 3, no antes del BPMN
 
 - Context: la skill `ihe-landscape-scan` se creó en el pack cuando el BPMN v4 ya estaba modelado y validado. El flujo del componente dice que el repaso corre tras validar la spec y antes del BPMN.

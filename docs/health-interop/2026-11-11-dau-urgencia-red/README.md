@@ -10,17 +10,16 @@ Carpeta de trabajo: `docs/health-interop/2026-11-11-dau-urgencia-red/`.
 |------|----------|--------|--------------|------|
 | 1 | `01-use-case-spec.md` | validated | user | 2026-11-11 |
 | 2 | `02-bpmn-model.md` | validated | user | 2026-11-11 |
-| 3 | `03-entities-data.md` | in progress (entidades y datos, a la espera de validación) | — | 2026-11-11 |
-| 4 | `04-fhir-proposal.md` | pending | — | — |
-| 5 | `05-implementation-guide/` | pending | — | — |
-| 6 | `06-component/` | pending | — | — |
+| 3 | `03-entities-data.md` | validated | user | 2026-11-11 |
+| 4 | `04-fhir-proposal.md` | validated (propuesta FHIR + tabla de mapeo + revisión IHE por punto + diagrama de recursos) | user | 2026-11-11 |
+| 5 | `05-implementation-guide/` | validated (plan + guía con SUSHI, 0 errores 0 warnings; workflow de Git en la raíz) | user | 2026-11-11 |
+| 6 | `06-component/` | in progress | — | 2026-11-11 |
 
 ## Qué sigue
 
-Validar las entidades y sus datos (paso 3). Si valida, paso 4: propuesta FHIR + tabla de mapeo + revisión experta IHE por punto (confirmando o refutando los candidatos del repaso temprano). Cuando el repo esté incluido en la instalación de la GitHub App, subir la carpeta a cl-urgencia.
+Paso 6: componente que implementa la guía y sus operaciones, en `06-component/`. El usuario pidió la URL de la guía desplegada: subir la carpeta de trabajo y el workflow a cl-urgencia y verificar el despliegue en GitHub Pages (`https://josemandrade.github.io/cl-urgencia/`). El espacio explorador sigue en v0.5.0; actualizarlo a v0.6.0 cuando el usuario lo apruebe.
 
 ## Bloqueos
 
-- Subida a cl-urgencia: la GitHub App no tiene acceso al repo (403 "Resource not accessible by integration"). El repo sigue vacío, nada se subió. Falta incluir `cl-urgencia` en la instalación de la app.
-- Paso 3 pendiente de validación.
+- Prueba de aceptación en Codex: sin credenciales.
 - Prueba de aceptación en Codex (sesión limpia con la frase disparadora): bloqueada, Codex no tiene credenciales en este entorno (`codex doctor`: no Codex credentials found). La prueba aquí es el recorrido paso a paso en esta sesión.
