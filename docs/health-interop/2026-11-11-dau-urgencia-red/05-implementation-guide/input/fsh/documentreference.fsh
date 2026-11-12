@@ -1,6 +1,7 @@
 // Documento del episodio de urgencia (resumen de alta o nota de urgencia).
-// Fuente: perfil Documento de urgencia de la Guía de interoperabilidad de
-// eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base
+// DocumentReference de FHIR R4.
 
 ValueSet: DAUTipoDocumento
 Id: dau-tipo-documento

@@ -1,6 +1,6 @@
 # Perfiles
 
-Los perfiles de esta guía son transcripciones locales de los perfiles de la Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0), con nombres propios (`DAU...`) para no reclamar ser los perfiles del MINSAL. La única dependencia es el núcleo FHIR R4; no se depende del paquete de la guía del MINSAL ni de CL-Core.
+Los perfiles de esta guía son perfiles propios, diseñados a partir de la especificación del caso de uso (entidades y datos de los pasos 1–3) sobre los recursos base de FHIR R4. No son transcripciones de los perfiles de otra guía: la única dependencia es el núcleo FHIR R4. Los datos que codifican (identificadores, códigos) son los que el caso de uso exige informar a la red; la guía nacional de eventos de urgencia del MINSAL (cl-urgencia v0.2.0) es la referencia de esos requisitos de datos, no la fuente de estos perfiles.
 
 Cada perfil tiene su página con la definición formal (tabla de elementos, diferencial, snapshot, bindings de terminología, restricciones y los formatos XML/JSON/TTL). La lista completa de artefactos, con sus páginas, está en el [resumen de artefactos](artifacts.html).
 

@@ -9,7 +9,7 @@ Esta página lista los sistemas de códigos y los conjuntos de valores que usa l
 | [`Destino al alta de urgencia (DAU)`](CodeSystem-dau-destino-alta.html) (`DAUDestinoAlta`) | `https://josemandrade.github.io/cl-urgencia/CodeSystem/dau-destino-alta` | 01 Hospitalización, 02 Traslado, 03 Fallecido, 04 Derivación, 05 Domicilio, 06 Otro |
 | [`Tipo de abandono`](CodeSystem-dau-tipo-abandono.html) (`DAUTipoAbandono`) | `https://josemandrade.github.io/cl-urgencia/CodeSystem/dau-tipo-abandono` | 1 NEA, 2 Fuga |
 
-Los códigos de destino al alta (01–06) y de tipo de abandono (1–2) son los de la Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0), transcritos en esta guía de prueba.
+Los códigos de destino al alta (01–06) y de tipo de abandono (1–2) son los que el caso de uso exige informar a la red; los sistemas de códigos son propios de esta guía (definidos en la terminología local). La guía nacional de eventos de urgencia del MINSAL (cl-urgencia v0.2.0) es la referencia de esos requisitos de datos.
 
 ## Conjuntos de valores definidos en esta guía
 

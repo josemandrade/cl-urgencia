@@ -2,7 +2,7 @@
 
 Guía de implementación de prueba para el caso de uso: el mínimo que un establecimiento debe informar a la red cuando atiende a una persona en su unidad de urgencia, para la continuidad de la atención.
 
-> Esta es una guía de prueba, construida en la prueba del componente `health-interop-superpowers`. No es la guía del MINSAL. Se basa en la [Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0)](https://interoperabilidad.minsal.cl/fhir/ig/cl-urgencia/0.2.0/), y sus perfiles (`DAUEncuentroUrgencia`, `DAUPaciente`, etc.) son transcripciones locales de los perfiles de esa guía, con nombres propios. Todos los ejemplos usan datos sintéticos.
+> Esta es una guía de prueba, construida en la prueba del componente `health-interop-superpowers`. No es la guía del MINSAL. Sus perfiles (`DAUEncuentroUrgencia`, `DAUPaciente`, etc.) son perfiles propios de esta guía, diseñados a partir de la especificación del caso de uso sobre los recursos base de FHIR R4. Los datos que codifican son los que el caso de uso exige informar a la red; la [Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0)](https://interoperabilidad.minsal.cl/fhir/ig/cl-urgencia/0.2.0/) es la referencia de esos requisitos de datos. Todos los ejemplos usan datos sintéticos.
 
 ## El caso de uso
 
@@ -34,6 +34,8 @@ El aviso se publica en tres momentos, una transacción `Bundle` por evento, siem
 | PI-1 | Publicación del aviso (push al Bus) | `Bundle` (transaction) |
 | PI-2 | Consulta y suscripción (pull del Repositorio) | `Encounter`, `Condition`, `DocumentReference` |
 | PI-3 | Acceso al PDF del DAU | `DocumentReference.content.attachment.url` |
+
+La [relación con los perfiles IHE](ihe.html) (qué perfil encaja en cada punto, en parte o no encaja) está documentada punto por punto.
 
 ## Perfiles de esta guía
 

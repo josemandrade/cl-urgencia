@@ -26,3 +26,5 @@ pages:
     title: Operaciones
   mapping.md:
     title: Mapeo de datos
+  ihe.md:
+    title: Relación con IHE

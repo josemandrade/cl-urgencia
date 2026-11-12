@@ -1,12 +1,13 @@
 // Establecimiento de salud.
-// Fuente: perfil MINSAL Prestador Organizacional (NID) de la Guía de
-// interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base
+// Organization de FHIR R4.
 
 Profile: DAUPrestadorOrganizacional
 Parent: Organization
 Id: dau-prestador-organizacional
 Title: "Prestador organizacional (DAU)"
-Description: "Establecimiento de salud (emisor del aviso o destino del alta). Basado en el perfil MINSAL Prestador Organizacional (NID) de la guía cl-urgencia v0.2.0."
+Description: "Establecimiento de salud (emisor del aviso o destino del alta). Perfil propio de esta guía, sobre el recurso base Organization de FHIR R4."
 * identifier 1..1
 * identifier.system = "https://interoperabilidad.minsal.cl/fhir/ig/tei/CodeSystem/CSEstablecimientoDestino"
 * identifier.value 1..1

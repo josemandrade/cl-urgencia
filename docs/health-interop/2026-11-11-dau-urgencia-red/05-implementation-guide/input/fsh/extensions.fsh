@@ -1,9 +1,9 @@
-// Extensiones.
-// Fuente: la Guía de interoperabilidad de eventos de urgencia del MINSAL
-// (cl-urgencia v0.2.0). Los códigos de previsión, ley previsional,
-// clasificación de consulta, pronóstico médico legal, pertinencia y medio de
-// llegada son los del NID / CL-Core; se documentan en la descripción y no se
-// atan a un ValueSet local para que la guía se compile sin dependencias externas.
+// Extensiones propias de esta guía. Los datos que llevan (previsión, ley
+// previsional, clasificación de consulta, pronóstico médico legal, pertinencia
+// y medio de llegada) son los que el caso de uso exige; los códigos son los
+// del nomenclador nacional (NID) que el caso de uso usa. Se documentan en la
+// descripción y no se atan a un ValueSet local para que la guía se compile
+// sin dependencias externas.
 
 // Tipo de abandono: 1 NEA (antes de la atención médica), 2 fuga (durante la atención).
 CodeSystem: DAUTipoAbandonoCS

@@ -1,6 +1,7 @@
 // Medicamento indicado al alta.
-// Fuente: perfil Indicación de medicamento de la Guía de interoperabilidad de
-// eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base
+// MedicationRequest de FHIR R4.
 
 Profile: DAUIndicacionMedicamento
 Parent: MedicationRequest

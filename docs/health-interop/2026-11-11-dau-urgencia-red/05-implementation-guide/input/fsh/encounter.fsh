@@ -1,6 +1,8 @@
 // Encounter del episodio de urgencia.
-// Fuente: perfil EncuentroUrgencia (y sus variantes de alta y abandono) de la
-// Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base Encounter
+// de FHIR R4. Los datos que codifica (ID DAU, RUN, código DEIS, destino al
+// alta, tipo de abandono) son los que el caso de uso exige informar a la red.
 
 Invariant: dau-enc-period
 Description: "La fecha de término del episodio no puede ser anterior a la fecha de admisión (urg-enc-3)."
@@ -21,7 +23,7 @@ Profile: DAUEncuentroUrgencia
 Parent: Encounter
 Id: dau-encuentro-urgencia
 Title: "Encuentro de urgencia (DAU)"
-Description: "Episodio de atención de urgencia. Basado en el perfil EncuentroUrgencia de la guía cl-urgencia v0.2.0 (sobre EncounterCL de CL-Core). Un solo Encounter por episodio, actualizado por PUT condicional por ID DAU."
+Description: "Episodio de atención de urgencia. Perfil propio de esta guía, sobre el recurso base Encounter de FHIR R4. Un solo Encounter por episodio, actualizado por PUT condicional por ID DAU."
 * obeys dau-enc-period
 * obeys dau-enc-reason
 * identifier 1..*
@@ -69,7 +71,7 @@ Profile: DAUEncuentroUrgenciaAlta
 Parent: DAUEncuentroUrgencia
 Id: dau-encuentro-urgencia-alta
 Title: "Encuentro de urgencia — alta (DAU)"
-Description: "Variante de alta del episodio de urgencia. Basada en el perfil EncuentroUrgenciaAlta de la guía cl-urgencia v0.2.0. El fallecimiento es un alta con destino 03 Fallecido: hospitalization.dischargeDisposition = 03, period.end = hora del fallecimiento, diagnóstico de egreso = causa de muerte (CIE-10, use = DD)."
+Description: "Variante de alta del episodio de urgencia, sobre DAUEncuentroUrgencia. El fallecimiento es un alta con destino 03 Fallecido: hospitalization.dischargeDisposition = 03, period.end = hora del fallecimiento, diagnóstico de egreso = causa de muerte (CIE-10, use = DD)."
 * obeys dau-alta-destino
 * status = #finished
 * hospitalization.dischargeDisposition 1..1
@@ -82,7 +84,7 @@ Profile: DAUEncuentroUrgenciaAbandono
 Parent: DAUEncuentroUrgencia
 Id: dau-encuentro-urgencia-abandono
 Title: "Encuentro de urgencia — abandono (DAU)"
-Description: "Variante de abandono voluntario del episodio de urgencia. Basada en el perfil EncuentroUrgencia (abandono) de la guía cl-urgencia v0.2.0. No lleva dischargeDisposition ni destino: el tipo de abandono va en la extensión tipoAbandono (1 NEA, 2 fuga)."
+Description: "Variante de abandono voluntario del episodio de urgencia, sobre DAUEncuentroUrgencia. No lleva dischargeDisposition ni destino: el tipo de abandono va en la extensión tipoAbandono (1 NEA, 2 fuga)."
 * status = #finished
 * extension contains DAUTipoAbandono named tipoAbandono 1..1
 * diagnosis 0..*

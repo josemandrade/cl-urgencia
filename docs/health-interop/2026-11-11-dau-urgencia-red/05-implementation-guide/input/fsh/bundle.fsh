@@ -1,6 +1,7 @@
 // Transacción con el aviso mínimo de un evento del episodio.
-// Fuente: Bundle de admisión / alta / abandono de la Guía de interoperabilidad
-// de eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base Bundle
+// de FHIR R4.
 
 Profile: DAUBundleAviso
 Parent: Bundle

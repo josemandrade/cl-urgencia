@@ -1,6 +1,7 @@
 // Hipótesis y diagnóstico de egreso.
-// Fuente: perfil Diagnóstico de urgencia (sobre CL-Core CoreDiagnosticoCl) de
-// la Guía de interoperabilidad de eventos de urgencia del MINSAL (cl-urgencia v0.2.0).
+// Perfil propio de esta guía. Diseñado a partir de la especificación del caso
+// de uso (entidades y datos de los pasos 1–3) sobre el recurso base Condition
+// de FHIR R4.
 
 Profile: DAUDiagnosticoUrgencia
 Parent: Condition
