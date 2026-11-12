@@ -20,6 +20,8 @@ pages:
     title: Aviso mínimo DAU
   process.md:
     title: Proceso (BPMN)
+  resources.md:
+    title: Diagrama de recursos
   profiles.md:
     title: Perfiles
   terminology.md:

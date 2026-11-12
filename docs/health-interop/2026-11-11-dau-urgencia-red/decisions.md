@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — El diagrama de recursos tiene su propia página (no solo va en Perfiles)
+
+- Context: el usuario miró la guía y no vio el diagrama de recursos, lo que le hizo dudar de la skill. El diagrama SÍ estaba publicado (en `profiles.html`, sección "Diagrama de recursos", con el SVG en 200 y renderizando bien — verificado en vivo y renderizado a PNG), pero estaba enterrado en la mitad de la página de Perfiles: hay que abrir "Perfiles" y bajar para encontrarlo, y el índice solo lo enlazaba. La regla de la skill ("mostrar el diagrama en la página de Perfiles") era demasiado débil: un diagrama que solo vive dentro de otra página es fácil de no encontrar, y el lector concluye que no se subió.
+- Decision: el diagrama de recursos tiene su propia página (`resources.md`, "Diagrama de recursos") con su propia entrada en el menú, igual que el BPMN tiene su propia página ("Proceso (BPMN)"). El diagrama sigue también en `profiles.md` (donde se listan los recursos) y enlazado desde el índice. La skill `implementation-guide-sushi` queda corregida: ambos diagramas (BPMN y recursos) tienen su propia página y su propia entrada en el menú, para que sean visibles como pestañas de primer nivel; `fhir-modeling` igual. El BPMN ya era encontrable por tener su propia pestaña, y eso confirma el patrón.
+- Consequences: el diagrama es visible desde el menú sin abrir otra página; la skill ya no permite enterrarlo dentro de Perfiles.
+
 ## 2026-11-12 — La guía incluye el BPMN y el diagrama de recursos, y el header es una barra horizontal
 
 - Context: la guía publicada no mostraba el BPMN ni el diagrama de recursos (estaban en la carpeta del caso, fuera de la guía), y el header se veía como una lista vertical de pestañas. El `menu.xml` era un `<ul>` sin clase, y el `index.md` enlazaba el diagrama de recursos a la propuesta en GitHub (fuera de la guía).

@@ -3,7 +3,7 @@
 - Last updated: 2026-11-11 23:50 America/Santiago
 - Current step: 6 (component-building)
 - Current task: componente que implementa la guía (06-component/) — por empezar; la URL de la guía desplegada está pendiente del workflow
-- Last completed: guía publicada y visible en https://josemandrade.github.io/cl-urgencia/. Operaciones enlazadas a sus perfiles IHE y verificadas en vivo (run 10, commit 87831b1, success). Pack en v0.9.0 (commit 768c752). La guía ahora incluye el BPMN (página `process.md` con el diagrama) y el diagrama de recursos (en `profiles.md`), y el header pasa a ser `<ul class="nav navbar-nav">` (barra horizontal). SUSHI 0 errores, enlaces verificados. Falta subir el cambio y verificar el run. Después, paso 6 (componente).
+- Last completed: guía publicada y visible en https://josemandrade.github.io/cl-urgencia/. BPMN y diagrama de recursos en la guía y verificados en vivo (run 12, commit fa240d0, success). El usuario no encontró el diagrama de recursos (estaba enterrado en Perfiles, aunque el SVG cargaba y renderizaba bien): ahora tiene su propia página `resources.md` con entrada en el menú. SUSHI 0 errores, enlaces verificados. Falta subir el cambio y verificar el run. Después, paso 6 (componente).
 - Next action: paso 6 (componente que implementa la guía, en 06-component/).
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.

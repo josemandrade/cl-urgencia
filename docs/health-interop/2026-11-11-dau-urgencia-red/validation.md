@@ -1,5 +1,19 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — El diagrama de recursos tiene su propia página (corrección de la skill)
+
+- Artefact: `05-implementation-guide/` (página nueva `resources.md`, `menu.xml`, `sushi-config.yaml`, `index.md`) y las skills `implementation-guide-sushi` y `fhir-modeling` del pack
+- Tool / profile: revisión en vivo de la guía publicada y render del SVG
+- Result: verificado que el diagrama SÍ estaba publicado en `profiles.html` (sección "Diagrama de recursos", `<img src="04-fhir-proposal-graph.svg">`, SVG con 200) y que el SVG renderiza bien (render a PNG: grafo legible, Encounter como centro, Bundle como marco, 12 referencias etiquetadas). El problema era de visibilidad: estaba enterrado en la mitad de Perfiles. Corregido: página propia `resources.md` ("Diagrama de recursos") con el diagrama, cómo leerlo y la tabla de recursos y referencias, con entrada propia en el menú (después de "Proceso (BPMN)") y enlazada desde el índice y desde Perfiles. La skill queda corregida: el diagrama tiene su propia página y su propia entrada en el menú, no solo va en Perfiles. SUSHI compila con 0 errores y 0 warnings; los enlaces internos y las imágenes de `resources.md`, `index.md` y `profiles.md` se verifican (ninguno roto). Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo.
+- Evidence: lectura en vivo de profiles.html (el `<img>` y la sección presentes), render del SVG a PNG con cairosvg, SUSHI v3.21.0 0 errores, comprobación de enlaces en local.
+
+## 2026-11-12 — Run 12: imágenes del BPMN y del diagrama de recursos cargando, header horizontal
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/
+- Tool / profile: GitHub Actions, workflow "IG build", run 12 (commit `fa240d0`)
+- Result: success (build y deploy en verde). Verificado en vivo: `process.html` referencia `02-bpmn-model.svg` (por nombre de archivo) y el SVG devuelve 200; `profiles.html` referencia `04-fhir-proposal-graph.svg` y devuelve 200; el header sigue siendo `<ul class="nav navbar-nav">`. Las imágenes ya se ven en la guía.
+- Evidence: run de Actions 43157084530 (success), curl 200 de ambos SVG y lectura en vivo de process.html, profiles.html e index.html.
+
 ## 2026-11-12 — Run 11: BPMN y diagrama de recursos en la guía y header horizontal (pero las imágenes daban 404)
 
 - Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/
