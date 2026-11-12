@@ -1,10 +1,10 @@
 # State — dau-urgencia-red
 
-- Last updated: 2026-11-12 18:38 America/Santiago
-- Current step: 4/5 (diagramas de secuencia, skill nueva del pack v0.17.0) — aplicación de `sequence-diagrams` al caso DAU
-- Current task: subir los diagramas de secuencia a cl-urgencia (texto por snapshot, PNG por la web) y verificar la guía en vivo
-- Last completed: diagramas de secuencia generados (5 flujos, 11 operaciones, check mecánico 0/0, visual mirado por zonas con 4 defectos del render corregidos, SUSHI 0 errores 0 warnings, página sequences.md en la guía)
-- Next action: subir a cl-urgencia con tarjeta (texto: render_sequence.py, 5 SVG, 04-sequence-diagrams.md, sequences.md, sushi-config.yaml, menu.xml, index.md, operations.md, state.md, validation.md, README.md) + 5 PNG por la web a input/images/ + verificar el run y sequences.html en vivo; después, validación del usuario de los diagramas
+- Last updated: 2026-11-12 18:53 America/Santiago
+- Current step: 4/5 (diagramas de secuencia, skill nueva del pack v0.17.0) — aplicación de `sequence-diagrams` al caso DAU, pendiente la validación del usuario
+- Current task: validación del usuario de los diagramas de secuencia
+- Last completed: diagramas de secuencia subidos a cl-urgencia (texto 55d2bb2, 15 archivos; PNG 64bab50, 5 archivos por la web) y verificados en vivo (run 43313844154 success; sequences.html y los 5 PNG 200; zoom presente)
+- Next action: validación del usuario de los diagramas; después, opcional: explorador a v0.17.0
 - Files changed in this task: `06-component/plan.md`, `06-component/tests/goldens/` (14 JSON), `06-component/src/dau/*.py` (16 módulos), `06-component/tests/*.py` (12 módulos), `06-component/examples/` (12 JSON), `06-component/README.md`, `state.md`, `validation.md`, `README.md` del caso.
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.

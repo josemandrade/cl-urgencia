@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Diagramas de secuencia subidos a cl-urgencia y verificados en vivo (run en verde)
+
+- Artefact: 15 archivos de texto (`render_sequence.py`, 5 SVG, `04-sequence-diagrams.md`, `sequences.md`, `sushi-config.yaml`, `menu.xml`, `index.md`, `operations.md`, `README.md`, `state.md`, `validation.md`) + 5 PNG en `05-implementation-guide/input/images/`
+- Tool / profile: conector GitHub (snapshot push) + subida por la web de GitHub + verificación remota (API de Actions, `get_file_contents`, sitio publicado)
+- Result: texto subido al segundo intento: el primero se cortó por un reinicio del servicio y se verificó que el HEAD seguía en bf08ce4 y `sequences.md` seguía ausente antes de reintentar. Commit **55d2bb2** ("Add sequence diagrams per flow (5 SVGs + 04-sequence-diagrams.md + sequences page in the guide)...", 15 archivos). PNGs subidos por la web al commit **64bab50** ("Add sequence diagram PNGs for the guide (5 flows)"), verificados en el listado de la carpeta. Run de Actions **43313844154** (head 64bab50) **completed / success**; el run del commit de texto (55d2bb2) se canceló al llegar el push de los PNG (grupo de concurrencia ig-pages), como corresponde. Sitio publicado: `sequences.html` 200, los 5 PNG 200, el script `zoomDiagram` y los botones Zoom in (+)/Zoom out (−)/100% presentes en la página publicada. Pendiente: validación del usuario de los diagramas.
+- Evidence: `list_commits` HEAD 64bab50; listado de `input/images/` con los 5 PNG; run 43313844154 `completed | success`; `sequences.html` en vivo con 11 ocurrencias de `zoomDiagram` y las 5 referencias PNG.
+
 ## 2026-11-12 — SUSHI con la página de diagramas de secuencia (0 errores, 0 warnings)
 
 - Artefact: `05-implementation-guide/` — página nueva `input/pagecontent/sequences.md` (5 secciones, una por flujo, con su PNG y su tabla de operaciones), registrada en `sushi-config.yaml` (pages) y en `input/includes/menu.xml` (entrada propia tras Operaciones), enlazada desde `index.md` y `operations.md`; PNGs en `input/images/` (`04-sequence-admission.png`, `04-sequence-discharge.png`, `04-sequence-abandonment.png`, `04-sequence-network-pull.png`, `04-sequence-document-retrieval.png`, referenciados solo por su nombre de archivo)
