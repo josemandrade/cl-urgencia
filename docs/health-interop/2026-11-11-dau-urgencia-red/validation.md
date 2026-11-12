@@ -1,5 +1,26 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Run 24: BPMN v7 en vivo (PNG nuevo con 200, process.html a 4320 px con zoom)
+
+- Artefact: guía publicada en https://josemandrade.github.io/cl-urgencia/ (process.html, 02-bpmn-model.png)
+- Tool / profile: GitHub Actions, workflow "IG build", run 24 (commit `7e9befd`) + curl en vivo
+- Result: success (build y deploy en verde). Verificado en vivo: `02-bpmn-model.png` devuelve 200 con Content-Length 448885 (el render v7; antes 437579), `process.html` (200, 16561 bytes) referencia el PNG (2 menciones), lo muestra a `width:4320px` y trae el script `zoomDiagram` (3 menciones). El grafo de recursos sigue en 200 (227139 bytes). La v7 queda publicada y verificada en vivo: el paso 2 queda cerrado para v7 y el paso 6 (componente) puede empezar. El PNG se subió por el navegador del agente (upload web a main) en vez de por el usuario, a petición suya ("sube y actualiza tu").
+- Evidence: run de Actions 43259810480 (success); curl 200 del PNG (448885) y de process.html; grep en process.html (2 PNG, 1 width:4320px, 3 zoomDiagram).
+
+## 2026-11-12 — Pack v0.15.0 subido a health-interop-superpowers (commit 3ca29e5), verificado en remoto
+
+- Artefact: `skills/bpmn-modeling/SKILL.md` (ramas paralelas + check de cruces) y los 12 archivos del bump de versión (`skill.yaml`, manifests de los 6 plugins, `gemini-extension.json`, `package.json`, JS e INSTALL.md de OpenCode, `README.md`)
+- Tool / profile: conector GitHub (snapshot push) + verificación remota (`get_file_contents`)
+- Result: el push de la v0.15.0 se aplicó al segundo intento: el usuario aprobó la tarjeta dentro de la ventana y el commit es **3ca29e5** ("v0.15.0: parallel BPMN branches (AND gateways + sub-processes) and the mechanical crossing check", 13 archivos). Verificado en remoto: `skill.yaml` en main dice `version: 0.15.0` y `bpmn-modeling/SKILL.md` trae la sección "Model work that happens in parallel" y la sección ortogonal. El registro de sync quedó actualizado (8 entradas). El intento anterior (2026-11-12 ~12:11) había caducado sin aprobarse. Pendiente: subir el PNG nuevo de la v7 por la web y verificar la guía en vivo; después, paso 6.
+- Evidence: push aprobado (`userConfirmationStatus: approved`, ref `refs/heads/main` → 3ca29e52a647c2f7c2aed7d106b8098f7f565437); `get_file_contents` de `skill.yaml` y de `bpmn-modeling/SKILL.md` en main.
+
+## 2026-11-12 — BPMN v7 subido a cl-urgencia (commit 17d9b59), verificado en remoto
+
+- Artefact: `02-bpmn-model.bpmn` (v7), `02-bpmn-model.md` (v7, validado), `02-bpmn-model.svg` (v7, en la carpeta del caso y en `input/images/`), `render_bpmn.py`, `validation.md`, `state.md`, `decisions.md`
+- Tool / profile: conector GitHub (snapshot push) + verificación remota (`get_file_contents`)
+- Result: el push de la v7 se aplicó al cuarto intento: el usuario aprobó la tarjeta a tiempo (18 s) y el commit es **17d9b59** ("BPMN v7: parallel branch for the C1 fast-track admission (0 diagonal edges)", 8 archivos). Verificado en remoto: el `.bpmn` en main (36428 bytes) contiene `gw_c1_fork`, `sp_adm_c1` y `gw_c1_join`, y el `.md` dice "v7, validado por el usuario (2026-11-12 09:56)". El registro de sync quedó actualizado (9 entradas). Pendiente: subir el PNG nuevo (448885 bytes) por la web de GitHub — el snapshot no acepta binarios —, verificar el run de Actions y la guía en vivo (el PNG en el repo sigue siendo el de la v6 hasta que se suba el nuevo), y subir el pack v0.15.0.
+- Evidence: push aprobado (`userConfirmationStatus: approved`, ref `refs/heads/main` → 17d9b59a6c7c538469ff0d9c0e03b9e03c8f3c46); `get_file_contents` del `.bpmn` y del `.md` en main.
+
 ## 2026-11-12 — BPMN v7 validado por el usuario
 
 - Artefact: `02-bpmn-model.bpmn` (v7), `02-bpmn-model.md` (v7)

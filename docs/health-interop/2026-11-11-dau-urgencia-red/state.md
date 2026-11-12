@@ -1,10 +1,10 @@
 # State — dau-urgencia-red
 
-- Last updated: 2026-11-12 09:57 America/Santiago
+- Last updated: 2026-11-12 13:36 America/Santiago
 - Current step: 6 (component-building)
-- Current task: componente que implementa la guía (06-component/) — por empezar; primero publicar la v7 en la guía y verificarla en vivo
-- Last completed: BPMN v7 validado por el usuario (2026-11-12 09:56, "Sí, valido la v7 tal cual"). La v7 es la versión validada (paso 2 cerrado para v7).
-- Next action: subir la v7 a cl-urgencia (archivos de texto por snapshot, PNG por la web), verificar el run y la guía en vivo; subir el pack v0.15.0; después, paso 6 (componente).
+- Current task: subir los registros a cl-urgencia; después, componente en 06-component/
+- Last completed: BPMN v7 publicada y verificada en vivo (run 24 success; PNG 200/448885; process.html a 4320 px con zoom). Explorador actualizado a v0.15.0. Pack v0.15.0 publicado (3ca29e5).
+- Next action: subir los registros (validation.md, state.md) a cl-urgencia; skill de git para el componente (worktrees/ramas/merge, preguntar dónde mergear) en estudio; después, paso 6 (componente).
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
 - Files changed in this task: `05-implementation-guide/` (plan.md, sushi-config.yaml, ig.ini, 11 FSH, 4 páginas, menu.xml), `.github/workflows/ig-build.yml`, `.gitignore`, `README.md`, `state.md`, `validation.md`, `decisions.md`
@@ -23,4 +23,5 @@ Tasks:
 - Task 10: complete — repaso IHE temprano verificado en vivo y escrito en `02-bpmn-model.md`; entidades y datos escritos en `03-entities-data.md` y validados por el usuario (paso 3 cerrado)
 - Task 11: complete — paso 4: propuesta FHIR + tabla de mapeo + revisión experta IHE por punto, validadas por el usuario; paso 5: guía con SUSHI validada y publicada
 - Task 12: complete — BPMN v7 modelado y verificado (0 diagonales en los 51 flujos; ningún segmento cruza una figura; mirado a 4320 px por zonas; SUSHI 0 errores) y validado por el usuario (2026-11-12 09:56); paso 2 cerrado para v7
-- Task 13: pending — subir la v7 a cl-urgencia (texto por snapshot, PNG por la web), verificar el run y la guía en vivo; subir el pack v0.15.0; después, paso 6 (componente en 06-component/)
+- Task 13: complete — v7 subida (17d9b59), PNG subido por la web (7e9befd), run 24 success y guía verificada en vivo (PNG 200/448885, process.html a 4320 px con zoom); pack v0.15.0 publicado (3ca29e5); explorador actualizado a v0.15.0
+- Task 14: pending — subir los registros (validation.md, state.md) a cl-urgencia; skill de git para el componente (worktrees/ramas/merge, preguntar dónde mergear) en estudio por un subagente (revisando superpowers); después, paso 6 (componente en 06-component/)
