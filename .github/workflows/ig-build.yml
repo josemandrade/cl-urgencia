@@ -48,6 +48,11 @@ jobs:
           java-version: '17'
       - name: Download the IG Publisher
         run: wget https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -O publisher.jar
+      - name: Install Jekyll
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ruby-full
+          sudo gem install bundler jekyll
       - name: Build and validate the IG
         run: java -Xms3550m -Xmx3550m -jar publisher.jar -ig .
       - name: Upload the QA report
