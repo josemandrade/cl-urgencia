@@ -4,8 +4,8 @@
 
 - Artefact: `05-implementation-guide/` (PNG nuevos en `input/images/`, `process.md`, `resources.md`, `profiles.md`) y la skill `implementation-guide-sushi` del pack
 - Tool / profile: conversión con cairosvg y SUSHI v3.21.0 de los cambios
-- Result: los dos SVG se convirtieron a PNG (grafo 2440×1800, 227 KB; BPMN 4080×810, 230 KB) y las tres páginas muestran el PNG directo, con botones Zoom in (+), Zoom out (−) y 100% y el script `zoomDiagram`/`resetDiagram` en cada página. SUSHI compila con 0 errores y 0 warnings; los enlaces internos y las imágenes de las tres páginas se verifican (ninguno roto). Pendiente: subir a cl-urgencia y verificar el run y la guía en vivo, incluido que el `<script>` y los botones sobreviven al publisher y que el zoom funciona.
-- Evidence: conversión con cairosvg, SUSHI v3.21.0 0 errores, comprobación de enlaces y de script/botones en local.
+- Result: los dos SVG se convirtieron a PNG (grafo 2440×1800, 227 KB; BPMN 4080×810, 230 KB) y las tres páginas muestran el PNG directo, con botones Zoom in (+), Zoom out (−) y 100% y el script `zoomDiagram`/`resetDiagram` en cada página. SUSHI compila con 0 errores y 0 warnings; los enlaces internos y las imágenes de las tres páginas se verifican (ninguno roto). Los PNG no se pudieron subir por el snapshot push (solo texto UTF-8, el archivo binario se rechazó): se subieron por la web de GitHub (commit 0356af5, "Add the BPMN and resource diagram PNGs"). Verificado en vivo (run 14, commit 37ee318, success): los dos PNG devuelven 200 en la raíz del sitio, las tres páginas muestran el PNG y el `<script>` con `zoomDiagram` sobrevivió al publisher (está en resources.html, process.html y profiles.html), el menú incluye "Diagrama de recursos" y el header sigue `<ul class="nav navbar-nav">`.
+- Evidence: conversión con cairosvg, SUSHI v3.21.0 0 errores, comprobación de enlaces y de script/botones en local; run 14 success; curl en vivo a resources.html, process.html, profiles.html y a los dos PNG.
 
 ## 2026-11-12 — El diagrama de recursos tiene su propia página (corrección de la skill)
 
