@@ -1,10 +1,10 @@
 # State — dau-urgencia-red
 
-- Last updated: 2026-11-12 18:53 America/Santiago
-- Current step: 4/5 (diagramas de secuencia, skill nueva del pack v0.17.0) — aplicación de `sequence-diagrams` al caso DAU, pendiente la validación del usuario
-- Current task: validación del usuario de los diagramas de secuencia
-- Last completed: diagramas de secuencia subidos a cl-urgencia (texto 55d2bb2, 15 archivos; PNG 64bab50, 5 archivos por la web) y verificados en vivo (run 43313844154 success; sequences.html y los 5 PNG 200; zoom presente)
-- Next action: validación del usuario de los diagramas; después, opcional: explorador a v0.17.0
+- Last updated: 2026-11-12 19:01 America/Santiago
+- Current step: 4/5 (diagramas de secuencia) — validados por el usuario; caso DAU completo
+- Current task: registrar la validación y la regla nueva del revisor experto en el pack (v0.18.0)
+- Last completed: diagramas de secuencia validados por el usuario 2026-11-12 ("los diagramas estan bien")
+- Next action: subir los registros a cl-urgencia y el pack v0.18.0 (regla: revisión experta tras cada tarea importante, sin ella nada llega al usuario); después, opcional: explorador a v0.18.0
 - Files changed in this task: `06-component/plan.md`, `06-component/tests/goldens/` (14 JSON), `06-component/src/dau/*.py` (16 módulos), `06-component/tests/*.py` (12 módulos), `06-component/examples/` (12 JSON), `06-component/README.md`, `state.md`, `validation.md`, `README.md` del caso.
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
@@ -41,6 +41,7 @@ Tasks:
 - Task 20: complete — diagrama de secuencia de abandono (alt NEA tipo 1 / fuga tipo 2)
 - Task 21: complete — diagrama de secuencia de consulta de la red (alt consulta puntual/suscripción; 5 operaciones PI-2 + notificación asíncrona)
 - Task 22: complete — diagrama de secuencia de recuperación del PDF (PI-3) + `04-sequence-diagrams.md` (5 secciones con tabla mensaje → operación → IHE → resultado) + página `sequences.md` en la guía (registro en sushi-config.yaml y menu.xml, enlaces desde index.md y operations.md); SUSHI 0 errores 0 warnings
+- Tasks 18–22: validated by the user 2026-11-12 ("los diagramas estan bien")
 - Nota visual (2026-11-12): el primer render tenía 4 defectos del generador (tofu U+2192 en los subtítulos; solape pestaña-etiqueta 50×9 px y 44×9 px en el diagrama de alta; guarda del segundo operando fuera del borde izquierdo del fragmento; píldoras de las dos líneas de una etiqueta solapadas 2 px); corregidos en `render_sequence.py` (se escribe `>`; pestaña 70 px sobre la primera flecha; guarda anclada a la izquierda dentro del fragmento; interlineado 19 px) y verificados por programa: 0 solapamientos y 0 tofu en los 5 SVG; el diagrama de alta vuelto a mirar completo
 
 Component Tasks:

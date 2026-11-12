@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Diagramas de secuencia validados por el usuario
+
+- Artefact: `04-sequence-diagrams.md` + 5 SVG + página `sequences.md` en la guía (publicada en https://josemandrade.github.io/cl-urgencia/sequences.html)
+- Tool / profile: validación del usuario en la página publicada
+- Result: **validados** ("los diagramas estan bien"). Hallazgo de proceso: los diagramas llegaron a la validación del usuario sin pasar por la revisión experta (`process-expert-review` solo era puerta dura en los pasos 1 y 2) — la regla nueva del pack v0.18.0 exige la revisión experta tras cada tarea importante y prohíbe que nada llegue al usuario sin la aprobación del revisor.
+- Evidence: mensaje del usuario 2026-11-12 19:01; estado del caso actualizado (Tasks 18–22 validadas).
+
 ## 2026-11-12 — Diagramas de secuencia subidos a cl-urgencia y verificados en vivo (run en verde)
 
 - Artefact: 15 archivos de texto (`render_sequence.py`, 5 SVG, `04-sequence-diagrams.md`, `sequences.md`, `sushi-config.yaml`, `menu.xml`, `index.md`, `operations.md`, `README.md`, `state.md`, `validation.md`) + 5 PNG en `05-implementation-guide/input/images/`

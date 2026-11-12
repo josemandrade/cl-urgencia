@@ -12,7 +12,7 @@ Carpeta de trabajo: `docs/health-interop/2026-11-11-dau-urgencia-red/`.
 | 2 | `02-bpmn-model.md` | validated | user | 2026-11-11 |
 | 3 | `03-entities-data.md` | validated | user | 2026-11-11 |
 | 4 | `04-fhir-proposal.md` | validated (propuesta FHIR + tabla de mapeo + revisión IHE por punto + diagrama de recursos) | user | 2026-11-11 |
-| 4 | `04-sequence-diagrams.md` | in progress (5 diagramas de secuencia, un flujo cada uno, cada mensaje con su operación; pendientes de validación por el usuario) | — | 2026-11-12 |
+| 4 | `04-sequence-diagrams.md` | validated (5 diagramas de secuencia, un flujo cada uno, cada mensaje con su operación) | user | 2026-11-12 |
 | 5 | `05-implementation-guide/` | validated (plan + guía con SUSHI, 0 errores 0 warnings; workflow de Git en la raíz) + página `sequences.md` (SUSHI 0/0 con la página nueva) | user | 2026-11-11 |
 | 6 | `06-component/` | presented for user review (21 tareas, 140 tests OK; ver `validation.md` 2026-11-12) | — | 2026-11-12 |
 
