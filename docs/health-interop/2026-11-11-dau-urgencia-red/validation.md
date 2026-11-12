@@ -1,5 +1,29 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — Run 3 del workflow: la plantilla genérica necesita Jekyll (no instalado)
+
+- Artefact: `.github/workflows/ig-build.yml`, `05-implementation-guide/` (con `ig.ini` en `fhir.base.template#1.0.0`)
+- Tool / profile: GitHub Actions, workflow "IG build", run 3 (commit `c72dea4`, id `hl7.fhir.cl.test.dau-urgencia-red`)
+- Result: failed — el build llegó mucho más lejos (SUSHI 0 errores, validación y salidas generadas) y falló en el último paso: el publisher corre `jekyll build` para armar el sitio y Jekyll no está en el runner (`Cannot run program "jekyll" ... error=2, No such file or directory`). La advertencia "This content depends on fhir.base.template which is no longer considered secure to use" es solo eso, una advertencia. Decisión del usuario: cambiar el id a `hl7.fhir.uv.test.dau-urgencia-red` y volver a `hl7.base.template#current`.
+- Failures: la descarga del log por API pide derechos de admin ("Must have admin rights to Repository"); el usuario subió el zip del log.
+- Evidence: run de Actions 43147215268 (job build: paso 8 failure), log `logs_116842173595.zip` (paso 8), plantilla `fhir.base.template` 1.0.0 leída en local (su README la describe como "Base IG template managed by HL7 but usable by anyone (no logos)").
+
+## 2026-11-11 — Workflow de la guía: SUSHI pasó, la descarga del IG Publisher falló (404)
+
+- Artefact: `.github/workflows/ig-build.yml`, `05-implementation-guide/` (fuente de la guía)
+- Tool / profile: GitHub Actions, workflow "IG build", run 1 (commit `92da894`, "Create ig-build.yml")
+- Result: failed — el build falló en el paso "Download the IG Publisher" (0 segundos). SUSHI corrió bien en CI (paso 5, success), así que el FSH compila. La URL `https://fhir.github.io/latest-ig-publisher/org.hl7.fhir.publisher.jar` devuelve **404** (verificado en vivo con curl: el sitio latest-ig-publisher ya no sirve el jar). El publisher actual es la release 3.0.3 de HL7/fhir-ig-publisher (2026-11-06) y el artefacto se llama `publisher.jar` (no `org.hl7.fhir.publisher.jar`): `https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar` (verificado: redirige a la 3.0.3 y descarga, 243 MB, sha256 eeb61f43ff54d532b8da07c5f5e60bc09c63285f8c5bbb2936467bac049a20af).
+- Failures: el push de la corrección (un solo archivo, el workflow) por API falló con el mismo 403 de antes — la App sigue sin el permiso Workflows. La corrección está aplicada en local (`~/workspace/health-interop-test-run/.github/workflows/ig-build.yml`); pendiente que el usuario la aplique en la web de GitHub (editar el archivo en main, cambiar la línea del wget, commitear). Al commitear, el workflow corre de nuevo.
+- Evidence: run de Actions 43144197867 (status completed, conclusion failure; job build: paso 7 failure, paso 8 skipped, deploy skipped), curl -I (404 en la URL vieja, 302→200 en la nueva), release 3.0.3 verificada en la API de GitHub.
+
+## 2026-11-11 — Subida a cl-urgencia (pasos 4–5) y el workflow que no se pudo subir
+
+- Artefact: `docs/health-interop/2026-11-11-dau-urgencia-red/` (pasos 4 y 5), `.gitignore`, `.github/workflows/ig-build.yml`
+- Tool / profile: subida con el conector GitHub (snapshot push)
+- Result: passed (parcial) — 34 archivos subidos a main, commit `92909ae`, sobre `2cefbfb`. Verificado: `sushi-config.yaml` en el repo muestra id `hl7.fhir.cl.test.dau-urgencia-red`, versión 0.1.0. El workflow `.github/workflows/ig-build.yml` **no** se pudo subir: el primer intento (con el workflow) falló con 403 "Resource not accessible by integration" al crear el árbol; el segundo intento (sin el workflow) pasó. Causa: la GitHub App de Muse no tiene el permiso Workflows, que GitHub exige para crear o modificar archivos de workflow por API. Sin el workflow no hay build ni deploy, así que la URL de GitHub Pages todavía no está viva.
+- Failures: 403 en el push con el workflow (permiso Workflows de la App). Pendiente: que el usuario agregue el workflow por la web de GitHub o le dé a la App el permiso Workflows, y activar GitHub Pages (Settings → Pages → Source: GitHub Actions) si el deploy lo pide.
+- Evidence: commit `92909ae` en main, `sushi-config.yaml` verificado en el repo.
+
 ## 2026-11-11 — Paso 5 validado por el usuario (Guía de Implementación)
 
 - Artefact: `05-implementation-guide/` (plan.md, sushi-config.yaml, ig.ini, 11 FSH, 4 páginas, menu.xml), `.github/workflows/ig-build.yml`

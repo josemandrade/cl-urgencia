@@ -1,14 +1,14 @@
 # State — dau-urgencia-red
 
 - Last updated: 2026-11-11 23:50 America/Santiago
-- Current step: 5 (implementation-guide-sushi)
-- Current task: guía con SUSHI terminada y presentada para validación (Tasks 1–18 completas)
-- Last completed: paso 5 ejecutado — `05-implementation-guide/` con `sushi-config.yaml` (id `hl7.fhir.cl.test.dau-urgencia-red`, v0.1.0, FHIR R4 4.0.1, solo dependencia `hl7.fhir.r4.core`), `ig.ini`, 11 archivos FSH (10 perfiles, 7 extensiones, 3 ValueSets, 2 CodeSystems, 14 ejemplos sintéticos), 4 páginas (index, profiles, operations, mapping), `menu.xml`, y el workflow `.github/workflows/ig-build.yml` en la raíz del repo. SUSHI v3.21.0 compila con **0 errores y 0 warnings** ("Just like a perfect pearl"); los 14 ejemplos validan contra sus perfiles. Verificado en el JSON generado: el Encounter de alta tiene status finished y dischargeDisposition 03, el Bundle de alta es transaction con 4 PUT, el Bundle de admisión trae los POST con ifNoneExist. Corrección en el camino: `dischargeDisposition` es `Encounter.hospitalization.dischargeDisposition` en FHIR R4 (SUSHI lo señaló con 3 errores; se corrigió el FSH y el invariante).
-- Next action: esperar validación de la guía; si valida, paso 6 (componente). Después, subir la carpeta de trabajo y el workflow a cl-urgencia (con aprobación del usuario) y verificar el workflow en GitHub (pasos 2–4 de la Task 18: PR en verde, FSH roto en rojo, deploy en main). Activar GitHub Pages en el repo (Settings → Pages → Source: GitHub Actions).
-- Open questions: ninguna pendiente en el paso 5
-- Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el IG Publisher no corre en local (sin Java) — la validación completa la hace el workflow.
+- Current step: 6 (component-building)
+- Current task: componente que implementa la guía (06-component/) — por empezar; la URL de la guía desplegada está pendiente del workflow
+- Last completed: paso 5 validado por el usuario. Subida a cl-urgencia (34 archivos, pasos 4–5, commit 92909ae, verificado). El usuario agregó el workflow `.github/workflows/ig-build.yml` por la web (commit 92da894) y le corrigió la URL del publisher (commit bf9dc1a). Run 2: SUSHI pasó, pero el publisher falló: la plantilla `hl7.base.template` rechaza el id con reino `cl` ("Unrecognized realm in id"). Run 3 (con `fhir.base.template#1.0.0`, commit c72dea4): el build llegó hasta generar las salidas y falló porque Jekyll no está en el runner. Decisión del usuario: cambiar el id a `hl7.fhir.uv.test.dau-urgencia-red` y volver a `hl7.base.template#current`. El cambio está aplicado en local (sushi-config.yaml, ig.ini, plan.md) y SUSHI regenera con el id nuevo (0 errores).
+- Next action: subir el cambio de id a cl-urgencia y verificar el run 4 de Actions (que SUSHI, el publisher y el deploy pasen) y la URL viva (`https://josemandrade.github.io/cl-urgencia/`). Después, paso 6 (componente).
+- Open questions: ninguna pendiente en el paso 6
+- Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.
 - Files changed in this task: `05-implementation-guide/` (plan.md, sushi-config.yaml, ig.ini, 11 FSH, 4 páginas, menu.xml), `.github/workflows/ig-build.yml`, `.gitignore`, `README.md`, `state.md`, `validation.md`, `decisions.md`
-- Do not redo: pasos 1–4 validados; la spec v3, el BPMN v4, el repaso IHE, las entidades, la propuesta FHIR y las dos subidas a GitHub son las versiones vigentes.
+- Do not redo: pasos 1–5 validados; la spec v3, el BPMN v4, el repaso IHE, las entidades, la propuesta FHIR, la guía con SUSHI y las tres subidas a GitHub son las versiones vigentes.
 
 Tasks:
 - Task 1: complete — crear carpeta de trabajo y `state.md`

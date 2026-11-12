@@ -4,7 +4,7 @@ Caso: aviso mínimo de atención de urgencia a la red (DAU). Fuente de verdad: `
 
 ## Decisiones del plan
 
-- La guía es una **guía de prueba** para este caso, no la guía del MINSAL. Su `id` es `hl7.fhir.cl.test.dau-urgencia-red`, versión `0.1.0`, y su canonical es `https://josemandrade.github.io/cl-urgencia/` (el sitio de GitHub Pages del repo cl-urgencia, donde el workflow despliega la guía).
+- La guía es una **guía de prueba** para este caso, no la guía del MINSAL. Su `id` es `hl7.fhir.uv.test.dau-urgencia-red`, versión `0.1.0`, y su canonical es `https://josemandrade.github.io/cl-urgencia/` (el sitio de GitHub Pages del repo cl-urgencia, donde el workflow despliega la guía). El id usa el reino `uv` (y no `cl`) porque la plantilla `hl7.base.template` solo acepta los reinos `us`, `uv` y `eu` en el id, y la plantilla genérica `fhir.base.template` necesita Jekyll, que no está en el runner de GitHub.
 - Los perfiles se definen **en local** y se basan en los perfiles de la guía cl-urgencia v0.2.0, con nombres propios (`DAUEncuentroUrgencia`, no `EncuentroUrgencia`) para no reclamar ser los perfiles del MINSAL. No se depende del paquete de la guía del MINSAL ni de CL-Core, porque no están publicados como paquetes FHIR que SUSHI pueda resolver; la única dependencia es `hl7.fhir.r4.core 4.0.1`. Las restricciones de la guía v0.2.0 se transcriben en los perfiles locales y se citan como fuente.
 - Java no está disponible en este entorno, así que el IG Publisher no corre en local. La validación local es SUSHI (compila el FSH y valida los ejemplos contra sus perfiles). La validación completa con el IG Publisher corre en el workflow de Git (Task 18).
 - Los ejemplos son sintéticos (SYN-URG-001, RUN ficticios). Nunca datos reales.
@@ -40,7 +40,7 @@ Caso: aviso mínimo de atención de urgencia a la red (DAU). Fuente de verdad: `
 
 **Interfaces:**
 - Consumes: la propuesta validada (`04-fhir-proposal.md`), el caso de uso (`01-use-case-spec.md`)
-- Produces: la carpeta de la guía con su identidad (id `hl7.fhir.cl.test.dau-urgencia-red`, versión `0.1.0`, FHIR R4 4.0.1, dependencia solo `hl7.fhir.r4.core`)
+- Produces: la carpeta de la guía con su identidad (id `hl7.fhir.uv.test.dau-urgencia-red`, versión `0.1.0`, FHIR R4 4.0.1, dependencia solo `hl7.fhir.r4.core`)
 
 - [x] **Step 1: Write the failing test**
 - [x] **Step 2: Run the test to verify it fails**

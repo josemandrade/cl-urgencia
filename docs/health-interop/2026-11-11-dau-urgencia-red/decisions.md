@@ -1,5 +1,12 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — El id de la guía pasa a `hl7.fhir.uv.test.dau-urgencia-red` (reino `uv`, no `cl`)
+
+- Context: la guía nació con id `hl7.fhir.cl.test.dau-urgencia-red` para reflejar el nombre de la guía del MINSAL (`hl7.fhir.cl.minsal.urgencia.eventos`). Al publicar en CI, la plantilla `hl7.base.template` rechazó el id ("Unrecognized realm in id... where realm is uv, us or eu") — su XSLT `onGenerate.genProperties.xslt` solo acepta los reinos `us`, `uv` y `eu`. La alternativa, la plantilla genérica `fhir.base.template`, sí acepta `cl`, pero necesita Jekyll para armar el sitio y Jekyll no está en el runner de GitHub (el run 3 falló en "Cannot run program jekyll"). El usuario eligió cambiar el id a `uv`.
+- Decision: el id (y `packageId`) de la guía es `hl7.fhir.uv.test.dau-urgencia-red`, versión `0.1.0`, canonical `https://josemandrade.github.io/cl-urgencia/` (sin cambios). La plantilla vuelve a `hl7.base.template#current` (la actual, sin Jekyll).
+- Alternatives considered: mantener `cl` e instalar Jekyll en el workflow (rechazado por el usuario: la plantilla genérica está marcada "no longer considered secure" por el publisher y añade un paso frágil al workflow); usar una copia local de la plantilla HL7 con el chequeo de reino quitado (rechazado: un fork de la plantilla es frágil).
+- Consequences: el id ya no refleja el reino chileno; sigue siendo una guía de prueba (el segmento `.test.` lo marca). Si algún día se publica como guía chilena oficial, el id deberá volver a `hl7.fhir.cl.*` y la plantilla deberá ser la genérica con Jekyll (como la guía del MINSAL).
+
 ## 2026-11-11 — La guía es una guía de prueba, no la guía del MINSAL
 
 - Context: la guía del paso 5 se construye sobre los perfiles de la guía cl-urgencia v0.2.0 del MINSAL, pero no es esa guía y no puede depender de su paquete (no está publicado como paquete FHIR que SUSHI pueda resolver), igual que CL-Core.
