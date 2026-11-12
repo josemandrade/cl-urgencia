@@ -1,5 +1,18 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — `DAUPaciente` se mantiene sobre el `Patient` base de FHIR R4 (no sobre `PatientCL`)
+
+- Context: en la revisión 2 de la propuesta se ofreció elegir otro recurso base; el ejemplo era que `Patient` se basara en `PatientCL` / `CorePacienteCl` de la guía core de Chile. Se verificó que es técnicamente posible (paquete FHIR `hl7.fhir.cl.clcore` 1.9.4 resoluble por SUSHI, `baseDefinition: https://hl7chile.cl/fhir/ig/clcore/StructureDefinition/CorePacienteCl`, 0 errores).
+- Decision: el usuario eligió mantener el base de FHIR R4 (`http://hl7.org/fhir/StructureDefinition/Patient`) para `DAUPaciente`. No se añade la dependencia `hl7.fhir.cl.clcore` y el `Parent:` sigue siendo `Patient`. La oferta queda registrada en la propuesta (sección 2) por si en otro caso se quiere elegir otro base.
+- Consequences: la guía sigue con la única dependencia `hl7.fhir.r4.core`; `DAUPaciente` no hereda las restricciones de CL-Core.
+
+## 2026-11-12 — Ofrecer asociaciones y el recurso base en la propuesta (revisión 2 de la propuesta)
+
+- Context: el usuario pidió que las skills ofrezcan las asociaciones a otras guías FHIR o perfiles IHE cuando corresponda, y que la propuesta de recursos deje la URL del recurso base que se propone e informe que se puede elegir otro base en ese lugar (por ejemplo, `Patient` con base `PatientCL` / `CorePacienteCl` de la guía core de Chile).
+- Decision: se configuraron las skills `fhir-modeling` (la propuesta lista cada recurso con su base y su URL canónica, e invita a elegir otro base), `implementation-guide-sushi` (ofrecer la asociación cuando corresponda; el `Parent:` es el base elegido en la propuesta validada; si es de otra guía, se añade su paquete FHIR como dependencia si es resoluble) e `ihe-profile-review` (ofrecer la asociación cuando un perfil encaje, en vez de asumirla). La propuesta `04-fhir-proposal.md` pasó a revisión 2: perfiles propios con su base (FHIR R4) y su URL canónica, y la invitación a elegir otro base. Verificado: CL-Core SÍ está como paquete FHIR resoluble (`hl7.fhir.cl.clcore`, última 1.9.4, también 1.9.2); SUSHI resuelve `CorePacienteCl` como `Parent:` (0 errores, `baseDefinition: https://hl7chile.cl/fhir/ig/clcore/StructureDefinition/CorePacienteCl`), corrigiendo la suposición del paso 5 de que no lo estaba. Pendiente la decisión del usuario: si `DAUPaciente` pasa a basarse en `PatientCL` (se usaría CL-Core 1.9.4).
+- Alternatives considered: mantener la suposición del paso 5 (rechazado por la verificación en vivo del registro de paquetes); usar CL-Core 1.9.2 (la que citaba la guía del MINSAL) en vez de 1.9.4 (pendiente de la elección del usuario si toma PatientCL).
+- Consequences: las skills ahora ofrecen las asociaciones como elección explícita; la propuesta registra el base de cada recurso con su URL.
+
 ## 2026-11-12 — Los perfiles son propios de esta guía; la guía documenta su relación con IHE
 
 - Context: el usuario corrigió que la guía se presentaba como transcripción de los perfiles de la guía del MINSAL (cl-urgencia v0.2.0) y de CL-Core, y que no mostraba las relaciones con los perfiles IHE. La revisión IHE por punto del paso 4 existía (en `04-fhir-proposal.md`) pero no estaba en la guía publicada.
