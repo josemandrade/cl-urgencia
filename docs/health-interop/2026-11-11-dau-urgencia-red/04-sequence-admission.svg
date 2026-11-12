@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="798" viewBox="0 0 1280 798">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#374151" stroke-width="1.6"/></marker><marker id="arrow-ret" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#6b7280" stroke-width="1.5"/></marker></defs>
+<rect x="0" y="0" width="1280" height="798" fill="#ffffff"/>
+<text x="40" y="30" font-family="sans-serif" font-size="18" font-weight="bold" fill="#111827">Admisión — publicar el evento de admisión (PI-0 / PI-1)</text>
+<text x="40" y="52" font-family="sans-serif" font-size="13" fill="#6b7280">BPMN v7: Persona llega &gt; ¿Emergencia vital? &gt; Admisión &gt; Crear episodio DAU en el HIS &gt; Publicar evento de admisión (PI-0) &gt; Bus recibe y aplica</text>
+<line x1="190" y1="140" x2="190" y2="582" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="490" y1="140" x2="490" y2="582" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="790" y1="140" x2="790" y2="582" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="1090" y1="140" x2="1090" y2="582" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="484" y="178" width="12" height="376" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="784" y="250" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="1084" y="394" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="186" x2="484" y2="186" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="284" y="144" width="106" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="157" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Admisión</text>
+<rect x="248" y="163" width="179" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="176" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">POST /Bundle (admisión)</text>
+<line x1="484" y1="258" x2="784" y2="258" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="545" y="216" width="179" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="634" y="229" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-0 Resolver identidad</text>
+<rect x="534" y="235" width="200" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="634" y="248" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PIXm ITI-83 · consulta MPI</text>
+<line x1="796" y1="330" x2="496" y2="330" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="529" y="337" width="235" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="646" y="350" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">identidad resuelta / no resuelta</text>
+<line x1="484" y1="402" x2="1084" y2="402" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="691" y="360" width="186" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="784" y="373" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Aplicar transacción</text>
+<rect x="640" y="379" width="288" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="784" y="392" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PUT condicionales · POST + ifNoneExist</text>
+<line x1="1096" y1="474" x2="496" y2="474" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="762" y="481" width="68" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="796" y="494" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">aplicado</text>
+<line x1="496" y1="546" x2="190" y2="546" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="219" y="553" width="249" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="343" y="566" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">200 aplicado / 400–422 / 412 / 422</text>
+<rect x="55" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="190" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">HIS / RCE</text>
+<rect x="355" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="490" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Bus de Interoperabilidad</text>
+<text x="490" y="125" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b7280">MINSAL</text>
+<rect x="655" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="790" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">MPI</text>
+<rect x="955" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="1090" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Repositorio FHIR</text>
+<rect x="40" y="598" width="1200" height="38" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="620" font-family="sans-serif" font-size="12.5" fill="#451a03">C1 (vía rápida): la admisión administrativa corre en paralelo con la atención clínica (puerta AND del BPMN); el aviso se publica cuando el episodio existe en el HIS.</text>
+<rect x="40" y="644" width="1200" height="56" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="666" font-family="sans-serif" font-size="12.5" fill="#451a03">400–422: el HIS corrige y reenvía. 412: identificador condicional ambiguo. 422: la identidad no se resolvió en el MPI; el HIS corrige y reenvía. Sin respuesta, se</text>
+<text x="54" y="684" font-family="sans-serif" font-size="12.5" fill="#451a03">puede reenviar la misma transacción (las operaciones condicionales evitan duplicados).</text>
+<rect x="40" y="708" width="1200" height="38" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="730" font-family="sans-serif" font-size="12.5" fill="#451a03">Nunca se envía la admisión de un episodio ya cerrado: el PUT lo reabriría.</text>
+<text x="640" y="780" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#6b7280">Cada mensaje nombra la operación que lo lleva; el detalle (entradas, ejemplo, resultado esperado) está en la tabla de operaciones de 04-sequence-diagrams.md.</text>
+</svg>

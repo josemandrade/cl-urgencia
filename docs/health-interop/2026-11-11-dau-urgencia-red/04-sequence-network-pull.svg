@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="1160" viewBox="0 0 1040 1160">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#374151" stroke-width="1.6"/></marker><marker id="arrow-ret" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#6b7280" stroke-width="1.5"/></marker></defs>
+<rect x="0" y="0" width="1040" height="1160" fill="#ffffff"/>
+<text x="40" y="30" font-family="sans-serif" font-size="18" font-weight="bold" fill="#111827">Consulta de la red — pull del Repositorio y suscripción (PI-2)</text>
+<text x="40" y="52" font-family="sans-serif" font-size="13" fill="#6b7280">BPMN v7: Punto de la red &gt; Consultar episodios en el repositorio (o suscribirse) &gt; ¿Necesita el detalle clínico?</text>
+<rect x="54" y="146" width="932" height="826" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+<rect x="54" y="146" width="169" height="22" fill="#ffffff" stroke="#6b7280" stroke-width="1.5"/><text x="62" y="161" font-family="sans-serif" font-size="12" font-weight="bold" fill="#111827">alt [consulta puntual]</text>
+<line x1="54" y1="756" x2="986" y2="756" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="6 4"/>
+<rect x="62" y="737" width="106" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="115" y="750" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">[suscripción]</text>
+<line x1="280" y1="140" x2="280" y2="972" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="760" y1="140" x2="760" y2="972" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="754" y="208" width="12" height="520" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="754" y="784" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="754" y="928" width="12" height="16" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<line x1="280" y1="216" x2="754" y2="216" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="388" y="174" width="258" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="187" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Buscar paciente — PDQm ITI-78</text>
+<rect x="355" y="193" width="324" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="206" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">GET /Patient?identifier=&lt;sistema RUN&gt;|&lt;RUN&gt;</text>
+<line x1="766" y1="288" x2="280" y2="288" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="493" y="295" width="61" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="523" y="308" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">Patient</text>
+<line x1="280" y1="360" x2="754" y2="360" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="384" y="318" width="266" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="331" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Buscar episodios — QEDm PCC-44</text>
+<rect x="330" y="337" width="374" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="350" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">GET /Encounter?patient.identifier=&lt;RUN&gt;&amp;class=EMER</text>
+<line x1="766" y1="432" x2="280" y2="432" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="451" y="439" width="144" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="523" y="452" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">Bundle de Encounter</text>
+<line x1="280" y1="504" x2="754" y2="504" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="373" y="462" width="288" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="475" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Buscar diagnósticos — QEDm PCC-44</text>
+<rect x="370" y="481" width="295" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="494" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">GET /Condition?encounter=Encounter/[id]</text>
+<line x1="766" y1="576" x2="280" y2="576" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="475" y="583" width="96" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="523" y="596" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">Condition(s)</text>
+<line x1="280" y1="648" x2="754" y2="648" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="388" y="606" width="258" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="619" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Buscar documento — MHD ITI-67</text>
+<rect x="341" y="625" width="353" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="638" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">GET /DocumentReference?encounter=Encounter/[id]</text>
+<line x1="766" y1="720" x2="280" y2="720" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="458" y="727" width="130" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="523" y="740" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">DocumentReference</text>
+<line x1="280" y1="792" x2="754" y2="792" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="453" y="750" width="128" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="763" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Suscribirse</text>
+<rect x="366" y="769" width="302" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="517" y="782" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">POST Subscription (Encounter class=EMER)</text>
+<line x1="766" y1="864" x2="280" y2="864" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="479" y="871" width="89" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="523" y="884" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">201 Created</text>
+<line x1="766" y1="936" x2="280" y2="936" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow-open)"/>
+<rect x="455" y="894" width="135" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="523" y="907" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-2 Notificación</text>
+<rect x="358" y="913" width="331" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="523" y="926" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">Subscription: Encounter creado / actualizado</text>
+<rect x="55" y="84" width="450" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="280" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Punto de la red</text>
+<text x="280" y="125" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b7280">APS · Especialidad · Otro hospital · SAMU</text>
+<rect x="535" y="84" width="450" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="760" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Repositorio FHIR</text>
+<rect x="40" y="988" width="960" height="56" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="1010" font-family="sans-serif" font-size="12.5" fill="#451a03">Buscar episodios también por establecimiento: GET /Encounter?service-provider.identifier=&lt;sistema</text>
+<text x="54" y="1028" font-family="sans-serif" font-size="12.5" fill="#451a03">DEIS&gt;|&lt;código&gt;&amp;class=EMER&amp;status=arrived.</text>
+<rect x="40" y="1052" width="960" height="56" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="1074" font-family="sans-serif" font-size="12.5" fill="#451a03">DSUB no encaja: la suscripción es una Subscription FHIR sobre Encounter class=EMER, no una suscripción DSUB a metadatos de un</text>
+<text x="54" y="1092" font-family="sans-serif" font-size="12.5" fill="#451a03">registro XDS. El canal de notificación (por ejemplo, REST-hook) es un detalle de implementación.</text>
+<text x="520" y="1142" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#6b7280">Cada mensaje nombra la operación que lo lleva; el detalle (entradas, ejemplo, resultado esperado) está en la tabla de operaciones de 04-sequence-diagrams.md.</text>
+</svg>

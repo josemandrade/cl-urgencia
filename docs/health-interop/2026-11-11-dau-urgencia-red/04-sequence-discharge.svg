@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1048" viewBox="0 0 1280 1048">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#374151"/></marker><marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#374151" stroke-width="1.6"/></marker><marker id="arrow-ret" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#6b7280" stroke-width="1.5"/></marker></defs>
+<rect x="0" y="0" width="1280" height="1048" fill="#ffffff"/>
+<text x="40" y="30" font-family="sans-serif" font-size="18" font-weight="bold" fill="#111827">Alta — publicar el evento de alta (PI-1)</text>
+<text x="40" y="52" font-family="sans-serif" font-size="13" fill="#6b7280">BPMN v7: Puerta de desenlace &gt; Alta &gt; Indicar medicamentos &gt; Cerrar DAU y generar PDF &gt; Publicar aviso de alta (PI-1) &gt; Bus recibe y aplica</text>
+<rect x="54" y="146" width="572" height="178" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+<rect x="54" y="146" width="294" height="22" fill="#ffffff" stroke="#6b7280" stroke-width="1.5"/><text x="62" y="161" font-family="sans-serif" font-size="12" font-weight="bold" fill="#111827">alt [alta — destino 01, 02, 04, 05 o 06]</text>
+<line x1="54" y1="252" x2="626" y2="252" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="6 4"/>
+<rect x="60" y="233" width="215" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="167" y="246" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">[fallecimiento — destino 03]</text>
+<rect x="54" y="700" width="572" height="178" fill="#f9fafb" stroke="#6b7280" stroke-width="1.5"/>
+<rect x="54" y="700" width="267" height="22" fill="#ffffff" stroke="#6b7280" stroke-width="1.5"/><text x="62" y="715" font-family="sans-serif" font-size="12" font-weight="bold" fill="#111827">opt [si el aviso se envió por error]</text>
+<line x1="190" y1="140" x2="190" y2="878" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="490" y1="140" x2="490" y2="878" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="790" y1="140" x2="790" y2="878" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="1090" y1="140" x2="1090" y2="878" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="5 4"/>
+<rect x="484" y="208" width="12" height="468" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="484" y="762" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="784" y="372" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<rect x="1084" y="516" width="12" height="88" fill="#ffffff" stroke="#374151" stroke-width="1.2"/>
+<line x1="190" y1="216" x2="484" y2="216" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="298" y="174" width="77" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="187" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Alta</text>
+<rect x="262" y="193" width="150" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="206" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">POST /Bundle (alta)</text>
+<line x1="190" y1="288" x2="484" y2="288" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="298" y="246" width="77" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="259" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Alta</text>
+<rect x="219" y="265" width="237" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="278" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">POST /Bundle (alta, destino 03)</text>
+<line x1="484" y1="380" x2="784" y2="380" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="545" y="338" width="179" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="634" y="351" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-0 Resolver identidad</text>
+<rect x="534" y="357" width="200" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="634" y="370" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PIXm ITI-83 · consulta MPI</text>
+<line x1="796" y1="452" x2="496" y2="452" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="529" y="459" width="235" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="646" y="472" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">identidad resuelta / no resuelta</text>
+<line x1="484" y1="524" x2="1084" y2="524" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="691" y="482" width="186" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="784" y="495" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Aplicar transacción</text>
+<rect x="640" y="501" width="288" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="784" y="514" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PUT condicionales · POST + ifNoneExist</text>
+<line x1="1096" y1="596" x2="496" y2="596" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="762" y="603" width="68" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="796" y="616" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">aplicado</text>
+<line x1="496" y1="668" x2="190" y2="668" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="219" y="675" width="249" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="343" y="688" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">200 aplicado / 400–422 / 412 / 422</text>
+<line x1="190" y1="770" x2="484" y2="770" stroke="#374151" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="277" y="728" width="121" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="741" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">PI-1 Corrección</text>
+<rect x="219" y="747" width="237" height="18" rx="9" fill="#ffffff" stroke="#9ca3af" stroke-width="0.7"/><text x="337" y="760" text-anchor="middle" font-family="sans-serif" font-size="12.5" fill="#111827">POST /Bundle (entered-in-error)</text>
+<line x1="496" y1="842" x2="190" y2="842" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="7 4" marker-end="url(#arrow-ret)"/>
+<rect x="295" y="849" width="96" height="18" rx="9" fill="#f3f4f6" stroke="#d1d5db" stroke-width="0.7"/><text x="343" y="862" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#111827">200 aplicado</text>
+<rect x="55" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="190" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">HIS / RCE</text>
+<rect x="355" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="490" y="108" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Bus de Interoperabilidad</text>
+<text x="490" y="125" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b7280">MINSAL</text>
+<rect x="655" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="790" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">MPI</text>
+<rect x="955" y="84" width="270" height="56" rx="8" fill="#ffffff" stroke="#374151" stroke-width="1.8"/>
+<text x="1090" y="116" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111827">Repositorio FHIR</text>
+<rect x="40" y="894" width="1200" height="56" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="916" font-family="sans-serif" font-size="12.5" fill="#451a03">El fallecimiento es un alta con destino 03 Fallecido: causa de muerte en CIE-10 con use = DD, resumen de alta (LOINC 59258-4) si existe; sin medicamentos ni</text>
+<text x="54" y="934" font-family="sans-serif" font-size="12.5" fill="#451a03">establecimiento de destino.</text>
+<rect x="40" y="958" width="1200" height="38" rx="8" fill="#fef9c3" stroke="#d97706" stroke-width="1"/>
+<text x="54" y="980" font-family="sans-serif" font-size="12.5" fill="#451a03">Corrección: para anular un aviso enviado por error se reenvía el Encounter con status = entered-in-error; nunca se envía la admisión de un episodio ya cerrado.</text>
+<text x="640" y="1030" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#6b7280">Cada mensaje nombra la operación que lo lleva; el detalle (entradas, ejemplo, resultado esperado) está en la tabla de operaciones de 04-sequence-diagrams.md.</text>
+</svg>

@@ -28,6 +28,8 @@ pages:
     title: Terminología
   operations.md:
     title: Operaciones
+  sequences.md:
+    title: Diagramas de secuencia
   mapping.md:
     title: Mapeo de datos
   ihe.md:

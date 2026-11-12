@@ -1,5 +1,26 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — SUSHI con la página de diagramas de secuencia (0 errores, 0 warnings)
+
+- Artefact: `05-implementation-guide/` — página nueva `input/pagecontent/sequences.md` (5 secciones, una por flujo, con su PNG y su tabla de operaciones), registrada en `sushi-config.yaml` (pages) y en `input/includes/menu.xml` (entrada propia tras Operaciones), enlazada desde `index.md` y `operations.md`; PNGs en `input/images/` (`04-sequence-admission.png`, `04-sequence-discharge.png`, `04-sequence-abandonment.png`, `04-sequence-network-pull.png`, `04-sequence-document-retrieval.png`, referenciados solo por su nombre de archivo)
+- Tool / profile: SUSHI v3.21.0 (`sushi .` en la carpeta de la guía; reinstalado con `npm install -g fsh-sushi`)
+- Result: **0 errores, 0 warnings** (10 perfiles, 7 extensiones, 3 ValueSets, 2 CodeSystems, 14 instancias). La guía ensamblada (`ImplementationGuide-hl7.fhir.uv.test.dau-urgencia-red.json`) lista `sequences.html` entre sus páginas. Java / IG Publisher no corren en este entorno (no se intentaron). Pendiente: subir la página y los PNG a cl-urgencia (texto por snapshot, PNG por la web), verificar el run de Actions y `sequences.html` en vivo, y la validación del usuario de los diagramas.
+- Evidence: salida de SUSHI (`You are dolphinitely doing great! 0 Errors 0 Warnings`); `fsh-generated/resources/ImplementationGuide-*.json` con `sequences.html` en `definition.page.page`; los 5 PNG en `input/images/` (177–248 KB, 2× del SVG).
+
+## 2026-11-12 — Chequeo visual de los 5 diagramas de secuencia (4 defectos del generador, corregidos)
+
+- Artefact: 5 PNG en `05-implementation-guide/input/images/` (2× del SVG: admisión 2560×1596, alta 2560×2096, abandono 2560×1748, consulta 2080×2320, PDF 1960×1124)
+- Tool / profile: inspección visual a tamaño de visualización, por zonas, de cada PNG (misma puerta dura que en `bpmn-modeling`); chequeo mecánico de solapamientos sobre los rectángulos del SVG (píldoras de etiquetas vs pestañas de fragmentos y entre sí; caracteres U+2192)
+- Result: el primer render tenía 4 defectos, todos del generador (no del diagrama): (1) la fuente por defecto de cairosvg no tiene U+2192 (→) y los 5 subtítulos salían con cajas vacías — se escribe `>` en los subtítulos; (2) la pestaña del fragmento `alt`/`opt` solapaba la etiqueta del primer mensaje en el diagrama de alta (50×9 px en el `alt`, 44×9 px en el `opt`) — la pestaña ahora va 70 px sobre la primera flecha; (3) la guarda del segundo operando (`[fallecimiento — destino 03]`, `[fuga — tipo 2]`) se salía por el borde izquierdo del fragmento — ahora va anclada a la izquierda dentro del fragmento; (4) las dos líneas de una etiqueta solapaban sus píldoras 2 px — el interlineado pasa de 16 a 19 px. Tras las correcciones: **0 solapamientos y 0 caracteres tofu en los 5 SVG** (verificado por programa) y el diagrama de alta vuelto a mirar completo. La flecha abierta (asíncrona) de la notificación se verificó por zona ampliada: dibuja la V correcta. Pendiente: validación del usuario de los diagramas.
+- Evidence: `render_sequence.py` (reglas en su docstring); los 5 PNG re-generados tras la corrección; el chequeo de rectángulos (`TOTAL overlaps: 0`, `tofu=0` en los 5).
+
+## 2026-11-12 — Chequeo mecánico de la regla de referencia de operaciones (0/0)
+
+- Artefact: `render_sequence.py --check` (inventario de 11 operaciones de `04-fhir-proposal.md` y `operations.md`; 5 diagramas)
+- Tool / profile: `python3 render_sequence.py --check` (cada mensaje de envío debe nombrar una operación del inventario; cada operación debe aparecer en al menos un diagrama)
+- Result: **0 mensajes sin una operación conocida, 0 operaciones sin diagrama** (20 mensajes de envío, 17 retornos; las 11 operaciones cubiertas: PI-0 en admisión/alta/abandono; PI-1 Admisión/Alta/Abandono/Corrección; PI-2 Buscar paciente/episodios/diagnósticos/documento/Suscribirse; PI-3 Acceso al PDF). La aplicación Bus → Repositorio es la mitad de aplicación de la operación PI-1 que la dispara, así que lleva su mismo id. Pendiente: validación del usuario de los diagramas.
+- Evidence: salida de `--check` (`CHECK OK`, con la lista operación → diagramas).
+
 ## 2026-11-12 — Informe final subido a cl-urgencia (commit 734e8d7), verificado en remoto
 
 - Artefact: `final-test-report.md` + `README.md`, `state.md`, `validation.md` del caso (4 archivos)

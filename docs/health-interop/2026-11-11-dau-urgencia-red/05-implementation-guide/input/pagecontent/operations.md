@@ -2,7 +2,7 @@
 
 Las operaciones son las transacciones y consultas que el HIS/RCE, el Bus de Interoperabilidad MINSAL y la red hacen en cada punto. Todas usan datos sintéticos en los ejemplos. Cada operación tiene su transacción de ejemplo (un `Bundle` completo, con los recursos que lleva), enlazada abajo.
 
-**Cada operación enlaza al perfil IHE que la apoya** (con su página en profiles.ihe.net), cuando hay uno. Ningún perfil IHE lleva la transacción en sí: las tres transacciones `Bundle` son nacionales, de la guía; los perfiles cubren funciones de apoyo (identidad, documentos, consulta, seguridad, tiempo). La revisión completa por punto, con el encaje y las brechas, está en [Relación con IHE](ihe.html).
+**Cada operación enlaza al perfil IHE que la apoya** (con su página en profiles.ihe.net), cuando hay uno. Ningún perfil IHE lleva la transacción en sí: las tres transacciones `Bundle` son nacionales, de la guía; los perfiles cubren funciones de apoyo (identidad, documentos, consulta, seguridad, tiempo). La revisión completa por punto, con el encaje y las brechas, está en [Relación con IHE](ihe.html). Las operaciones en el tiempo, flujo por flujo (cada mensaje con su operación y su resultado esperado), están en [Diagramas de secuencia](sequences.html).
 
 ## PI-1 — Publicación del aviso (push al Bus)
 
