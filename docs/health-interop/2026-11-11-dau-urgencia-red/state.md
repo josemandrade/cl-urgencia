@@ -3,7 +3,7 @@
 - Last updated: 2026-11-11 23:50 America/Santiago
 - Current step: 6 (component-building)
 - Current task: componente que implementa la guía (06-component/) — por empezar; la URL de la guía desplegada está pendiente del workflow
-- Last completed: guía publicada y visible en https://josemandrade.github.io/cl-urgencia/. Los diagramas van como PNG directo (grafo 2440×1800, BPMN 4080×810), con botones de zoom in / zoom out y 100%, y el script sobrevivió al publisher. Verificado en vivo (run 14 success): los dos PNG con 200, las tres páginas con el PNG y el zoom, menú con "Diagrama de recursos", header horizontal. El pack se subió como v0.10.0 con estas reglas. Después, paso 6 (componente).
+- Last completed: el BPMN se reparó (nuevo render con columna de etiquetas horizontal, etiquetas descolisionadas y fondo blanco, PNG a 2×) y se verificó mirándolo: quedó legible. SUSHI 0 errores. Falta subir el PNG nuevo (por la web), el SVG y los registros, verificar el run y la guía en vivo, y subir el pack v0.11.0 con la skill reparada. Después, paso 6 (componente).
 - Next action: paso 6 (componente que implementa la guía, en 06-component/).
 - Open questions: ninguna pendiente en el paso 6
 - Blockers: prueba de aceptación en Codex bloqueada (sin credenciales); el workflow de la guía no se puede subir por API sin el permiso Workflows de la App.

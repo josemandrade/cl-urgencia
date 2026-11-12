@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — El BPMN se veía muy mal: reparación del render y de la skill
+
+- Artefact: `render_bpmn.py`, `02-bpmn-model.svg`, `02-bpmn-model.png` (2×) y las skills `bpmn-modeling` e `implementation-guide-sushi` del pack
+- Tool / profile: render con `render_bpmn.py` reescrito, conversión con cairosvg a 2×, y revisión visual del PNG (vista completa y zonas ampliadas: inferior derecha PI-2, centro-derecha PI-1/Episodio cerrado, y la zona de "Atender clínicamente / Paciente se retira (fuga)")
+- Result: el render quedó reparado y se verificó mirándolo: la columna de etiquetas izquierda es legible (pool y lane en horizontal, sin solapamientos), los PI-0/PI-1/PI-2/PI-3 son legibles con fondo blanco, "Episodio cerrado / aviso publicado" ya no se solapa con "Solicitud de DAU recibida", y la etiqueta del evento de borde "Paciente se retira (fuga)" es una sola línea y ya no cae sobre la caja de "Constatar abandono (fuga)". SUSHI compila con 0 errores y 0 warnings. Pendiente: subir el PNG nuevo (por la web, es binario), el SVG y los registros, y verificar el run y la guía en vivo; y subir el pack con la skill reparada (v0.11.0).
+- Evidence: PNG 8640×1620 mirado completo y por zonas; SUSHI v3.21.0 0 errores.
+
 ## 2026-11-12 — Diagramas como PNG directo, con zoom in / zoom out
 
 - Artefact: `05-implementation-guide/` (PNG nuevos en `input/images/`, `process.md`, `resources.md`, `profiles.md`) y la skill `implementation-guide-sushi` del pack

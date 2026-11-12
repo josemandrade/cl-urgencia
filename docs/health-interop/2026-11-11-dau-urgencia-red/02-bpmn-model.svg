@@ -1,187 +1,205 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="4080" height="810" viewBox="0 0 4080 810" font-family="sans-serif" font-size="12" fill="#111">
+<svg xmlns="http://www.w3.org/2000/svg" width="4320" height="810" viewBox="0 0 4320 810" font-family="sans-serif" font-size="12" fill="#111">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#333"/></marker></defs>
 <rect x="0" y="0" width="100%" height="100%" fill="white"/>
-<rect x="40" y="20" width="4000" height="450" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="245.0" text-anchor="middle" transform="rotate(-90 56 245.0)" font-size="12" font-weight="bold">Establecimiento informante — Unidad de Urgencia</text>
-<rect x="40" y="20" width="4000" height="90" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="65.0" text-anchor="middle" transform="rotate(-90 56 65.0)" font-size="12" font-weight="bold">Admisión / Registro</text>
-<rect x="40" y="110" width="4000" height="75" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="147.5" text-anchor="middle" transform="rotate(-90 56 147.5)" font-size="12" font-weight="bold">Categorización / Selector de Demanda</text>
-<rect x="40" y="185" width="4000" height="155" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="262.5" text-anchor="middle" transform="rotate(-90 56 262.5)" font-size="12" font-weight="bold">Equipo clínico de Urgencia</text>
-<rect x="40" y="340" width="4000" height="130" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="405.0" text-anchor="middle" transform="rotate(-90 56 405.0)" font-size="12" font-weight="bold">HIS / RCE</text>
-<rect x="40" y="500" width="4000" height="80" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="540.0" text-anchor="middle" transform="rotate(-90 56 540.0)" font-size="12" font-weight="bold">Bus de Interoperabilidad MINSAL y Repositorio FHIR</text>
-<rect x="40" y="500" width="4000" height="80" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="540.0" text-anchor="middle" transform="rotate(-90 56 540.0)" font-size="12" font-weight="bold">Bus / Repositorio</text>
-<rect x="40" y="610" width="4000" height="160" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="690.0" text-anchor="middle" transform="rotate(-90 56 690.0)" font-size="12" font-weight="bold">Punto de la red receptor (APS / Especialidad / Otro hospital / SAMU)</text>
-<rect x="40" y="610" width="4000" height="160" fill="none" stroke="#333" stroke-width="1.5"/>
-<text x="56" y="690.0" text-anchor="middle" transform="rotate(-90 56 690.0)" font-size="12" font-weight="bold">Equipo receptor</text>
-<polyline points="106,73 140,80" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="380,67 420,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="590,67 630,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="810,67 850,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1020,67 1060,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1150,95 1150,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1470,67 1510,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1680,152 1720,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1880,152 1930,155" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1980,155 2040,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2010.0" y="149.5" text-anchor="middle" font-size="11" font-weight="bold">C2–C5</text>
-<polyline points="1955,180 2110,220 2250,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2105.0" y="205.0" text-anchor="middle" font-size="11" font-weight="bold">C1</text>
-<polyline points="2190,152 2250,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="2115,165 2125,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="2210,67 2585,205" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2397.5" y="132.0" text-anchor="middle" font-size="11" font-weight="bold">Abandono (NEA)</text>
-<polyline points="2410,227 2420,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="2345,270 2345,285" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="2420,312 2585,255" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2502.5" y="279.5" text-anchor="middle" font-size="11" font-weight="bold">Abandono (fuga)</text>
-<polyline points="2610,230 2660,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2635.0" y="224.5" text-anchor="middle" font-size="11" font-weight="bold">Alta</text>
-<polyline points="2830,227 2980,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="2585,255 2980,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2782.5" y="298.5" text-anchor="middle" font-size="11" font-weight="bold">Abandono</text>
-<polyline points="3070,377 3120,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3300,377 3340,375" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3436,368 3460,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3630,377 3660,375" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3156,535 3200,537" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3380,537 3420,535" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3300,657 3340,665" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3365,690 3525,690" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="3445.0" y="686.0" text-anchor="middle" font-size="11" font-weight="bold">Sí</text>
-<polyline points="3610,717 3755,685" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3390,665 3680,657" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="3535.0" y="657.0" text-anchor="middle" font-size="11" font-weight="bold">No</text>
-<polyline points="3830,657 3870,658" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3210,405 3138,517" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="3174.0" y="457.0" text-anchor="middle" font-size="11" font-weight="bold">PI-1 · Bundle de alta o</text><text x="3174.0" y="470.0" text-anchor="middle" font-size="11" font-weight="bold">abandono (datos 1–8)</text>
-<polyline points="3210,630 3418,386" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="3314.0" y="504.0" text-anchor="middle" font-size="11" font-weight="bold">PI-3 · Solicitud del DAU</text>
-<polyline points="3545,405 3525,690" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="3535.0" y="543.5" text-anchor="middle" font-size="11" font-weight="bold">PI-3 · DAU en PDF</text>
-<polyline points="1240,377 1470,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1560,350 1380,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="190,80 210,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="200.0" y="69.5" text-anchor="middle" font-size="11" font-weight="bold">No</text>
-<polyline points="165,105 165,227 2250,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="860.0" y="182.33333333333334" text-anchor="middle" font-size="11" font-weight="bold">Sí, emergencia vital</text>
-<polyline points="2550,227 2560,230" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1575,165 2125,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3636,535 3680,537" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="3860,537 3900,535" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<polyline points="1560,405 1560,485 3138,485 3138,517" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="2349.0" y="469.0" text-anchor="middle" font-size="11" font-weight="bold">PI-0 · Bundle de admisión</text><text x="2349.0" y="482.0" text-anchor="middle" font-size="11" font-weight="bold">(Encounter arrived)</text>
-<polyline points="3210,630 3618,553" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="3414.0" y="587.5" text-anchor="middle" font-size="11" font-weight="bold">PI-2 · Consultar episodios</text><text x="3414.0" y="600.5" text-anchor="middle" font-size="11" font-weight="bold">(búsqueda FHIR o suscripción)</text>
-<polyline points="3918,553 3210,630" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
-<text x="3564.0" y="587.5" text-anchor="middle" font-size="11" font-weight="bold">PI-2 · Episodios entregados</text>
-<polyline points="2585,255 2585,442 2890,442" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="2686.6666666666665" y="375.6666666666667" text-anchor="middle" font-size="11" font-weight="bold">Fallecimiento</text>
-<polyline points="3070,442 3120,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-<circle cx="88.0" cy="73.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="88.0" y="105" text-anchor="middle" font-size="11">Llega persona a</text><text x="88.0" y="118" text-anchor="middle" font-size="11">urgencia</text>
-<rect x="210" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="295.0" y="58.5" text-anchor="middle" font-size="12">Recepcionar al</text><text x="295.0" y="71.5" text-anchor="middle" font-size="12">usuario: registrar</text><text x="295.0" y="84.5" text-anchor="middle" font-size="12">llegada y procedencia</text>
-<rect x="420" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="505.0" y="58.5" text-anchor="middle" font-size="12">Identificar a la</text><text x="505.0" y="71.5" text-anchor="middle" font-size="12">persona (doble</text><text x="505.0" y="84.5" text-anchor="middle" font-size="12">verificador)</text>
-<rect x="630" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="720.0" y="58.5" text-anchor="middle" font-size="12">Registrar datos</text><text x="720.0" y="71.5" text-anchor="middle" font-size="12">sociodemográficos y</text><text x="720.0" y="84.5" text-anchor="middle" font-size="12">previsión</text>
-<rect x="850" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="935.0" y="65.0" text-anchor="middle" font-size="12">Solicitar y registrar</text><text x="935.0" y="78.0" text-anchor="middle" font-size="12">motivo de consulta</text>
-<rect x="1060" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1150.0" y="58.5" text-anchor="middle" font-size="12">Aperturar DAU e</text><text x="1150.0" y="71.5" text-anchor="middle" font-size="12">instalar brazalete de</text><text x="1150.0" y="84.5" text-anchor="middle" font-size="12">identificación</text>
-<rect x="1060" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1150.0" y="375.0" text-anchor="middle" font-size="12">Crear episodio DAU en</text><text x="1150.0" y="388.0" text-anchor="middle" font-size="12">el HIS (ID DAU)</text>
-<rect x="1270" y="350" width="36" height="50" fill="white" stroke="#333" stroke-width="1.5"/>
-<path d="M1296,350 L1306,360 L1296,360 Z" fill="#ddd" stroke="#333"/>
-<text x="1288.0" y="414" text-anchor="middle" font-size="11">Episodio DAU (ID</text><text x="1288.0" y="427" text-anchor="middle" font-size="11">DAU)</text>
-<rect x="1290" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1380.0" y="65.0" text-anchor="middle" font-size="12">Informar llegada al</text><text x="1380.0" y="78.0" text-anchor="middle" font-size="12">Selector de Demanda</text>
-<rect x="1510" y="125" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1595.0" y="150.0" text-anchor="middle" font-size="12">Categorizar paciente</text><text x="1595.0" y="163.0" text-anchor="middle" font-size="12">(C1–C5)</text>
-<rect x="1720" y="125" width="160" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1800.0" y="150.0" text-anchor="middle" font-size="12">Asignar box / unidad</text><text x="1800.0" y="163.0" text-anchor="middle" font-size="12">de atención</text>
-<polygon points="1955.0,130 1980,155.0 1955.0,180 1930,155.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1955.0" y="153.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
-<text x="1955.0" y="194" text-anchor="middle" font-size="11">¿Categoría?</text>
-<rect x="2040" y="125" width="150" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2115.0" y="156.5" text-anchor="middle" font-size="12">Esperar atención</text>
-<circle cx="2115.0" cy="180.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<circle cx="2115.0" cy="180.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
-<text x="2115.0" y="209" text-anchor="middle" font-size="11">Paciente se retira</text><text x="2115.0" y="222" text-anchor="middle" font-size="11">(NEA)</text>
-<rect x="2040" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2125.0" y="65.0" text-anchor="middle" font-size="12">Constatar abandono</text><text x="2125.0" y="78.0" text-anchor="middle" font-size="12">(NEA)</text>
-<rect x="2250" y="200" width="160" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2330.0" y="231.5" text-anchor="middle" font-size="12">Atender clínicamente</text>
-<circle cx="2345.0" cy="255.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<circle cx="2345.0" cy="255.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
-<text x="2345.0" y="284" text-anchor="middle" font-size="11">Paciente se retira</text><text x="2345.0" y="297" text-anchor="middle" font-size="11">(fuga)</text>
-<rect x="2250" y="285" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2335.0" y="310.0" text-anchor="middle" font-size="12">Constatar abandono</text><text x="2335.0" y="323.0" text-anchor="middle" font-size="12">(fuga)</text>
-<polygon points="2585.0,205 2610,230.0 2585.0,255 2560,230.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2585.0" y="228.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
-<text x="2585.0" y="269" text-anchor="middle" font-size="11">¿Cómo termina la</text><text x="2585.0" y="282" text-anchor="middle" font-size="11">atención?</text>
-<rect x="2660" y="200" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2745.0" y="225.0" text-anchor="middle" font-size="12">Indicar medicamentos</text><text x="2745.0" y="238.0" text-anchor="middle" font-size="12">al alta</text>
-<rect x="2890" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2980.0" y="375.0" text-anchor="middle" font-size="12">Cerrar DAU y generar</text><text x="2980.0" y="388.0" text-anchor="middle" font-size="12">PDF</text>
-<rect x="2820" y="350" width="36" height="50" fill="white" stroke="#333" stroke-width="1.5"/>
-<path d="M2846,350 L2856,360 L2846,360 Z" fill="#ddd" stroke="#333"/>
-<text x="2838.0" y="414" text-anchor="middle" font-size="11">DAU en PDF</text>
-<rect x="3120" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3210.0" y="375.0" text-anchor="middle" font-size="12">Publicar aviso mínimo</text><text x="3210.0" y="388.0" text-anchor="middle" font-size="12">a la red</text>
-<circle cx="3358.0" cy="375.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
-<text x="3358.0" y="407" text-anchor="middle" font-size="11">Episodio cerrado /</text><text x="3358.0" y="420" text-anchor="middle" font-size="11">aviso publicado</text>
-<circle cx="3418.0" cy="368.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3418.0" y="372.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3418.0" y="400" text-anchor="middle" font-size="11">Solicitud de DAU</text><text x="3418.0" y="413" text-anchor="middle" font-size="11">recibida</text>
-<rect x="3460" y="350" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3545.0" y="381.5" text-anchor="middle" font-size="12">Enviar DAU en PDF</text>
-<circle cx="3678.0" cy="375.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
-<text x="3678.0" y="379.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3678.0" y="407" text-anchor="middle" font-size="11">DAU enviado</text>
-<circle cx="3138.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3138.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3138.0" y="567" text-anchor="middle" font-size="11">Transacción</text><text x="3138.0" y="580" text-anchor="middle" font-size="11">recibida</text><text x="3138.0" y="593" text-anchor="middle" font-size="11">(admisión, alta o</text><text x="3138.0" y="606" text-anchor="middle" font-size="11">abandono)</text>
-<rect x="3200" y="510" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3290.0" y="528.5" text-anchor="middle" font-size="12">Recibir la transacción</text><text x="3290.0" y="541.5" text-anchor="middle" font-size="12">y aplicarla en el</text><text x="3290.0" y="554.5" text-anchor="middle" font-size="12">repositorio</text>
-<circle cx="3438.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
-<text x="3438.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3438.0" y="567" text-anchor="middle" font-size="11">Episodio</text><text x="3438.0" y="580" text-anchor="middle" font-size="11">disponible en el</text><text x="3438.0" y="593" text-anchor="middle" font-size="11">repositorio</text>
-<rect x="3120" y="630" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3210.0" y="655.0" text-anchor="middle" font-size="12">Consultar episodios en</text><text x="3210.0" y="668.0" text-anchor="middle" font-size="12">el repositorio</text>
-<polygon points="3365.0,640 3390,665.0 3365.0,690 3340,665.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3365.0" y="663.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
-<text x="3365.0" y="704" text-anchor="middle" font-size="11">¿Necesita el</text><text x="3365.0" y="717" text-anchor="middle" font-size="11">detalle clínico?</text>
-<rect x="3440" y="690" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3525.0" y="715.0" text-anchor="middle" font-size="12">Solicitar y recibir</text><text x="3525.0" y="728.0" text-anchor="middle" font-size="12">DAU en PDF</text>
-<rect x="3680" y="630" width="150" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3755.0" y="655.0" text-anchor="middle" font-size="12">Realizar seguimiento /</text><text x="3755.0" y="668.0" text-anchor="middle" font-size="12">continuar atención</text>
-<circle cx="3888.0" cy="658.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
-<text x="3888.0" y="690" text-anchor="middle" font-size="11">Fin</text>
-<polygon points="165.0,55 190,80.0 165.0,105 140,80.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="165.0" y="78.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
-<text x="165.0" y="119" text-anchor="middle" font-size="11">¿Emergencia</text><text x="165.0" y="132" text-anchor="middle" font-size="11">vital?</text>
-<rect x="1470" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="1560.0" y="375.0" text-anchor="middle" font-size="12">Publicar evento de</text><text x="1560.0" y="388.0" text-anchor="middle" font-size="12">admisión a la red</text>
-<circle cx="1575.0" cy="180.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<circle cx="1575.0" cy="180.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
-<text x="1575.0" y="209" text-anchor="middle" font-size="11">Paciente se retira</text><text x="1575.0" y="222" text-anchor="middle" font-size="11">(NEA)</text>
-<rect x="2420" y="200" width="130" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2485.0" y="225.0" text-anchor="middle" font-size="12">Informar al paciente o</text><text x="2485.0" y="238.0" text-anchor="middle" font-size="12">familiares</text>
-<circle cx="3618.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3618.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3618.0" y="567" text-anchor="middle" font-size="11">Consulta FHIR</text><text x="3618.0" y="580" text-anchor="middle" font-size="11">recibida</text>
-<rect x="3680" y="510" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="3770.0" y="535.0" text-anchor="middle" font-size="12">Responder la consulta</text><text x="3770.0" y="548.0" text-anchor="middle" font-size="12">de episodios</text>
-<circle cx="3918.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
-<text x="3918.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
-<text x="3918.0" y="567" text-anchor="middle" font-size="11">Episodios</text><text x="3918.0" y="580" text-anchor="middle" font-size="11">entregados</text>
-<rect x="2890" y="415" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
-<text x="2980.0" y="446.5" text-anchor="middle" font-size="12">Cerrar DAU (fallecido)</text>
+<rect x="280" y="20" width="4000" height="450" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="34" text-anchor="start" font-size="10" fill="#555">Establecimiento informante —</text><text x="8" y="47" text-anchor="start" font-size="10" fill="#555">Unidad de Urgencia</text>
+<rect x="280" y="20" width="4000" height="90" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="69.0" text-anchor="start" font-size="12" font-weight="bold">Admisión / Registro</text>
+<rect x="280" y="110" width="4000" height="75" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="145.0" text-anchor="start" font-size="12" font-weight="bold">Categorización / Selector de</text><text x="8" y="158.0" text-anchor="start" font-size="12" font-weight="bold">Demanda</text>
+<rect x="280" y="185" width="4000" height="155" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="266.5" text-anchor="start" font-size="12" font-weight="bold">Equipo clínico de Urgencia</text>
+<rect x="280" y="340" width="4000" height="130" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="409.0" text-anchor="start" font-size="12" font-weight="bold">HIS / RCE</text>
+<rect x="280" y="500" width="4000" height="80" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="514" text-anchor="start" font-size="10" fill="#555">Bus de Interoperabilidad MINSAL y</text><text x="8" y="527" text-anchor="start" font-size="10" fill="#555">Repositorio FHIR</text>
+<rect x="280" y="500" width="4000" height="80" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="544.0" text-anchor="start" font-size="12" font-weight="bold">Bus / Repositorio</text>
+<rect x="280" y="610" width="4000" height="160" fill="#f5f5f5" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="624" text-anchor="start" font-size="10" fill="#555">Punto de la red receptor (APS /</text><text x="8" y="637" text-anchor="start" font-size="10" fill="#555">Especialidad / Otro hospital /</text><text x="8" y="650" text-anchor="start" font-size="10" fill="#555">SAMU)</text>
+<rect x="280" y="610" width="4000" height="160" fill="none" stroke="#333" stroke-width="1.5"/>
+<text x="8" y="694.0" text-anchor="start" font-size="12" font-weight="bold">Equipo receptor</text>
+<line x1="240" y1="0" x2="240" y2="810" stroke="#ccc" stroke-width="1"/>
+<polyline points="346,73 380,80" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="620,67 660,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="830,67 870,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1050,67 1090,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1260,67 1300,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1390,95 1390,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1710,67 1750,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1920,152 1960,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2120,152 2170,155" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2220,155 2280,152" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2195,180 2350,220 2490,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2430,152 2490,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2355,165 2365,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2450,67 2825,205" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2650,227 2660,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2585,270 2585,285" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2660,312 2825,255" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2850,230 2900,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3070,227 3220,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2825,255 3220,350" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3310,377 3360,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3540,377 3580,375" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3676,368 3700,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3870,377 3900,375" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3396,535 3440,537" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3620,537 3660,535" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3540,657 3580,665" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3605,690 3765,690" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3850,717 3995,685" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3630,665 3920,657" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="4070,657 4110,658" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3450,405 3378,517" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="3450,630 3658,386" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="3785,405 3765,690" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="1480,377 1710,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1800,350 1620,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="430,80 450,67" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="405,105 405,227 2490,227" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="2790,227 2800,230" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1815,165 2365,95" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3876,535 3920,537" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="4100,537 4140,535" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="1800,405 1800,485 3378,485 3378,517" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="3450,630 3858,553" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="4158,553 3450,630" fill="none" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+<polyline points="2825,255 2825,442 3130,442" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<polyline points="3310,442 3360,377" fill="none" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+<circle cx="328.0" cy="73.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<rect x="450" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="535.0" y="58.5" text-anchor="middle" font-size="12">Recepcionar al</text><text x="535.0" y="71.5" text-anchor="middle" font-size="12">usuario: registrar</text><text x="535.0" y="84.5" text-anchor="middle" font-size="12">llegada y procedencia</text>
+<rect x="660" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="745.0" y="58.5" text-anchor="middle" font-size="12">Identificar a la</text><text x="745.0" y="71.5" text-anchor="middle" font-size="12">persona (doble</text><text x="745.0" y="84.5" text-anchor="middle" font-size="12">verificador)</text>
+<rect x="870" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="960.0" y="58.5" text-anchor="middle" font-size="12">Registrar datos</text><text x="960.0" y="71.5" text-anchor="middle" font-size="12">sociodemográficos y</text><text x="960.0" y="84.5" text-anchor="middle" font-size="12">previsión</text>
+<rect x="1090" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1175.0" y="65.0" text-anchor="middle" font-size="12">Solicitar y registrar</text><text x="1175.0" y="78.0" text-anchor="middle" font-size="12">motivo de consulta</text>
+<rect x="1300" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1390.0" y="58.5" text-anchor="middle" font-size="12">Aperturar DAU e</text><text x="1390.0" y="71.5" text-anchor="middle" font-size="12">instalar brazalete de</text><text x="1390.0" y="84.5" text-anchor="middle" font-size="12">identificación</text>
+<rect x="1300" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1390.0" y="375.0" text-anchor="middle" font-size="12">Crear episodio DAU en</text><text x="1390.0" y="388.0" text-anchor="middle" font-size="12">el HIS (ID DAU)</text>
+<rect x="1510" y="350" width="36" height="50" fill="white" stroke="#333" stroke-width="1.5"/>
+<path d="M1536,350 L1546,360 L1536,360 Z" fill="#ddd" stroke="#333"/>
+<rect x="1530" y="40" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1620.0" y="65.0" text-anchor="middle" font-size="12">Informar llegada al</text><text x="1620.0" y="78.0" text-anchor="middle" font-size="12">Selector de Demanda</text>
+<rect x="1750" y="125" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1835.0" y="150.0" text-anchor="middle" font-size="12">Categorizar paciente</text><text x="1835.0" y="163.0" text-anchor="middle" font-size="12">(C1–C5)</text>
+<rect x="1960" y="125" width="160" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2040.0" y="150.0" text-anchor="middle" font-size="12">Asignar box / unidad</text><text x="2040.0" y="163.0" text-anchor="middle" font-size="12">de atención</text>
+<polygon points="2195.0,130 2220,155.0 2195.0,180 2170,155.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2195.0" y="153.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
+<rect x="2280" y="125" width="150" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2355.0" y="156.5" text-anchor="middle" font-size="12">Esperar atención</text>
+<circle cx="2355.0" cy="180.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<circle cx="2355.0" cy="180.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
+<rect x="2280" y="40" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2365.0" y="65.0" text-anchor="middle" font-size="12">Constatar abandono</text><text x="2365.0" y="78.0" text-anchor="middle" font-size="12">(NEA)</text>
+<rect x="2490" y="200" width="160" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2570.0" y="231.5" text-anchor="middle" font-size="12">Atender clínicamente</text>
+<circle cx="2585.0" cy="255.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<circle cx="2585.0" cy="255.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
+<rect x="2490" y="285" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2575.0" y="310.0" text-anchor="middle" font-size="12">Constatar abandono</text><text x="2575.0" y="323.0" text-anchor="middle" font-size="12">(fuga)</text>
+<polygon points="2825.0,205 2850,230.0 2825.0,255 2800,230.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2825.0" y="228.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
+<rect x="2900" y="200" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2985.0" y="225.0" text-anchor="middle" font-size="12">Indicar medicamentos</text><text x="2985.0" y="238.0" text-anchor="middle" font-size="12">al alta</text>
+<rect x="3130" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3220.0" y="375.0" text-anchor="middle" font-size="12">Cerrar DAU y generar</text><text x="3220.0" y="388.0" text-anchor="middle" font-size="12">PDF</text>
+<rect x="3060" y="350" width="36" height="50" fill="white" stroke="#333" stroke-width="1.5"/>
+<path d="M3086,350 L3096,360 L3086,360 Z" fill="#ddd" stroke="#333"/>
+<rect x="3360" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3450.0" y="375.0" text-anchor="middle" font-size="12">Publicar aviso mínimo</text><text x="3450.0" y="388.0" text-anchor="middle" font-size="12">a la red</text>
+<circle cx="3598.0" cy="375.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
+<circle cx="3658.0" cy="368.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3658.0" y="372.0" text-anchor="middle" font-size="12">✉</text>
+<rect x="3700" y="350" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3785.0" y="381.5" text-anchor="middle" font-size="12">Enviar DAU en PDF</text>
+<circle cx="3918.0" cy="375.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
+<text x="3918.0" y="379.0" text-anchor="middle" font-size="12">✉</text>
+<circle cx="3378.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3378.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
+<rect x="3440" y="510" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3530.0" y="528.5" text-anchor="middle" font-size="12">Recibir la transacción</text><text x="3530.0" y="541.5" text-anchor="middle" font-size="12">y aplicarla en el</text><text x="3530.0" y="554.5" text-anchor="middle" font-size="12">repositorio</text>
+<circle cx="3678.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
+<text x="3678.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
+<rect x="3360" y="630" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3450.0" y="655.0" text-anchor="middle" font-size="12">Consultar episodios en</text><text x="3450.0" y="668.0" text-anchor="middle" font-size="12">el repositorio</text>
+<polygon points="3605.0,640 3630,665.0 3605.0,690 3580,665.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3605.0" y="663.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
+<rect x="3680" y="690" width="170" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3765.0" y="715.0" text-anchor="middle" font-size="12">Solicitar y recibir</text><text x="3765.0" y="728.0" text-anchor="middle" font-size="12">DAU en PDF</text>
+<rect x="3920" y="630" width="150" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3995.0" y="655.0" text-anchor="middle" font-size="12">Realizar seguimiento /</text><text x="3995.0" y="668.0" text-anchor="middle" font-size="12">continuar atención</text>
+<circle cx="4128.0" cy="658.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
+<polygon points="405.0,55 430,80.0 405.0,105 380,80.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="405.0" y="78.0" text-anchor="middle" font-size="16" font-weight="bold">×</text>
+<rect x="1710" y="350" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="1800.0" y="375.0" text-anchor="middle" font-size="12">Publicar evento de</text><text x="1800.0" y="388.0" text-anchor="middle" font-size="12">admisión a la red</text>
+<circle cx="1815.0" cy="180.0" r="15.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<circle cx="1815.0" cy="180.0" r="11.0" fill="none" stroke="#333" stroke-width="1"/>
+<rect x="2660" y="200" width="130" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="2725.0" y="225.0" text-anchor="middle" font-size="12">Informar al paciente o</text><text x="2725.0" y="238.0" text-anchor="middle" font-size="12">familiares</text>
+<circle cx="3858.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3858.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
+<rect x="3920" y="510" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="4010.0" y="535.0" text-anchor="middle" font-size="12">Responder la consulta</text><text x="4010.0" y="548.0" text-anchor="middle" font-size="12">de episodios</text>
+<circle cx="4158.0" cy="535.0" r="18.0" fill="white" stroke="#333" stroke-width="3"/>
+<text x="4158.0" y="539.0" text-anchor="middle" font-size="12">✉</text>
+<rect x="3130" y="415" width="180" height="55" rx="6" fill="white" stroke="#333" stroke-width="1.5"/>
+<text x="3220.0" y="446.5" text-anchor="middle" font-size="12">Cerrar DAU (fallecido)</text>
+<text x="328.0" y="93" text-anchor="middle" font-size="11">Llega persona a</text><text x="328.0" y="106" text-anchor="middle" font-size="11">urgencia</text>
+<text x="1528.0" y="402" text-anchor="middle" font-size="11">Episodio DAU (ID</text><text x="1528.0" y="415" text-anchor="middle" font-size="11">DAU)</text>
+<text x="2195.0" y="195" text-anchor="middle" font-size="11">¿Categoría?</text>
+<text x="2355.0" y="208" text-anchor="middle" font-size="10">Paciente se retira (NEA)</text>
+<text x="2585.0" y="283" text-anchor="middle" font-size="10">Paciente se retira (fuga)</text>
+<text x="2825.0" y="257" text-anchor="middle" font-size="11">¿Cómo termina la</text><text x="2825.0" y="270" text-anchor="middle" font-size="11">atención?</text>
+<text x="3078.0" y="415" text-anchor="middle" font-size="11">DAU en PDF</text>
+<text x="3598.0" y="395" text-anchor="middle" font-size="11">Episodio cerrado /</text><text x="3598.0" y="408" text-anchor="middle" font-size="11">aviso publicado</text>
+<text x="3658.0" y="360" text-anchor="middle" font-size="11">Solicitud de DAU</text><text x="3658.0" y="373" text-anchor="middle" font-size="11">recibida</text>
+<text x="3918.0" y="408" text-anchor="middle" font-size="11">DAU enviado</text>
+<text x="3378.0" y="529" text-anchor="middle" font-size="11">Transacción</text><text x="3378.0" y="542" text-anchor="middle" font-size="11">recibida</text><text x="3378.0" y="555" text-anchor="middle" font-size="11">(admisión, alta o</text><text x="3378.0" y="568" text-anchor="middle" font-size="11">abandono)</text>
+<text x="3678.0" y="542" text-anchor="middle" font-size="11">Episodio</text><text x="3678.0" y="555" text-anchor="middle" font-size="11">disponible en el</text><text x="3678.0" y="568" text-anchor="middle" font-size="11">repositorio</text>
+<text x="3605.0" y="692" text-anchor="middle" font-size="11">¿Necesita el</text><text x="3605.0" y="705" text-anchor="middle" font-size="11">detalle clínico?</text>
+<text x="4128.0" y="691" text-anchor="middle" font-size="11">Fin</text>
+<text x="405.0" y="121" text-anchor="middle" font-size="11">¿Emergencia</text><text x="405.0" y="134" text-anchor="middle" font-size="11">vital?</text>
+<text x="1815.0" y="208" text-anchor="middle" font-size="10">Paciente se retira (NEA)</text>
+<text x="3858.0" y="555" text-anchor="middle" font-size="11">Consulta FHIR</text><text x="3858.0" y="568" text-anchor="middle" font-size="11">recibida</text>
+<text x="4158.0" y="555" text-anchor="middle" font-size="11">Episodios</text><text x="4158.0" y="568" text-anchor="middle" font-size="11">entregados</text>
+<rect x="2229.5" y="136.5" width="41.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2250.0" y="148.5" text-anchor="middle" font-size="11" font-weight="bold">C2–C5</text>
+<rect x="2262.5" y="183.0" width="20.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2272.5" y="195.0" text-anchor="middle" font-size="11" font-weight="bold">C1</text>
+<rect x="2585.5" y="119.0" width="104.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2637.5" y="131.0" text-anchor="middle" font-size="11" font-weight="bold">Abandono (NEA)</text>
+<rect x="2687.0" y="280.5" width="111.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2742.5" y="292.5" text-anchor="middle" font-size="11" font-weight="bold">Abandono (fuga)</text>
+<rect x="2858.0" y="211.5" width="34.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2875.0" y="223.5" text-anchor="middle" font-size="11" font-weight="bold">Alta</text>
+<rect x="2991.5" y="285.5" width="62.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3022.5" y="297.5" text-anchor="middle" font-size="11" font-weight="bold">Abandono</text>
+<rect x="3675.0" y="673.0" width="20.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3685.0" y="685.0" text-anchor="middle" font-size="11" font-weight="bold">Sí</text>
+<rect x="3765.0" y="644.0" width="20.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3775.0" y="656.0" text-anchor="middle" font-size="11" font-weight="bold">No</text>
+<rect x="3330.5" y="431.0" width="167.0" height="30.0" fill="white" fill-opacity="0.9"/>
+<text x="3414.0" y="443.0" text-anchor="middle" font-size="11" font-weight="bold">PI-1 · Bundle de alta o</text><text x="3414.0" y="456.0" text-anchor="middle" font-size="11" font-weight="bold">abandono</text>
+<rect x="3467.0" y="491.0" width="174.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3554.0" y="503.0" text-anchor="middle" font-size="11" font-weight="bold">PI-3 · Solicitud del DAU</text>
+<rect x="3712.5" y="516.5" width="125.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3775.0" y="528.5" text-anchor="middle" font-size="11" font-weight="bold">PI-3 · DAU en PDF</text>
+<rect x="430.0" y="56.5" width="20.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="440.0" y="68.5" text-anchor="middle" font-size="11" font-weight="bold">No</text>
+<rect x="1374.5" y="210.0" width="146.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="1447.5" y="222.0" text-anchor="middle" font-size="11" font-weight="bold">Sí, emergencia vital</text>
+<rect x="2498.5" y="468.0" width="181.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2589.0" y="480.0" text-anchor="middle" font-size="11" font-weight="bold">PI-0 · Bundle de admisión</text>
+<rect x="3560.0" y="574.5" width="188.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3654.0" y="586.5" text-anchor="middle" font-size="11" font-weight="bold">PI-2 · Consultar episodios</text>
+<rect x="3706.5" y="588.5" width="195.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="3804.0" y="600.5" text-anchor="middle" font-size="11" font-weight="bold">PI-2 · Episodios entregados</text>
+<rect x="2929.0" y="425.0" width="97.0" height="17.0" fill="white" fill-opacity="0.9"/>
+<text x="2977.5" y="437.0" text-anchor="middle" font-size="11" font-weight="bold">Fallecimiento</text>
 </svg>

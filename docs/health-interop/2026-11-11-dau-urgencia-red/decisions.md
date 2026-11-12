@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — El BPMN se veía muy mal: se repara el render y la skill
+
+- Context: el usuario vio que la imagen del BPMN en la guía "se ve muy pero muy mal". La causa no era el modelo BPMN (validado) sino el render (`render_bpmn.py`): dibujaba el nombre de cada pool Y de cada lane como texto vertical rotado en la misma franja (x=56), y los nombres (35–60 caracteres) eran mucho más largos que sus lanes (75–155 px), así que se apilaban en un muro ilegible; además las etiquetas de los flujos de mensaje (PI) se ponían en el centroide de todos los waypoints, donde 5–6 etiquetas caían en la misma zona y se solapaban, y la etiqueta del evento de borde "Paciente se retira (fuga)" (2 líneas) caía sobre la caja de la tarea siguiente (solo 15 px de hueco).
+- Decision: se reescribió el render: nombres de pool y lane en horizontal en una columna de etiquetas a la izquierda (240 px; pool pequeño y atenuado arriba, lane en negrita centrado), etiquetas de flujo cortas (los PI sin el paréntesis) sobre el segmento más largo, ninguna etiqueta puede solapar a otra (todas las etiquetas fuera de su forma —nombres de gateway/evento/objeto de datos y etiquetas de flujo— se descolisionan juntas, y las de flujo llevan fondo blanco), las etiquetas de evento de borde en una sola línea y pequeñas, y el PNG a 2× (8640×1620) para que el texto sea nítido al acercar. Se miró el PNG antes de darlo por bueno (varias zonas ampliadas) y se corrigió hasta que quedó legible. La skill `bpmn-modeling` lleva ahora la puerta dura: renderizar y MIRAR el PNG antes de presentar el modelo, con las reglas de legibilidad; `implementation-guide-sushi` exige lo mismo al volver a renderizar para la guía.
+- Consequences: el BPMN ahora se lee (columna de etiquetas limpia, PI legibles, sin solapamientos). El PNG es más grande (537 KB, 8640×1620) y al ser binario hay que subirlo por la web de GitHub.
+
 ## 2026-11-12 — Los diagramas van como PNG directo, con zoom in / zoom out
 
 - Context: el usuario pidió que los diagramas se agreguen directo como JPG o PNG (o un mejor formato), y para el BPMN lo mismo; y, si hace falta, configurar zoom in / zoom out. El SVG en un `<img>` no se veía de forma fiable para el usuario, aunque el archivo cargaba y renderizaba.
