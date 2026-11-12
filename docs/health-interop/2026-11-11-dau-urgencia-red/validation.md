@@ -1,5 +1,12 @@
 # Validation — dau-urgencia-red
 
+## 2026-11-12 — El BPMN seguía ilegible: ancho de visualización
+
+- Artefact: `05-implementation-guide/input/pagecontent/process.md` (ancho de la imagen 2400 → 4320 px, nota de desplazamiento) y las skills `bpmn-modeling` e `implementation-guide-sushi` del pack
+- Tool / profile: SUSHI v3.21.0 y revisión visual del BPMN AL TAMAÑO DE VISUALIZACIÓN (el PNG a 4320 px, visto 1:1 por zonas: izquierda y centro)
+- Result: la página mostraba el BPMN a 2400 px y el texto quedaba a ~7 px (ilegible). Con el ancho nativo (4320 px) el texto se ve a 12 px y es legible: se verificó mirando las dos zonas a tamaño real (etiquetas de la columna izquierda, tareas de admisión, "Atender clínicamente", "Paciente se retira (fuga)", los PI-0/PI-1/PI-3 y los eventos). SUSHI compila con 0 errores y 0 warnings. Pendiente: subir la página y los registros, verificar el run y la guía en vivo (que `process.html` lleve `width:4320px`), y subir el pack con la skill reparada (v0.12.0).
+- Evidence: PNG a 4320 px mirado 1:1 por zonas; SUSHI v3.21.0 0 errores.
+
 ## 2026-11-12 — El BPMN se veía muy mal: reparación del render y de la skill
 
 - Artefact: `render_bpmn.py`, `02-bpmn-model.svg`, `02-bpmn-model.png` (2×) y las skills `bpmn-modeling` e `implementation-guide-sushi` del pack

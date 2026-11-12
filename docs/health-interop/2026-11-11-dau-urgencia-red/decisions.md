@@ -1,5 +1,11 @@
 # Decisions — dau-urgencia-red
 
+## 2026-11-12 — El BPMN seguía ilegible: el problema era el ancho de visualización
+
+- Context: tras reparar el render, el usuario dijo que el BPMN "sigue siendo ilegible". La causa no era el render (que ya estaba legible a resolución completa) sino el tamaño al que se mostraba en la guía: la página ponía la imagen a 2400 px de ancho, pero el PNG tiene 8640 px, así que el texto de 12 px se veía a ~7 px — ilegible. La verificación anterior miró el PNG a resolución completa, no al tamaño de visualización, y por eso no detectó el problema.
+- Decision: la página muestra el BPMN a su ancho nativo (4320 px, el ancho del SVG), en un contenedor con scroll horizontal, con los botones de zoom y una nota que dice que hay que desplazarse a la derecha. A 4320 px el texto se ve a 12 px (su tamaño de diseño) y es legible. Se verificó mirando el diagrama AL TAMAÑO DE VISUALIZACIÓN (el PNG reducido a 4320 px, visto 1:1 por zonas): las etiquetas de la izquierda, las tareas, los PI y los eventos se leen. La skill lleva ahora la regla: mostrar cada diagrama a su ancho nativo (nunca achicarlo para que quepa en la columna) y verificar la legibilidad AL TAMAÑO DE VISUALIZACIÓN, no solo a resolución completa. El PNG no cambia (es el mismo archivo 2×), solo cambia la página.
+- Consequences: el BPMN es legible en la guía (hay que desplazarse en horizontal para recorrerlo, que es lo normal en un BPMN ancho). El zoom parte de 4320 px ("100%" = ancho nativo).
+
 ## 2026-11-12 — El BPMN se veía muy mal: se repara el render y la skill
 
 - Context: el usuario vio que la imagen del BPMN en la guía "se ve muy pero muy mal". La causa no era el modelo BPMN (validado) sino el render (`render_bpmn.py`): dibujaba el nombre de cada pool Y de cada lane como texto vertical rotado en la misma franja (x=56), y los nombres (35–60 caracteres) eran mucho más largos que sus lanes (75–155 px), así que se apilaban en un muro ilegible; además las etiquetas de los flujos de mensaje (PI) se ponían en el centroide de todos los waypoints, donde 5–6 etiquetas caían en la misma zona y se solapaban, y la etiqueta del evento de borde "Paciente se retira (fuga)" (2 líneas) caía sobre la caja de la tarea siguiente (solo 15 px de hueco).

@@ -8,8 +8,10 @@ El proceso que publica el aviso mínimo, modelado en BPMN 2.0 (versión 4, valid
 <button type="button" onclick="resetDiagram('bpmn-img')" style="padding:4px 10px; cursor:pointer;">100%</button>
 </div>
 <div style="overflow:auto; border:1px solid #ddd; padding:8px;">
-<a href="02-bpmn-model.png"><img id="bpmn-img" src="02-bpmn-model.png" alt="Modelo BPMN del proceso de aviso mínimo de atención de urgencia a la red" style="width:2400px; max-width:none; height:auto;"/></a>
+<a href="02-bpmn-model.png"><img id="bpmn-img" src="02-bpmn-model.png" alt="Modelo BPMN del proceso de aviso mínimo de atención de urgencia a la red" style="width:4320px; max-width:none; height:auto;"/></a>
 </div>
+
+El diagrama es ancho (4320 px, su ancho real) y se muestra a ese tamaño para que el texto sea legible: desplázate a la derecha con la barra inferior para recorrerlo, y usa Zoom in (+) para acercar y Zoom out (−) para alejar. También puedes [abrirlo a tamaño completo](02-bpmn-model.png).
 
 <script>
 function zoomDiagram(id, f) {
@@ -29,7 +31,7 @@ function resetDiagram(id) {
 }
 </script>
 
-El diagrama es una imagen (PNG): [abrirlo a tamaño completo](02-bpmn-model.png) para leerlo con zoom. El modelo BPMN completo (XML, BPMN 2.0) está en [02-bpmn-model.bpmn](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.bpmn), y su descripción paso a paso en [02-bpmn-model.md](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.md).
+El diagrama es una imagen (PNG) a tamaño real. El modelo BPMN completo (XML, BPMN 2.0) está en [02-bpmn-model.bpmn](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.bpmn), y su descripción paso a paso en [02-bpmn-model.md](https://github.com/josemandrade/cl-urgencia/blob/main/docs/health-interop/2026-11-11-dau-urgencia-red/02-bpmn-model.md).
 
 ## Flujo, paso a paso
 
