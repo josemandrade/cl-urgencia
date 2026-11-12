@@ -1,0 +1,542 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_dau" targetNamespace="http://health-interop-superpowers/dau-urgencia-red" exporter="health-interop-superpowers" exporterVersion="0.5.0">
+  <bpmn:collaboration id="Collaboration_dau">
+    <bpmn:participant id="p_est" name="Establecimiento informante — Unidad de Urgencia" processRef="proc_est" />
+    <bpmn:participant id="p_plat" name="Bus de Interoperabilidad MINSAL y Repositorio FHIR" processRef="proc_plat" />
+    <bpmn:participant id="p_receptor" name="Punto de la red receptor (APS / Especialidad / Otro hospital / SAMU)" processRef="proc_receptor" />
+    <bpmn:messageFlow id="mf_pi1" name="PI-1 · Bundle de alta o abandono (datos 1–8)" sourceRef="t_publicar" targetRef="msgstart_b" />
+    <bpmn:messageFlow id="mf_pi3a" name="PI-3 · Solicitud del DAU" sourceRef="t_consultar" targetRef="msgstart_dau" />
+    <bpmn:messageFlow id="mf_pi3b" name="PI-3 · DAU en PDF" sourceRef="t_enviar" targetRef="t_recuperar" />
+  <bpmn:messageFlow id="mf_pi0" name="PI-0 · Bundle de admisión (Encounter arrived)" sourceRef="t_publicar_admision" targetRef="msgstart_b" /><bpmn:messageFlow id="mf_pi2a" name="PI-2 · Consultar episodios (búsqueda FHIR o suscripción)" sourceRef="t_consultar" targetRef="msgstart_c" /><bpmn:messageFlow id="mf_pi2b" name="PI-2 · Episodios entregados" sourceRef="endmsg_c" targetRef="t_consultar" /></bpmn:collaboration>
+  <bpmn:process id="proc_est" name="Establecimiento informante" isExecutable="false">
+    <bpmn:laneSet id="lanes_est">
+      <bpmn:lane id="lane_admision" name="Admisión / Registro">
+        <bpmn:flowNodeRef>start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_llegada</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_identificar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_datos</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_motivo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_aperturar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_informar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_constatar_nea</bpmn:flowNodeRef>
+      <bpmn:flowNodeRef>gw_vital</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="lane_categ" name="Categorización / Selector de Demanda">
+        <bpmn:flowNodeRef>t_categorizar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_asignar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>gw_cat</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_esperar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>be_nea</bpmn:flowNodeRef>
+      <bpmn:flowNodeRef>be_nea2</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="lane_clinico" name="Equipo clínico de Urgencia">
+        <bpmn:flowNodeRef>t_atender</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>be_fuga</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_constatar_fuga</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>gw_desenlace</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_medicamentos</bpmn:flowNodeRef>
+      <bpmn:flowNodeRef>t_informar_paciente</bpmn:flowNodeRef></bpmn:lane>
+      <bpmn:lane id="lane_his" name="HIS / RCE">
+        <bpmn:flowNodeRef>t_crear_episodio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>dao_episodio</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_cerrar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>dao_dau</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_publicar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>end_a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>msgstart_dau</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_enviar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>endmsg_dau</bpmn:flowNodeRef>
+      <bpmn:flowNodeRef>t_publicar_admision</bpmn:flowNodeRef><bpmn:flowNodeRef>t_cerrar_fallecido</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="start" name="Llega persona a urgencia">
+      <bpmn:outgoing>f1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="t_llegada" name="Recepcionar al usuario: registrar llegada y procedencia">
+      <bpmn:incoming>f1</bpmn:incoming>
+      <bpmn:outgoing>f2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_identificar" name="Identificar a la persona (doble verificador)">
+      <bpmn:incoming>f2</bpmn:incoming>
+      <bpmn:outgoing>f3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_datos" name="Registrar datos sociodemográficos y previsión">
+      <bpmn:incoming>f3</bpmn:incoming>
+      <bpmn:outgoing>f4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_motivo" name="Solicitar y registrar motivo de consulta">
+      <bpmn:incoming>f4</bpmn:incoming>
+      <bpmn:outgoing>f5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_aperturar" name="Aperturar DAU e instalar brazalete de identificación">
+      <bpmn:incoming>f5</bpmn:incoming>
+      <bpmn:outgoing>f6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_crear_episodio" name="Crear episodio DAU en el HIS (ID DAU)">
+      <bpmn:incoming>f6</bpmn:incoming>
+      <bpmn:outgoing>f33</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="doa_episodio">
+        <bpmn:targetRef>dao_episodio</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataObjectReference id="dao_episodio" name="Episodio DAU (ID DAU)" dataObjectRef="do_episodio" />
+    <bpmn:dataObject id="do_episodio" name="Episodio DAU (ID DAU)" />
+    <bpmn:task id="t_informar" name="Informar llegada al Selector de Demanda">
+      <bpmn:incoming>f34</bpmn:incoming>
+      <bpmn:outgoing>f8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_categorizar" name="Categorizar paciente (C1–C5)">
+      <bpmn:incoming>f8</bpmn:incoming>
+      <bpmn:outgoing>f9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_asignar" name="Asignar box / unidad de atención">
+      <bpmn:incoming>f9</bpmn:incoming>
+      <bpmn:outgoing>f10</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="gw_cat" name="¿Categoría?">
+      <bpmn:incoming>f10</bpmn:incoming>
+      <bpmn:outgoing>f11</bpmn:outgoing>
+      <bpmn:outgoing>f12</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="t_esperar" name="Esperar atención">
+      <bpmn:incoming>f11</bpmn:incoming>
+      <bpmn:outgoing>f13</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:boundaryEvent id="be_nea" name="Paciente se retira (NEA)" attachedToRef="t_esperar" cancelActivity="true">
+      <bpmn:outgoing>f14</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="eed_nea" />
+    </bpmn:boundaryEvent>
+    <bpmn:task id="t_constatar_nea" name="Constatar abandono (NEA)">
+      <bpmn:incoming>f14</bpmn:incoming>
+      <bpmn:outgoing>f15</bpmn:outgoing>
+    <bpmn:incoming>f38</bpmn:incoming></bpmn:task>
+    <bpmn:task id="t_atender" name="Atender clínicamente">
+      <bpmn:incoming>f12</bpmn:incoming>
+      <bpmn:incoming>f13</bpmn:incoming>
+      <bpmn:outgoing>f16</bpmn:outgoing>
+    <bpmn:incoming>f36</bpmn:incoming></bpmn:task>
+    <bpmn:boundaryEvent id="be_fuga" name="Paciente se retira (fuga)" attachedToRef="t_atender" cancelActivity="true">
+      <bpmn:outgoing>f17</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="eed_fuga" />
+    </bpmn:boundaryEvent>
+    <bpmn:task id="t_constatar_fuga" name="Constatar abandono (fuga)">
+      <bpmn:incoming>f17</bpmn:incoming>
+      <bpmn:outgoing>f18</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="gw_desenlace" name="¿Cómo termina la atención?" default="f21">
+      <bpmn:incoming>f15</bpmn:incoming>
+      <bpmn:incoming>f37</bpmn:incoming>
+      <bpmn:incoming>f18</bpmn:incoming>
+      <bpmn:outgoing>f19</bpmn:outgoing>
+      <bpmn:outgoing>f21</bpmn:outgoing>
+    <bpmn:outgoing>f41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:textAnnotation id="ann_terminador">
+      <bpmn:text>Decisión del Terminador (médico u odontólogo)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="assoc_term" sourceRef="ann_terminador" targetRef="gw_desenlace" />
+    <bpmn:task id="t_medicamentos" name="Indicar medicamentos al alta">
+      <bpmn:incoming>f19</bpmn:incoming>
+      <bpmn:outgoing>f20</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_cerrar" name="Cerrar DAU y generar PDF">
+      <bpmn:incoming>f20</bpmn:incoming>
+      <bpmn:incoming>f21</bpmn:incoming>
+      <bpmn:outgoing>f22</bpmn:outgoing>
+      <bpmn:dataInputAssociation id="dia_episodio">
+        <bpmn:sourceRef>dao_episodio</bpmn:sourceRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="doa_dau">
+        <bpmn:targetRef>dao_dau</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataObjectReference id="dao_dau" name="DAU en PDF" dataObjectRef="do_dau" />
+    <bpmn:dataObject id="do_dau" name="DAU en PDF" />
+    <bpmn:task id="t_publicar" name="Publicar aviso mínimo a la red">
+      <bpmn:incoming>f22</bpmn:incoming>
+      <bpmn:outgoing>f23</bpmn:outgoing>
+      <bpmn:dataInputAssociation id="dia_dau">
+        <bpmn:sourceRef>dao_dau</bpmn:sourceRef>
+      </bpmn:dataInputAssociation>
+    <bpmn:incoming>f42</bpmn:incoming></bpmn:task>
+    <bpmn:endEvent id="end_a" name="Episodio cerrado / aviso publicado">
+      <bpmn:incoming>f23</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="msgstart_dau" name="Solicitud de DAU recibida">
+      <bpmn:outgoing>f24</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="med_dau" />
+    </bpmn:startEvent>
+    <bpmn:task id="t_enviar" name="Enviar DAU en PDF">
+      <bpmn:incoming>f24</bpmn:incoming>
+      <bpmn:outgoing>f25</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="endmsg_dau" name="DAU enviado">
+      <bpmn:incoming>f25</bpmn:incoming>
+      <bpmn:messageEventDefinition id="med_dau_end" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="f1" sourceRef="start" targetRef="gw_vital" />
+    <bpmn:sequenceFlow id="f2" sourceRef="t_llegada" targetRef="t_identificar" />
+    <bpmn:sequenceFlow id="f3" sourceRef="t_identificar" targetRef="t_datos" />
+    <bpmn:sequenceFlow id="f4" sourceRef="t_datos" targetRef="t_motivo" />
+    <bpmn:sequenceFlow id="f5" sourceRef="t_motivo" targetRef="t_aperturar" />
+    <bpmn:sequenceFlow id="f6" sourceRef="t_aperturar" targetRef="t_crear_episodio" />
+    <bpmn:sequenceFlow id="f8" sourceRef="t_informar" targetRef="t_categorizar" />
+    <bpmn:sequenceFlow id="f9" sourceRef="t_categorizar" targetRef="t_asignar" />
+    <bpmn:sequenceFlow id="f10" sourceRef="t_asignar" targetRef="gw_cat" />
+    <bpmn:sequenceFlow id="f11" name="C2–C5" sourceRef="gw_cat" targetRef="t_esperar">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">categoría en C2..C5</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f12" name="C1" sourceRef="gw_cat" targetRef="t_atender">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">categoría = C1</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f13" sourceRef="t_esperar" targetRef="t_atender" />
+    <bpmn:sequenceFlow id="f14" sourceRef="be_nea" targetRef="t_constatar_nea" />
+    <bpmn:sequenceFlow id="f15" name="Abandono (NEA)" sourceRef="t_constatar_nea" targetRef="gw_desenlace" />
+    <bpmn:sequenceFlow id="f16" sourceRef="t_atender" targetRef="t_informar_paciente" />
+    <bpmn:sequenceFlow id="f17" sourceRef="be_fuga" targetRef="t_constatar_fuga" />
+    <bpmn:sequenceFlow id="f18" name="Abandono (fuga)" sourceRef="t_constatar_fuga" targetRef="gw_desenlace" />
+    <bpmn:sequenceFlow id="f19" name="Alta" sourceRef="gw_desenlace" targetRef="t_medicamentos">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">desenlace = alta</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f20" sourceRef="t_medicamentos" targetRef="t_cerrar" />
+    <bpmn:sequenceFlow id="f21" name="Abandono" sourceRef="gw_desenlace" targetRef="t_cerrar">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">desenlace = abandono</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f22" sourceRef="t_cerrar" targetRef="t_publicar" />
+    <bpmn:sequenceFlow id="f23" sourceRef="t_publicar" targetRef="end_a" />
+    <bpmn:sequenceFlow id="f24" sourceRef="msgstart_dau" targetRef="t_enviar" />
+    <bpmn:sequenceFlow id="f25" sourceRef="t_enviar" targetRef="endmsg_dau" />
+  <bpmn:exclusiveGateway id="gw_vital" name="¿Emergencia vital?"><bpmn:incoming>f1</bpmn:incoming><bpmn:outgoing>f35</bpmn:outgoing><bpmn:outgoing>f36</bpmn:outgoing></bpmn:exclusiveGateway><bpmn:task id="t_publicar_admision" name="Publicar evento de admisión a la red"><bpmn:incoming>f33</bpmn:incoming><bpmn:outgoing>f34</bpmn:outgoing></bpmn:task><bpmn:task id="t_informar_paciente" name="Informar al paciente o familiares"><bpmn:incoming>f16</bpmn:incoming><bpmn:outgoing>f37</bpmn:outgoing></bpmn:task><bpmn:boundaryEvent id="be_nea2" name="Paciente se retira (NEA)" attachedToRef="t_categorizar" cancelActivity="true"><bpmn:outgoing>f38</bpmn:outgoing><bpmn:escalationEventDefinition id="eed_nea2" /></bpmn:boundaryEvent><bpmn:sequenceFlow id="f33" sourceRef="t_crear_episodio" targetRef="t_publicar_admision" /><bpmn:sequenceFlow id="f34" sourceRef="t_publicar_admision" targetRef="t_informar" /><bpmn:sequenceFlow id="f35" sourceRef="gw_vital" targetRef="t_llegada" name="No"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">sin emergencia vital</bpmn:conditionExpression></bpmn:sequenceFlow><bpmn:sequenceFlow id="f36" sourceRef="gw_vital" targetRef="t_atender" name="Sí, emergencia vital"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">emergencia vital</bpmn:conditionExpression></bpmn:sequenceFlow><bpmn:sequenceFlow id="f37" sourceRef="t_informar_paciente" targetRef="gw_desenlace" /><bpmn:sequenceFlow id="f38" sourceRef="be_nea2" targetRef="t_constatar_nea" /><bpmn:task id="t_cerrar_fallecido" name="Cerrar DAU (fallecido)"><bpmn:incoming>f41</bpmn:incoming><bpmn:outgoing>f42</bpmn:outgoing><bpmn:dataInputAssociation id="dia_episodio_fallecido"><bpmn:sourceRef>dao_episodio</bpmn:sourceRef></bpmn:dataInputAssociation><bpmn:dataOutputAssociation id="doa_dau_fallecido"><bpmn:targetRef>dao_dau</bpmn:targetRef></bpmn:dataOutputAssociation></bpmn:task><bpmn:sequenceFlow id="f41" sourceRef="gw_desenlace" targetRef="t_cerrar_fallecido" name="Fallecimiento"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">desenlace = fallecimiento</bpmn:conditionExpression></bpmn:sequenceFlow><bpmn:sequenceFlow id="f42" sourceRef="t_cerrar_fallecido" targetRef="t_publicar" /></bpmn:process>
+  <bpmn:process id="proc_plat" name="Bus de Interoperabilidad MINSAL y Repositorio FHIR" isExecutable="false">
+    <bpmn:laneSet id="lanes_plat">
+      <bpmn:lane id="lane_plat" name="Bus / Repositorio">
+        <bpmn:flowNodeRef>msgstart_b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_plataforma</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>endmsg_b</bpmn:flowNodeRef>
+      <bpmn:flowNodeRef>msgstart_c</bpmn:flowNodeRef><bpmn:flowNodeRef>t_responder</bpmn:flowNodeRef><bpmn:flowNodeRef>endmsg_c</bpmn:flowNodeRef></bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="msgstart_b" name="Transacción recibida (admisión, alta o abandono)">
+      <bpmn:outgoing>f26</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="med_b" />
+    </bpmn:startEvent>
+    <bpmn:task id="t_plataforma" name="Recibir la transacción y aplicarla en el repositorio">
+      <bpmn:incoming>f26</bpmn:incoming>
+      <bpmn:outgoing>f27</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="endmsg_b" name="Episodio disponible en el repositorio">
+      <bpmn:incoming>f27</bpmn:incoming>
+      <bpmn:messageEventDefinition id="med_b_end" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="f26" sourceRef="msgstart_b" targetRef="t_plataforma" />
+    <bpmn:sequenceFlow id="f27" sourceRef="t_plataforma" targetRef="endmsg_b" />
+  <bpmn:startEvent id="msgstart_c" name="Consulta FHIR recibida"><bpmn:outgoing>f39</bpmn:outgoing><bpmn:messageEventDefinition id="med_c" /></bpmn:startEvent><bpmn:task id="t_responder" name="Responder la consulta de episodios"><bpmn:incoming>f39</bpmn:incoming><bpmn:outgoing>f40</bpmn:outgoing></bpmn:task><bpmn:endEvent id="endmsg_c" name="Episodios entregados"><bpmn:incoming>f40</bpmn:incoming><bpmn:messageEventDefinition id="med_c_end" /></bpmn:endEvent><bpmn:sequenceFlow id="f39" sourceRef="msgstart_c" targetRef="t_responder" /><bpmn:sequenceFlow id="f40" sourceRef="t_responder" targetRef="endmsg_c" /></bpmn:process>
+  <bpmn:process id="proc_receptor" name="Punto de la red receptor" isExecutable="false">
+    <bpmn:laneSet id="lanes_receptor">
+      <bpmn:lane id="lane_receptor" name="Equipo receptor">
+        <bpmn:flowNodeRef>t_consultar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>gw_detalle</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_recuperar</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>t_seguimiento</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>end</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:task id="t_consultar" name="Consultar episodios en el repositorio">
+      <bpmn:outgoing>f28</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="gw_detalle" name="¿Necesita el detalle clínico?">
+      <bpmn:incoming>f28</bpmn:incoming>
+      <bpmn:outgoing>f29</bpmn:outgoing>
+      <bpmn:outgoing>f31</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="t_recuperar" name="Solicitar y recibir DAU en PDF">
+      <bpmn:incoming>f29</bpmn:incoming>
+      <bpmn:outgoing>f30</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="t_seguimiento" name="Realizar seguimiento / continuar atención">
+      <bpmn:incoming>f30</bpmn:incoming>
+      <bpmn:incoming>f31</bpmn:incoming>
+      <bpmn:outgoing>f32</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="end" name="Fin">
+      <bpmn:incoming>f32</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="f28" sourceRef="t_consultar" targetRef="gw_detalle" />
+    <bpmn:sequenceFlow id="f29" name="Sí" sourceRef="gw_detalle" targetRef="t_recuperar">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">necesita detalle = sí</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f30" sourceRef="t_recuperar" targetRef="t_seguimiento" />
+    <bpmn:sequenceFlow id="f31" name="No" sourceRef="gw_detalle" targetRef="t_seguimiento">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">necesita detalle = no</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="f32" sourceRef="t_seguimiento" targetRef="end" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_dau">
+    <bpmndi:BPMNPlane id="BPMNPlane_dau" bpmnElement="Collaboration_dau">
+      <bpmndi:BPMNShape id="shape_p_est" bpmnElement="p_est" isHorizontal="true">
+        <dc:Bounds x="40" y="20" width="4000" height="450" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_admision" bpmnElement="lane_admision" isHorizontal="true">
+        <dc:Bounds x="40" y="20" width="4000" height="90" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_categ" bpmnElement="lane_categ" isHorizontal="true">
+        <dc:Bounds x="40" y="110" width="4000" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_clinico" bpmnElement="lane_clinico" isHorizontal="true">
+        <dc:Bounds x="40" y="185" width="4000" height="155" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_his" bpmnElement="lane_his" isHorizontal="true">
+        <dc:Bounds x="40" y="340" width="4000" height="130" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_start" bpmnElement="start">
+        <dc:Bounds x="70" y="55" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_llegada" bpmnElement="t_llegada">
+        <dc:Bounds x="210" y="40" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_identificar" bpmnElement="t_identificar">
+        <dc:Bounds x="420" y="40" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_datos" bpmnElement="t_datos">
+        <dc:Bounds x="630" y="40" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_motivo" bpmnElement="t_motivo">
+        <dc:Bounds x="850" y="40" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_aperturar" bpmnElement="t_aperturar">
+        <dc:Bounds x="1060" y="40" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_crear_episodio" bpmnElement="t_crear_episodio">
+        <dc:Bounds x="1060" y="350" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dao_episodio" bpmnElement="dao_episodio">
+        <dc:Bounds x="1270" y="350" width="36" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_informar" bpmnElement="t_informar">
+        <dc:Bounds x="1290" y="40" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_categorizar" bpmnElement="t_categorizar">
+        <dc:Bounds x="1510" y="125" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_asignar" bpmnElement="t_asignar">
+        <dc:Bounds x="1720" y="125" width="160" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_gw_cat" bpmnElement="gw_cat">
+        <dc:Bounds x="1930" y="130" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_esperar" bpmnElement="t_esperar">
+        <dc:Bounds x="2040" y="125" width="150" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_be_nea" bpmnElement="be_nea">
+        <dc:Bounds x="2100" y="165" width="30" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_constatar_nea" bpmnElement="t_constatar_nea">
+        <dc:Bounds x="2040" y="40" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_atender" bpmnElement="t_atender">
+        <dc:Bounds x="2250" y="200" width="160" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_be_fuga" bpmnElement="be_fuga">
+        <dc:Bounds x="2330" y="240" width="30" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_constatar_fuga" bpmnElement="t_constatar_fuga">
+        <dc:Bounds x="2250" y="285" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_gw_desenlace" bpmnElement="gw_desenlace">
+        <dc:Bounds x="2560" y="205" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_medicamentos" bpmnElement="t_medicamentos">
+        <dc:Bounds x="2660" y="200" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_cerrar" bpmnElement="t_cerrar">
+        <dc:Bounds x="2890" y="350" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_dao_dau" bpmnElement="dao_dau">
+        <dc:Bounds x="2820" y="350" width="36" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_publicar" bpmnElement="t_publicar">
+        <dc:Bounds x="3120" y="350" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_end_a" bpmnElement="end_a">
+        <dc:Bounds x="3340" y="357" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_msgstart_dau" bpmnElement="msgstart_dau">
+        <dc:Bounds x="3400" y="350" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_enviar" bpmnElement="t_enviar">
+        <dc:Bounds x="3460" y="350" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_endmsg_dau" bpmnElement="endmsg_dau">
+        <dc:Bounds x="3660" y="357" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_p_plat" bpmnElement="p_plat" isHorizontal="true">
+        <dc:Bounds x="40" y="500" width="4000" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_plat" bpmnElement="lane_plat" isHorizontal="true">
+        <dc:Bounds x="40" y="500" width="4000" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_msgstart_b" bpmnElement="msgstart_b">
+        <dc:Bounds x="3120" y="517" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_plataforma" bpmnElement="t_plataforma">
+        <dc:Bounds x="3200" y="510" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_endmsg_b" bpmnElement="endmsg_b">
+        <dc:Bounds x="3420" y="517" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_p_receptor" bpmnElement="p_receptor" isHorizontal="true">
+        <dc:Bounds x="40" y="610" width="4000" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_lane_receptor" bpmnElement="lane_receptor" isHorizontal="true">
+        <dc:Bounds x="40" y="610" width="4000" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_consultar" bpmnElement="t_consultar">
+        <dc:Bounds x="3120" y="630" width="180" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_gw_detalle" bpmnElement="gw_detalle">
+        <dc:Bounds x="3340" y="640" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_recuperar" bpmnElement="t_recuperar">
+        <dc:Bounds x="3440" y="690" width="170" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_t_seguimiento" bpmnElement="t_seguimiento">
+        <dc:Bounds x="3680" y="630" width="150" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="shape_end" bpmnElement="end">
+        <dc:Bounds x="3870" y="640" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="edge_f1" bpmnElement="f1">
+        <di:waypoint x="106" y="73" />
+        <di:waypoint x="140" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f2" bpmnElement="f2">
+        <di:waypoint x="380" y="67" />
+        <di:waypoint x="420" y="67" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f3" bpmnElement="f3">
+        <di:waypoint x="590" y="67" />
+        <di:waypoint x="630" y="67" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f4" bpmnElement="f4">
+        <di:waypoint x="810" y="67" />
+        <di:waypoint x="850" y="67" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f5" bpmnElement="f5">
+        <di:waypoint x="1020" y="67" />
+        <di:waypoint x="1060" y="67" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f6" bpmnElement="f6">
+        <di:waypoint x="1150" y="95" />
+        <di:waypoint x="1150" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f8" bpmnElement="f8">
+        <di:waypoint x="1470" y="67" />
+        <di:waypoint x="1510" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f9" bpmnElement="f9">
+        <di:waypoint x="1680" y="152" />
+        <di:waypoint x="1720" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f10" bpmnElement="f10">
+        <di:waypoint x="1880" y="152" />
+        <di:waypoint x="1930" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f11" bpmnElement="f11">
+        <di:waypoint x="1980" y="155" />
+        <di:waypoint x="2040" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f12" bpmnElement="f12">
+        <di:waypoint x="1955" y="180" />
+        <di:waypoint x="2110" y="220" />
+        <di:waypoint x="2250" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f13" bpmnElement="f13">
+        <di:waypoint x="2190" y="152" />
+        <di:waypoint x="2250" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f14" bpmnElement="f14">
+        <di:waypoint x="2115" y="165" />
+        <di:waypoint x="2125" y="95" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f15" bpmnElement="f15">
+        <di:waypoint x="2210" y="67" />
+        <di:waypoint x="2585" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f16" bpmnElement="f16">
+        <di:waypoint x="2410" y="227" />
+        <di:waypoint x="2420" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f17" bpmnElement="f17">
+        <di:waypoint x="2345" y="270" />
+        <di:waypoint x="2345" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f18" bpmnElement="f18">
+        <di:waypoint x="2420" y="312" />
+        <di:waypoint x="2585" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f19" bpmnElement="f19">
+        <di:waypoint x="2610" y="230" />
+        <di:waypoint x="2660" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f20" bpmnElement="f20">
+        <di:waypoint x="2830" y="227" />
+        <di:waypoint x="2980" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f21" bpmnElement="f21">
+        <di:waypoint x="2585" y="255" />
+        <di:waypoint x="2980" y="350" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f22" bpmnElement="f22">
+        <di:waypoint x="3070" y="377" />
+        <di:waypoint x="3120" y="377" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f23" bpmnElement="f23">
+        <di:waypoint x="3300" y="377" />
+        <di:waypoint x="3340" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f24" bpmnElement="f24">
+        <di:waypoint x="3436" y="368" />
+        <di:waypoint x="3460" y="377" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f25" bpmnElement="f25">
+        <di:waypoint x="3630" y="377" />
+        <di:waypoint x="3660" y="375" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f26" bpmnElement="f26">
+        <di:waypoint x="3156" y="535" />
+        <di:waypoint x="3200" y="537" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f27" bpmnElement="f27">
+        <di:waypoint x="3380" y="537" />
+        <di:waypoint x="3420" y="535" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f28" bpmnElement="f28">
+        <di:waypoint x="3300" y="657" />
+        <di:waypoint x="3340" y="665" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f29" bpmnElement="f29">
+        <di:waypoint x="3365" y="690" />
+        <di:waypoint x="3525" y="690" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f30" bpmnElement="f30">
+        <di:waypoint x="3610" y="717" />
+        <di:waypoint x="3755" y="685" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f31" bpmnElement="f31">
+        <di:waypoint x="3390" y="665" />
+        <di:waypoint x="3680" y="657" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_f32" bpmnElement="f32">
+        <di:waypoint x="3830" y="657" />
+        <di:waypoint x="3870" y="658" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_mf_pi1" bpmnElement="mf_pi1">
+        <di:waypoint x="3210" y="405" />
+        <di:waypoint x="3138" y="517" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_mf_pi3a" bpmnElement="mf_pi3a">
+        <di:waypoint x="3210" y="630" />
+        <di:waypoint x="3418" y="386" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="edge_mf_pi3b" bpmnElement="mf_pi3b">
+        <di:waypoint x="3545" y="405" />
+        <di:waypoint x="3525" y="690" />
+      </bpmndi:BPMNEdge>
+    <bpmndi:BPMNShape id="shape_gw_vital" bpmnElement="gw_vital"><dc:Bounds x="140" y="55" width="50" height="50" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_publicar_admision" bpmnElement="t_publicar_admision"><dc:Bounds x="1470" y="350" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_be_nea2" bpmnElement="be_nea2"><dc:Bounds x="1560" y="165" width="30" height="30" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_informar_paciente" bpmnElement="t_informar_paciente"><dc:Bounds x="2420" y="200" width="130" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_msgstart_c" bpmnElement="msgstart_c"><dc:Bounds x="3600" y="517" width="36" height="36" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_t_responder" bpmnElement="t_responder"><dc:Bounds x="3680" y="510" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNShape id="shape_endmsg_c" bpmnElement="endmsg_c"><dc:Bounds x="3900" y="517" width="36" height="36" /></bpmndi:BPMNShape><bpmndi:BPMNEdge id="edge_f33" bpmnElement="f33"><di:waypoint x="1240" y="377" /><di:waypoint x="1470" y="377" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f34" bpmnElement="f34"><di:waypoint x="1560" y="350" /><di:waypoint x="1380" y="95" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f35" bpmnElement="f35"><di:waypoint x="190" y="80" /><di:waypoint x="210" y="67" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f36" bpmnElement="f36"><di:waypoint x="165" y="105" /><di:waypoint x="165" y="227" /><di:waypoint x="2250" y="227" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f37" bpmnElement="f37"><di:waypoint x="2550" y="227" /><di:waypoint x="2560" y="230" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f38" bpmnElement="f38"><di:waypoint x="1575" y="165" /><di:waypoint x="2125" y="95" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f39" bpmnElement="f39"><di:waypoint x="3636" y="535" /><di:waypoint x="3680" y="537" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f40" bpmnElement="f40"><di:waypoint x="3860" y="537" /><di:waypoint x="3900" y="535" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi0" bpmnElement="mf_pi0"><di:waypoint x="1560" y="405" /><di:waypoint x="1560" y="485" /><di:waypoint x="3138" y="485" /><di:waypoint x="3138" y="517" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi2a" bpmnElement="mf_pi2a"><di:waypoint x="3210" y="630" /><di:waypoint x="3618" y="553" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_mf_pi2b" bpmnElement="mf_pi2b"><di:waypoint x="3918" y="553" /><di:waypoint x="3210" y="630" /></bpmndi:BPMNEdge><bpmndi:BPMNShape id="shape_t_cerrar_fallecido" bpmnElement="t_cerrar_fallecido"><dc:Bounds x="2890" y="415" width="180" height="55" /></bpmndi:BPMNShape><bpmndi:BPMNEdge id="edge_f41" bpmnElement="f41"><di:waypoint x="2585" y="255" /><di:waypoint x="2585" y="442" /><di:waypoint x="2890" y="442" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id="edge_f42" bpmnElement="f42"><di:waypoint x="3070" y="442" /><di:waypoint x="3120" y="377" /></bpmndi:BPMNEdge></bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
